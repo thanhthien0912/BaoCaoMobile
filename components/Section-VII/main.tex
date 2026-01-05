@@ -1,167 +1,54 @@
 \newpage
 \section{\textbf{KẾT QUẢ THỰC NGHIỆM}}
 
-\subsection{Môi trường và Công cụ thực nghiệm}
+\subsection{Môi trường thực nghiệm}
 \begin{itemize}
-    \item \textbf{Thiết bị Mobile}: Android (Redmi K70E), iOS Simulator (iPhone 15 Pro).
-    \item \textbf{Môi trường giả lập Web}: Chrome, Edge, Firefox.
-    \item \textbf{Flutter Version}: 3.8.1+ với Dart SDK.
-    \item \textbf{Backend Server}: Node.js v18 chạy trên môi trường development.
-    \item \textbf{Database}: MongoDB Atlas (Cluster Tier M0 - Free tier).
-    \item \textbf{Cloud Storage}: Cloudinary (Free plan).
-    \item \textbf{Cổng thanh toán}: Môi trường Sandbox của MoMo Developer.
-    \item \textbf{IDE}: Visual Studio Code với các extension Flutter, Dart, MongoDB.
+    \item \textbf{Mobile}: Android (Redmi K70E), iOS Simulator, Chrome/Edge
+    \item \textbf{Backend}: Node.js v18, MongoDB Atlas M0, Cloudinary, MoMo Sandbox
+    \item \textbf{Tools}: VS Code, Flutter 3.8.1+
 \end{itemize}
 
-\subsection{Kết quả triển khai Ứng dụng Khách hàng (Mobile App)}
-
-\textbf{1. Đăng nhập và Màn hình chính}
-Giao diện đăng nhập cho phép khách hàng truy cập bằng email và mật khẩu với tùy chọn "Remember me". Màn hình chính (Home) hiển thị banner sản phẩm nổi bật, danh mục thương hiệu, sản phẩm trending và thanh tìm kiếm. Hỗ trợ chuyển đổi Dark/Light mode.
+\subsection{Customer App}
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{image/app/1.jpg}
-        \caption{Màn hình Đăng nhập}
+        \includegraphics[width=0.75\textwidth]{image/app/1.jpg}
+        \caption{Đăng nhập}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{image/app/2.jpg}
-        \caption{Màn hình Chính (Home)}
+        \includegraphics[width=0.75\textwidth]{image/app/2.jpg}
+        \caption{Trang chủ}
     \end{subfigure}
-    \caption{Giao diện người dùng cơ bản VeritaShop}
+    \caption{Giao diện người dùng cơ bản}
 \end{figure}
 
-\textbf{2. Xem Sản phẩm và Chi tiết}
-Màn hình danh sách sản phẩm hiển thị với grid view, hỗ trợ phân trang vô hạn (infinite scroll). Bộ lọc bao gồm: Brand (iPhone, Samsung, Xiaomi, OPPO, Vivo), Khoảng giá, Tình trạng (Mới, Like New, Đã dùng). Sắp xếp theo: Giá tăng/giảm, Rating, Mới nhất.
-
-Màn hình chi tiết sản phẩm hiển thị đầy đủ thông tin:
+\textbf{Tính năng đã triển khai:}
 \begin{itemize}
-    \item Carousel hình ảnh sản phẩm với zoom gesture
-    \item Thông số kỹ thuật (RAM, ROM, Chip, Pin, Màn hình, Camera)
-    \item Bảng chọn màu sắc với preview ảnh
-    \item Giá gốc, giá khuyến mãi và phần trăm giảm
-    \item Rating trung bình và số lượng đánh giá
-    \item Nút "Thêm vào giỏ" và "Mua ngay" (Direct Checkout)
-\end{itemize}
-
-\textbf{3. Giỏ hàng và Wishlist}
-Màn hình giỏ hàng hiển thị danh sách sản phẩm đã thêm với khả năng:
-\begin{itemize}
-    \item Cập nhật số lượng (+/-)
-    \item Thay đổi màu sắc
-    \item Xóa sản phẩm (swipe to delete)
-    \item Xem tóm tắt: Subtotal, Phí ship (miễn phí >= 500,000 VNĐ), Thuế, Tổng cộng
-\end{itemize}
-
-Wishlist cho phép lưu sản phẩm yêu thích để mua sau, với thông báo khi sản phẩm giảm giá.
-
-\textbf{4. Chức năng Thanh toán với MoMo}
-Quy trình checkout được tối ưu hóa 5 bước: Review giỏ → Chọn địa chỉ → Áp dụng coupon → Chọn thanh toán → Xác nhận.
-
-Thanh toán MoMo hoạt động với cơ chế Deep Link:
-\begin{enumerate}
-    \item Khách hàng chọn phương thức MoMo
-    \item App mở ứng dụng MoMo tự động qua URL Launcher
-    \item Khách hàng xác nhận thanh toán trong MoMo
-    \item MoMo gọi callback về Backend (IPN)
-    \item Backend cập nhật trạng thái và thông báo cho App
-    \item Màn hình "Đặt hàng thành công" hiển thị
-\end{enumerate}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\textwidth]{image/app/momo.png}
-    \caption{Quy trình thanh toán qua ví MoMo}
-\end{figure}
-
-
-\textbf{5. Đánh giá Sản phẩm với ABSA}
-Tính năng đánh giá tích hợp AI phân tích cảm xúc:
-\begin{itemize}
-    \item Form đánh giá: Chọn sao (1-5), nhập tiêu đề, nội dung, upload ảnh (tối đa 5)
-    \item Sau khi gửi, hệ thống tự động phân tích ABSA
-    \item Hiển thị kết quả phân tích theo từng aspect: Pin, Camera, Hiệu năng, Màn hình...
-    \item Mỗi aspect có sentiment (Positive/Negative/Neutral) và confidence score
-    \item Content Moderation tự động flag nội dung vi phạm
+    \item Đăng nhập/đăng ký với JWT, PIN Lock bảo mật
+    \item Danh sách sản phẩm với search/filter/sort, chi tiết với specs đầy đủ
+    \item Giỏ hàng, wishlist, checkout 5 bước
+    \item Thanh toán MoMo với Deep Link + IPN callback
+    \item Đánh giá sản phẩm với ABSA analysis
+    \item Lịch sử đơn hàng với tracking trạng thái
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{image/app/3.jpg}
-    \caption{Màn hình đánh giá sản phẩm}
-    \label{fig:review_screen}
+    \includegraphics[width=0.9\textwidth]{image/app/momo.png}
+    \caption{Quy trình thanh toán MoMo}
 \end{figure}
 
-\textbf{6. Lịch sử Đơn hàng}
-Màn hình lịch sử đơn hàng hiển thị danh sách đơn theo thời gian với các thông tin:
-\begin{itemize}
-    \item Mã đơn hàng, ngày đặt
-    \item Trạng thái với màu sắc tương ứng (Pending: vàng, Delivered: xanh, Cancelled: đỏ)
-    \item Tổng tiền và số sản phẩm
-    \item Chi tiết đơn hàng: Danh sách sản phẩm, địa chỉ giao hàng, thông tin thanh toán
-    \item Nút "Hủy đơn" (chỉ với trạng thái pending)
-    \item Nút "Đặt lại" để mua lại sản phẩm
-\end{itemize}
-
-\newpage
-\subsection{Kết quả triển khai Web Quản trị (Admin Dashboard)}
-
-\textbf{1. Dashboard Thống kê}
-Trang tổng quan dành cho Admin hiển thị:
-\begin{itemize}
-    \item Tổng doanh thu (Real-time aggregation từ MongoDB)
-    \item Số đơn hàng theo trạng thái
-    \item Biểu đồ doanh thu theo thời gian (fl\_chart)
-    \item Top 5 sản phẩm bán chạy
-    \item Top 5 khách hàng VIP
-    \item Số người dùng mới trong tuần
-\end{itemize}
+\subsection{Admin Dashboard}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{image/app/dashboard.png}
-    \caption{Dashboard quản trị viên VeritaShop}
+    \includegraphics[width=0.85\textwidth]{image/app/dashboard.png}
+    \caption{Dashboard quản trị viên}
 \end{figure}
 
-\textbf{2. Quản lý Sản phẩm}
-Chức năng CRUD đầy đủ cho sản phẩm:
-\begin{itemize}
-    \item Danh sách sản phẩm với phân trang, tìm kiếm, lọc
-    \item Thêm mới: Upload nhiều ảnh lên Cloudinary, nhập thông số kỹ thuật, quản lý màu sắc
-    \item Chỉnh sửa: Cập nhật thông tin, thêm/xóa ảnh, đặt featured
-    \item Xóa: Soft delete với trường isActive
-\end{itemize}
-
-\textbf{3. Quản lý Đơn hàng}
-\begin{itemize}
-    \item Danh sách đơn hàng với bộ lọc: Trạng thái, Ngày tạo, Phương thức thanh toán
-    \item Chi tiết đơn: Thông tin sản phẩm, địa chỉ, timeline trạng thái
-    \item Cập nhật trạng thái: pending → confirmed → processing → shipping → delivered
-    \item Ghi nhận timestamp cho mỗi lần chuyển trạng thái
-\end{itemize}
-
-\textbf{4. Kiểm duyệt Đánh giá (Review Moderation)}
-\begin{itemize}
-    \item Tab "Cần duyệt": Hiển thị review bị flag bởi Content Moderation
-    \item Xem chi tiết: Nội dung review, kết quả ABSA, categories vi phạm
-    \item Actions: Approve (hiển thị công khai), Reject (ẩn), Delete
-    \item Thống kê: Số review theo trạng thái moderation
-\end{itemize}
-
-\textbf{5. Quản lý Mã giảm giá}
-\begin{itemize}
-    \item Tạo coupon: Mã code, loại giảm (percentage/fixed), giá trị, điều kiện
-    \item Thiết lập: Giới hạn số lần dùng, thời hạn, sản phẩm áp dụng
-    \item Thống kê: Số lần đã sử dụng, doanh thu từ coupon
-\end{itemize}
-
-\textbf{6. Xuất Báo cáo}
-\begin{itemize}
-    \item Export doanh thu theo khoảng thời gian (CSV, Excel)
-    \item Báo cáo sản phẩm bán chạy
-    \item Thống kê đánh giá và sentiment analysis
-\end{itemize}
+\textbf{Tính năng:} Dashboard thống kê, CRUD sản phẩm (Cloudinary upload), quản lý đơn hàng (workflow status), kiểm duyệt đánh giá (ABSA + Content Moderation), quản lý coupon, export báo cáo CSV/Excel.
 

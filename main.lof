@@ -1,11 +1,7 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Sơ đồ Kiến trúc Hệ thống VeritaShop}}{7}{figure.caption.3}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Sơ đồ Use Case Tổng quát hệ thống VeritaShop}}{15}{figure.caption.4}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Sơ đồ hoạt động chức năng Checkout}}{21}{figure.caption.5}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Sơ đồ hoạt động chức năng Thanh toán MoMo}}{22}{figure.caption.6}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Sơ đồ tuần tự chức năng Đánh giá với ABSA}}{23}{figure.caption.7}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Sơ đồ quan hệ cơ sở dữ liệu VeritaShop}}{32}{figure.caption.17}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Giao diện người dùng cơ bản VeritaShop}}{33}{figure.caption.18}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Quy trình thanh toán qua ví MoMo}}{35}{figure.caption.19}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Màn hình đánh giá sản phẩm}}{36}{figure.caption.20}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Dashboard quản trị viên VeritaShop}}{38}{figure.caption.21}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Sơ đồ Kiến trúc Hệ thống VeritaShop}}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Kiến trúc Single-Task Learning cho ABSA}}{8}{figure.caption.5}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Sơ đồ Use Case Tổng quát hệ thống VeritaShop}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Sơ đồ hoạt động chức năng Checkout}}{14}{figure.caption.10}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Sơ đồ hoạt động thanh toán MoMo}}{15}{figure.caption.11}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Sơ đồ quan hệ cơ sở dữ liệu VeritaShop}}{16}{figure.caption.12}%

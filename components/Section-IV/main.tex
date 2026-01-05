@@ -2,199 +2,212 @@
 
 \section{\textbf{CƠ SỞ LÝ THUYẾT}}
 
-\subsection{Giới thiệu}
-Chương này trình bày cơ sở lý thuyết của các công nghệ được sử dụng trong đồ án "VeritaShop - Ứng Dụng Thương Mại Điện Tử Di Động". Hệ thống được xây dựng dựa trên sự kết hợp giữa các công nghệ web và di động hiện đại, đảm bảo hiệu suất cao, khả năng mở rộng và trải nghiệm người dùng tối ưu. Các công nghệ chính bao gồm Node.js và Express.js cho Backend, MongoDB cho cơ sở dữ liệu, Flutter cho Mobile App. Bên cạnh đó, hệ thống tích hợp các dịch vụ quan trọng như Cloudinary cho quản lý hình ảnh, MoMo Payment Gateway cho thanh toán, và các công nghệ AI cho phân tích cảm xúc và kiểm duyệt nội dung.
-
-\subsection{Mô hình Client-Server}
-
-\textbf{Khái niệm:}
-Mô hình Client-Server (Khách-Chủ) là mô hình kiến trúc mạng máy tính trong đó hệ thống được chia thành hai thành phần chính: Client (Máy khách) gửi yêu cầu và Server (Máy chủ) xử lý yêu cầu và phản hồi kết quả. Đây là mô hình cơ bản cho hầu hết các ứng dụng web và di động hiện đại, đặc biệt phù hợp cho các ứng dụng thương mại điện tử.
-
-\textbf{Cơ chế hoạt động:}
-\begin{enumerate}
-    \item \textbf{Client}: (Mobile App Flutter hoặc Web Browser) gửi yêu cầu (HTTP Request) đến Server thông qua Internet. Yêu cầu chứa thông tin về hành động người dùng muốn thực hiện (ví dụ: lấy danh sách sản phẩm, thêm vào giỏ hàng, thanh toán).
-    \item \textbf{Server}: (Backend API) nhận yêu cầu, xử lý logic nghiệp vụ, truy xuất dữ liệu từ Database nếu cần, và tạo phản hồi.
-    \item \textbf{Database}: Lưu trữ và cung cấp dữ liệu cho Server (sản phẩm, đơn hàng, người dùng).
-    \item \textbf{Server}: Gửi phản hồi (HTTP Response) trả về cho Client, thường dưới dạng JSON.
-    \item \textbf{Client}: Nhận phản hồi và hiển thị kết quả cho người dùng.
-\end{enumerate}
-
-\textbf{Ưu điểm trong ứng dụng E-commerce:}
-\begin{itemize}
-    \item \textbf{Tập trung hóa}: Dữ liệu sản phẩm, giá cả, tồn kho được quản lý tập trung, đảm bảo tính nhất quán.
-    \item \textbf{Khả năng mở rộng}: Có thể scale horizontal để phục vụ lượng lớn người dùng đồng thời.
-    \item \textbf{Đa nền tảng}: Một Backend API phục vụ cả Mobile App và Admin Web.
-\end{itemize}
-
 \subsection{Công nghệ Backend}
 
-\textbf{Node.js}
+\textbf{Node.js} là môi trường runtime JavaScript phía server được xây dựng trên V8 Engine của Chrome. Với kiến trúc non-blocking I/O và event-driven, Node.js xử lý hiệu quả hàng nghìn kết nối đồng thời mà không cần tạo thread mới cho mỗi request - đặc biệt phù hợp cho ứng dụng E-commerce với lượng truy cập cao.
 
-Node.js là một môi trường chạy mã JavaScript phía máy chủ (server-side runtime environment), được xây dựng trên V8 JavaScript engine của Google Chrome. Node.js cho phép phát triển các ứng dụng mạng nhanh chóng và dễ mở rộng, đặc biệt phù hợp cho các ứng dụng real-time và I/O intensive như E-commerce.
-
-Đặc điểm nổi bật:
+\textbf{Express.js} là framework web tối giản cho Node.js, cung cấp:
 \begin{itemize}
-    \item \textbf{Non-blocking I/O}: Node.js sử dụng mô hình nhập/xuất không chặn, cho phép xử lý nhiều kết nối đồng thời mà không cần tạo luồng mới cho mỗi yêu cầu, giúp tiết kiệm tài nguyên hệ thống.
-    \item \textbf{Event-driven}: Hoạt động dựa trên cơ chế sự kiện, giúp xử lý các tác vụ bất đồng bộ hiệu quả - quan trọng khi xử lý thanh toán và cập nhật đơn hàng.
-    \item \textbf{NPM Ecosystem}: Hệ sinh thái package manager lớn nhất thế giới với hàng triệu thư viện hỗ trợ.
+    \item Routing: Quản lý endpoints (/api/products, /api/orders, /api/auth)
+    \item Middleware: Xác thực JWT, kiểm tra quyền admin, kiểm duyệt nội dung
+    \item Error Handling: Xử lý lỗi tập trung, trả response phù hợp
 \end{itemize}
 
-Node.js đóng vai trò là nền tảng cốt lõi cho Backend Server (version 18+), xử lý toàn bộ API endpoints cho products, orders, users, reviews, payments.
-
-\textbf{Express.js}
-
-Express.js là một framework web tối giản và linh hoạt dành cho Node.js, cung cấp bộ tính năng mạnh mẽ để xây dựng các ứng dụng web và RESTful API.
-
-Vai trò:
-\begin{itemize}
-    \item \textbf{Routing}: Quản lý các đường dẫn API (Endpoint) như \texttt{/api/products}, \texttt{/api/orders}, \texttt{/api/auth}, \texttt{/api/reviews}.
-    \item \textbf{Middleware}: Xử lý các tác vụ trung gian: xác thực JWT token, kiểm tra quyền quản trị, kiểm duyệt nội dung đánh giá.
-    \item \textbf{Error Handling}: Xử lý lỗi tập trung và trả về response phù hợp.
-\end{itemize}
-
-\subsection{Công nghệ Cơ sở dữ liệu}
-
-\textbf{MongoDB}
-
-MongoDB là hệ quản trị cơ sở dữ liệu NoSQL mã nguồn mở, lưu trữ dữ liệu dưới dạng văn bản (Document) theo định dạng JSON/BSON linh hoạt, thay vì dạng bảng (Table) như SQL truyền thống.
-
-Lý do lựa chọn cho E-commerce:
-\begin{itemize}
-    \item \textbf{Schema linh hoạt}: Phù hợp với dữ liệu sản phẩm đa dạng (điện thoại có nhiều thông số kỹ thuật khác nhau).
-    \item \textbf{Embedded Documents}: Cho phép nhúng dữ liệu liên quan (màu sắc, specs) trực tiếp trong document sản phẩm.
-    \item \textbf{Text Search}: Hỗ trợ tìm kiếm full-text cho chức năng search sản phẩm.
-    \item \textbf{Aggregation Pipeline}: Mạnh mẽ cho việc tính toán thống kê, báo cáo doanh thu.
-    \item \textbf{MongoDB Atlas}: Dịch vụ cloud database với auto-scaling và bảo mật cao.
-\end{itemize}
-
-\textbf{Mongoose ODM}
-
-Mongoose là Object Document Mapper (ODM) cho MongoDB và Node.js, cung cấp giải pháp schema-based để mô hình hóa dữ liệu.
-
-Tính năng chính:
-\begin{itemize}
-    \item Định nghĩa Schema rõ ràng với validation
-    \item Middleware (pre/post hooks) cho các thao tác database
-    \item Population cho references giữa các collections
-    \item Virtual fields và custom methods
-\end{itemize}
+\textbf{MongoDB} là hệ quản trị CSDL NoSQL lưu trữ dữ liệu dạng JSON/BSON linh hoạt. Ưu điểm cho E-commerce: schema linh hoạt cho sản phẩm đa dạng, embedded documents (specs, colors), text search, aggregation pipeline cho báo cáo. \textbf{Mongoose ODM} cung cấp schema-based modeling với validation, middleware hooks và population.
 
 \subsection{Công nghệ Mobile}
 
-\textbf{Flutter}
+\textbf{Flutter} là UI toolkit của Google cho phép xây dựng ứng dụng đa nền tảng (Android, iOS, Web, Desktop) từ một codebase duy nhất. Sử dụng ngôn ngữ Dart với Hot Reload, widget-based architecture và biên dịch native cho hiệu suất cao.
 
-Flutter là bộ công cụ phát triển phần mềm giao diện người dùng (UI toolkit) mã nguồn mở do Google phát triển, cho phép xây dựng ứng dụng biên dịch gốc (natively compiled) cho di động, web và desktop từ một codebase duy nhất.
+Thư viện chính: \textbf{provider} (state management), \textbf{dio} (HTTP client), \textbf{cached\_network\_image} (caching ảnh), \textbf{flutter\_secure\_storage} (lưu JWT), \textbf{url\_launcher} và \textbf{app\_links} (Deep Link MoMo).
 
-Flutter sử dụng ngôn ngữ lập trình Dart, được thiết kế tối ưu cho phát triển giao diện người dùng với tính năng "Hot Reload" giúp xem thay đổi code ngay lập tức mà không cần khởi động lại ứng dụng.
+\subsection{Công nghệ Tích hợp}
 
-Đặc điểm kỹ thuật:
+\textbf{MoMo Payment Gateway:} Cổng thanh toán hàng đầu Việt Nam với 30+ triệu người dùng. Quy trình: App tạo request → Backend gọi MoMo API (HMAC-SHA256 signature) → Trả Deep Link → Mở MoMo app → User xác nhận → IPN callback → Cập nhật đơn hàng.
+
+\textbf{Cloudinary:} CDN quản lý hình ảnh với upload API, tối ưu hóa tự động và phân phối toàn cầu.
+
+\textbf{Bảo mật:} JWT authentication (Access Token 7 ngày + Refresh Token 30 ngày), bcrypt mã hóa mật khẩu, PIN Lock tùy chọn, HTTPS, input validation với express-validator.
+
+\newpage
+\subsection{ABSA - Aspect-Based Sentiment Analysis}
+
+\subsubsection*{Định nghĩa bài toán}
+ABSA là kỹ thuật phân tích cảm xúc nâng cao, chia thành 2 nhiệm vụ riêng biệt:
+
 \begin{itemize}
-    \item \textbf{Widget-based}: Mọi thành phần giao diện trong Flutter đều là Widget, từ layout đến styling, giúp tùy biến cao và nhất quán trên các nền tảng.
-    \item \textbf{Hiệu suất Native}: Flutter biên dịch code Dart thành mã máy (ARM/x86), không thông qua cầu nối JavaScript, mang lại hiệu suất gần như ứng dụng gốc.
-    \item \textbf{Đa nền tảng}: Một codebase chạy trên Android, iOS, Web và Desktop.
+    \item \textbf{Aspect Detection (AD)}: Xác định bình luận đang nói về khía cạnh nào của sản phẩm (Pin, Màn hình, Giao hàng...). Đây là bài toán phân loại đa nhãn (multi-label classification).
+    \item \textbf{Sentiment Classification (SC)}: Với mỗi khía cạnh tìm được, xác định cảm xúc là Positive, Negative hay Neutral. Đây là bài toán phân loại đa lớp (multi-class classification).
 \end{itemize}
 
-Thư viện chính sử dụng:
+\textbf{Ví dụ minh họa:}
+
+\textit{Input:} "Pin dùng cả ngày không hết, nhưng camera hơi tệ trong điều kiện thiếu sáng."
+
+\textit{Output:}
 \begin{itemize}
-    \item \textbf{provider}: Giải pháp quản lý trạng thái (State Management) được Google khuyến nghị.
-    \item \textbf{dio}: HTTP client mạnh mẽ với hỗ trợ interceptors, timeout, cancel requests.
-    \item \textbf{cached\_network\_image}: Caching hình ảnh sản phẩm để tối ưu băng thông.
-    \item \textbf{image\_picker}: Chọn ảnh từ gallery/camera cho upload đánh giá.
-    \item \textbf{flutter\_secure\_storage}: Lưu trữ JWT token an toàn.
-    \item \textbf{url\_launcher \& app\_links}: Xử lý Deep Link cho thanh toán MoMo.
+    \item Battery → Positive (confidence: 0.95)
+    \item Camera → Negative (confidence: 0.87)
 \end{itemize}
 
-\subsection{Công nghệ Cloud và Tích hợp}
+\subsubsection*{Các khía cạnh (Aspects) được phân tích}
 
-\textbf{Cloudinary}
+Hệ thống được huấn luyện nhận diện 11 khía cạnh đặc thù cho thương mại điện tử ngành điện thoại:
 
-Cloudinary là nền tảng quản lý hình ảnh và video đám mây, cung cấp API để upload, lưu trữ, tối ưu hóa và phân phối nội dung media.
+\begin{table}[H]
+\centering
+\caption{11 Aspects trong mô hình ABSA}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|l|p{8cm}|}
+\hline
+\textbf{STT} & \textbf{Aspect} & \textbf{Mô tả} \\
+\hline
+1 & Battery & Thời lượng pin, tốc độ sạc, công nghệ sạc nhanh \\
+\hline
+2 & Camera & Chất lượng ảnh, video, chụp đêm, selfie \\
+\hline
+3 & Performance & Tốc độ xử lý, đa nhiệm, gaming, chip \\
+\hline
+4 & Display & Độ sáng, màu sắc, tần số quét, độ phân giải \\
+\hline
+5 & Design & Ngoại hình, chất liệu, trọng lượng, màu sắc máy \\
+\hline
+6 & Packaging & Hộp đựng, phụ kiện đi kèm, seal nguyên vẹn \\
+\hline
+7 & Price & Giá cả, khuyến mãi, so với đối thủ \\
+\hline
+8 & Shop\_Service & Tư vấn, hỗ trợ, thái độ nhân viên \\
+\hline
+9 & Shipping & Tốc độ giao hàng, đóng gói vận chuyển \\
+\hline
+10 & General & Nhận xét tổng quan về sản phẩm \\
+\hline
+11 & Others & Các vấn đề khác không thuộc 10 aspects trên \\
+\hline
+\end{tabular}
+\end{table}
 
-Ứng dụng trong dự án:
+\textit{Lưu ý:} Packaging và Shipping là 2 khía cạnh quan trọng thường bị thiếu trong các bộ dữ liệu ABSA truyền thống, nhưng rất phổ biến trong bình luận mua hàng online.
+
+\newpage
+\subsubsection*{Kiến trúc mô hình (Model Architecture)}
+
+\textbf{1. Core Model - VisoBERT}
+
+Đồ án sử dụng VisoBERT làm backbone thay vì PhoBERT vì các lý do:
 \begin{itemize}
-    \item Upload và lưu trữ hình ảnh sản phẩm (nhiều ảnh cho mỗi sản phẩm)
-    \item Upload hình ảnh đánh giá người dùng (tối đa 5 ảnh)
-    \item Tự động tối ưu hóa kích thước và định dạng ảnh
-    \item CDN (Content Delivery Network) phân phối toàn cầu
+    \item Huấn luyện trên 14GB dữ liệu mạng xã hội Việt Nam
+    \item Hiểu tốt emoji/icon thường gặp trong bình luận (👍, ❤️, 😡...)
+    \item Xử lý được teencode và ngôn ngữ không chuẩn ("k" = "không", "đc" = "được")
+    \item Phù hợp với văn phong bình luận mua hàng hơn PhoBERT (huấn luyện trên báo chí)
 \end{itemize}
 
-\textbf{MoMo Payment Gateway}
+\textbf{2. Chiến lược huấn luyện - Single-Task Learning (STL)}
 
-MoMo là ví điện tử hàng đầu tại Việt Nam với hơn 30 triệu người dùng. Cổng thanh toán MoMo cho phép các ứng dụng bên thứ ba tích hợp để thực hiện thanh toán trực tuyến an toàn.
-
-Cơ chế tích hợp:
-\begin{enumerate}
-    \item Người dùng chọn thanh toán MoMo khi checkout.
-    \item App gọi API Backend để tạo yêu cầu thanh toán.
-    \item Backend gọi MoMo API với signature bảo mật (HMAC-SHA256).
-    \item MoMo trả về Deep Link hoặc QR Code.
-    \item App mở MoMo thông qua URL Launcher.
-    \item Người dùng xác nhận thanh toán trên MoMo.
-    \item MoMo gửi IPN (Instant Payment Notification) về Backend.
-    \item Backend xác thực signature và cập nhật trạng thái đơn hàng.
-\end{enumerate}
-
-\subsection{Công nghệ AI/ML}
-
-\textbf{ABSA - Aspect-Based Sentiment Analysis}
-
-ABSA là kỹ thuật phân tích cảm xúc nâng cao, không chỉ xác định cảm xúc tổng thể của văn bản mà còn phân tích cảm xúc theo từng khía cạnh (aspect) cụ thể của sản phẩm.
-
-Ứng dụng trong VeritaShop:
+Thay vì dùng 1 mô hình làm 2 việc cùng lúc (Multi-Task Learning), nhóm tách thành 2 mô hình riêng biệt:
 \begin{itemize}
-    \item \textbf{Aspects phân tích}: Pin (Battery), Camera, Hiệu năng (Performance), Màn hình (Display), Thiết kế (Design), Giá (Price), Dịch vụ (Service), Giao hàng (Delivery).
-    \item \textbf{Sentiments}: Tích cực (Positive), Tiêu cực (Negative), Trung tính (Neutral).
-    \item \textbf{Confidence Score}: Điểm tin cậy của mỗi phân tích.
+    \item \textbf{Mô hình AD}: Chuyên phát hiện khía cạnh (Aspect Detection)
+    \item \textbf{Mô hình SC}: Chuyên phân loại cảm xúc (Sentiment Classification)
 \end{itemize}
 
-Ví dụ: Review "Pin dùng cả ngày không hết, nhưng camera hơi tệ trong điều kiện thiếu sáng." → Battery: Positive (0.95), Camera: Negative (0.87).
+\textbf{Lý do:} STL giúp tránh task interference (xung đột nhiệm vụ), mỗi mô hình tập trung tối ưu cho một mục tiêu cụ thể.
 
-\textbf{Content Moderation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{image/sequence/6.png}
+    \caption{Kiến trúc Single-Task Learning cho ABSA}
+    \label{fig:stl_arch}
+\end{figure}
 
-Content Moderation là quá trình tự động phát hiện và lọc nội dung không phù hợp trong các đánh giá và bình luận của người dùng.
+\subsubsection*{Kỹ thuật Focal Loss - Xử lý mất cân bằng dữ liệu}
 
-Categories kiểm duyệt:
+\textbf{Vấn đề:} Trong dữ liệu bình luận thực tế, số lượng đánh giá tích cực (Positive) thường áp đảo tiêu cực (Negative) và trung tính (Neutral). Tỷ lệ có thể lên đến 70-80\% Positive.
+
+Hàm mất mát truyền thống Cross-Entropy khiến mô hình chỉ học tốt các mẫu "dễ" (lớp đa số) và bỏ qua các mẫu "khó" (lớp thiểu số).
+
+\textbf{Giải pháp:} Áp dụng Focal Loss với tham số $\gamma=2$:
+
+$$FL(p_{t})=-\alpha_{t}(1-p_{t})^{\gamma}\log(p_{t})$$
+
+Trong đó:
 \begin{itemize}
-    \item Harassment / Threatening (Quấy rối / Đe dọa)
-    \item Hate / Hate Threatening (Thù ghét)
-    \item Illicit / Illicit Violent (Bất hợp pháp)
-    \item Self-harm (Tự gây thương tích)
-    \item Sexual / Sexual Minors (Khiêu dâm)
-    \item Violence / Violence Graphic (Bạo lực)
+    \item $p_t$: Xác suất dự đoán đúng
+    \item $\alpha_t$: Trọng số cân bằng lớp
+    \item $\gamma$: Focusing parameter (thường = 2)
+    \item $(1-p_t)^\gamma$: Modulating factor - giảm loss cho mẫu dễ, tăng cho mẫu khó
 \end{itemize}
 
-Khi phát hiện nội dung vi phạm, review sẽ được đánh dấu \texttt{isFlagged=true} và chuyển sang trạng thái \texttt{moderationStatus='pending'} để Admin duyệt thủ công.
+\textbf{Tác dụng:} Mô hình tập trung học các mẫu "khó" (Negative, Neutral), cải thiện đáng kể F1-Score cho các lớp thiểu số.
 
-\subsection{Giao thức và Bảo mật}
+\newpage
+\subsubsection*{Tiền xử lý dữ liệu}
 
-\textbf{RESTful API}
+Trước khi đưa vào mô hình ABSA, dữ liệu được xử lý qua các bước:
 
-Hệ thống sử dụng kiến trúc REST (Representational State Transfer) để thiết kế API, đảm bảo tính thống nhất và dễ dàng tích hợp. Các phương thức HTTP chuẩn:
+\begin{table}[H]
+\centering
+\caption{Pipeline tiền xử lý dữ liệu}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Bước} & \textbf{Input} & \textbf{Output} \\
+\hline
+Chuẩn hóa chính tả & "tooott", "đẹpppp" & "tốt", "đẹp" \\
+\hline
+Dịch tiếng Anh & "good", "ship fast" & "tốt", "giao nhanh" \\
+\hline
+Chuẩn hóa teencode & "k", "đc", "ko" & "không", "được", "không" \\
+\hline
+Giữ lại Emoji & 👍, ❤️, 😡 & (giữ nguyên - mang sắc thái) \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{Kết quả thực nghiệm}
+
+\textbf{Bộ dữ liệu:}
 \begin{itemize}
-    \item \textbf{GET}: Lấy dữ liệu (danh sách sản phẩm, chi tiết đơn hàng)
-    \item \textbf{POST}: Tạo mới (đăng ký, thêm giỏ hàng, tạo đơn hàng)
-    \item \textbf{PUT}: Cập nhật (sửa thông tin, cập nhật trạng thái)
-    \item \textbf{DELETE}: Xóa (xóa sản phẩm khỏi giỏ, hủy đơn hàng)
+    \item Số lượng: 14,912 bình luận từ các sàn TMĐT Việt Nam
+    \item Độ đồng thuận gán nhãn: Kappa = 0.8208 (Rất tốt)
+    \item Chia tỷ lệ: 80\% train, 10\% validation, 10\% test
 \end{itemize}
 
-\textbf{JWT (JSON Web Token)}
+\textbf{So sánh hiệu năng mô hình:}
 
-JWT là tiêu chuẩn mã hóa thông tin dạng JSON được ký số để có thể xác thực và tin cậy.
+\begin{table}[H]
+\centering
+\caption{Kết quả thực nghiệm ABSA}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Mô hình} & \textbf{AD F1-Score} & \textbf{SC F1-Score} \\
+\hline
+BiLSTM (baseline) & 45.21\% & 39.15\% \\
+\hline
+PhoBERT-MTL & 82.14\% & 93.63\% \\
+\hline
+PhoBERT-STL & 85.67\% & 94.82\% \\
+\hline
+VisoBERT-MTL & 86.23\% & 95.11\% \\
+\hline
+\textbf{VisoBERT-STL} & \textbf{89.39\%} & \textbf{96.37\%} \\
+\hline
+\end{tabular}
+\end{table}
 
-Cấu trúc:
+\textbf{Nhận xét:}
 \begin{itemize}
-    \item \textbf{Header}: Thuật toán ký (HS256)
-    \item \textbf{Payload}: Thông tin user (id, role, email)
-    \item \textbf{Signature}: Chữ ký số với secret key
+    \item Transformer (BERT) vượt trội hoàn toàn so với Deep Learning truyền thống (BiLSTM)
+    \item VisoBERT tốt hơn PhoBERT do phù hợp với văn phong mạng xã hội
+    \item Single-Task Learning (STL) tốt hơn Multi-Task Learning (MTL) khoảng 2-3\%
+    \item SC dễ hơn AD do ít lớp hơn (3 vs 11) và ngữ cảnh rõ ràng hơn
 \end{itemize}
 
-Khi đăng nhập thành công, Server cấp Access Token (7 ngày) và Refresh Token (30 ngày). Client gửi token trong header \texttt{Authorization: Bearer <token>} cho mỗi request.
+\subsection{Content Moderation}
 
-\textbf{Bảo mật bổ sung}
-\begin{itemize}
-    \item \textbf{bcrypt}: Mã hóa một chiều mật khẩu với salt
-    \item \textbf{PIN Lock}: Lớp bảo mật tùy chọn trước khi truy cập app
-    \item \textbf{HTTPS}: Mã hóa dữ liệu truyền tải
-    \item \textbf{Input Validation}: Kiểm tra dữ liệu đầu vào với express-validator
-\end{itemize}
+Hệ thống tự động phát hiện và flag nội dung vi phạm trong đánh giá:
+
+\textbf{Categories kiểm duyệt:} Harassment (quấy rối), Hate (thù ghét), Violence (bạo lực), Sexual (khiêu dâm), Self-harm (tự gây thương tích), Illicit (bất hợp pháp).
+
+\textbf{Quy trình:} Review mới → Content Moderation API → Nếu phát hiện vi phạm: isFlagged=true, moderationStatus='pending' → Admin duyệt thủ công (Approve/Reject).
 

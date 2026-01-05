@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  6 JAN 2026 05:56
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  6 JAN 2026 06:36
  restricted system commands enabled.
  file:line:error style messages enabled.
 **d:/HUTECH/HK11/Moblie/BaoCao/main.tex
@@ -2182,7 +2182,7 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 \c@lstlisting=\count444
 (./components/title.tex
-<image/logoHutech1.png, id=129, 845.0772pt x 271.0125pt>
+<image/logoHutech1.png, id=101, 845.0772pt x 271.0125pt>
 File: image/logoHutech1.png Graphic file (type png)
 <use image/logoHutech1.png>
 Package luatex.def Info: image/logoHutech1.png  used on input line 15.
@@ -2201,11 +2201,7 @@ tech1.png>]) (./main.toc)
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.'
-[1]
-
-
-warning  (pdf backend): ignoring duplicate destination with the name 'page.'
-[2] (./main.lof)
+[1] (./main.lof)
 \tf@lof=\write7
 
 \openout7 = main.lof
@@ -2213,7 +2209,7 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.'
-[3] (./main.lot)
+[2] (./main.lot)
 \tf@lot=\write8
 
 \openout8 = main.lot
@@ -2221,7 +2217,7 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.'
-[4] (./components/project_info.tex) (./components/Section-I/main.tex)
+[3] (./components/project_info.tex) (./components/Section-I/main.tex)
 (./components/Section-II/main.tex
 
 [1
@@ -2231,336 +2227,236 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 [2]
 
 [3]
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-
-Overfull \hbox (33.6106pt too wide) in paragraph at lines 51--52
-[]\TU/Arial(0)/b/n/13 Quản lý sản phẩm\TU/Arial(0)/m/n/13 : Xem danh s
-ách, tìm kiếm server-side, lọc theo Brand/Giá/Tình
- []
-
-
-
-[4
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-]
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ả (U+1EA3) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ị (U+1ECB) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ả (U+1EA3) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ị (U+1ECB) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-
-
-[5
-Missing character: There is no ầ (U+1EA7) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ả (U+1EA3) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-Missing character: There is no ị (U+1ECB) in font name:Arial/I:mode=node;scrip
-t=latn;language=dflt;+tlig;!
-]
-Overfull \hbox (4.55284pt too wide) in paragraph at lines 86--87
-[]\TU/Arial(0)/b/n/13 Back-end Server\TU/Arial(0)/m/n/13 : Node.js/-Ex-press.js 
-đóng vai trò trung tâm xử lý logic nghiệp
- []
-
-
-
-[6]
-<image/sequence/1.png, id=255, 2285.53876pt x 1388.18625pt>
+<image/sequence/1.png, id=179, 2285.53876pt x 1388.18625pt>
 File: image/sequence/1.png Graphic file (type png)
 <use image/sequence/1.png>
-Package luatex.def Info: image/sequence/1.png  used on input line 114.
-(luatex.def)             Requested size: 455.24411pt x 276.48851pt.
+Package luatex.def Info: image/sequence/1.png  used on input line 57.
+(luatex.def)             Requested size: 432.48051pt x 262.67784pt.
 ) (./components/Section-IV/main.tex
 
-[7<./image/sequence/1.png>]
-
-[8]
-Overfull \hbox (39.852pt too wide) in paragraph at lines 50--51
-[]\TU/Arial(0)/b/n/13 Rout-ing\TU/Arial(0)/m/n/13 : Quản lý các đường d
-ẫn API (End-point) như \TU/lmtt/m/n/13 /api/products\TU/Arial(0)/m/n/13 , \T
-U/lmtt/m/n/13 /api/orders\TU/Arial(0)/m/n/13 ,
+[4<./image/sequence/1.png>]
+Overfull \hbox (4.59181pt too wide) in paragraph at lines 22--23
+[]\TU/Arial(0)/m/n/13 Thư viện chính: \TU/Arial(0)/b/n/13 provider \TU/Aria
+l(0)/m/n/13 (state man-age-ment), \TU/Arial(0)/b/n/13 dio \TU/Arial(0)/m/n/13 (H
+TTP client), \TU/Arial(0)/b/n/13 cached_net-
  []
 
 
 
-[9]
-Overfull \hbox (3.09409pt too wide) in paragraph at lines 64--65
-[]\TU/Arial(0)/b/n/13 Em-bed-ded Doc-u-ments\TU/Arial(0)/m/n/13 : Cho phép nh
-úng dữ liệu liên quan (màu sắc, specs)
- []
-
-
-
-[10]
-Overfull \hbox (1.47845pt too wide) in paragraph at lines 101--102
-[]\TU/Arial(0)/b/n/13 cached_net-work_im-age\TU/Arial(0)/m/n/13 : Caching hình 
-ảnh sản phẩm để tối ưu băng thông. 
- []
-
-
-
-[11]
-
-[12]) (./components/Section-V/main.tex
-
-[13]
-Overfull \hbox (12.87823pt too wide) in paragraph at lines 12--13
-[]\TU/Arial(0)/b/n/13 Khách hàng (Cus-tomer)\TU/Arial(0)/m/n/13 : Đăng ký, 
-Đăng nhập, Xem sản phẩm, Tìm kiếm/Lọc,
- []
-
-<image/sequence/2.png, id=299, 1519.6775pt x 1597.97pt>
-File: image/sequence/2.png Graphic file (type png)
-<use image/sequence/2.png>
-Package luatex.def Info: image/sequence/2.png  used on input line 21.
-(luatex.def)             Requested size: 455.24411pt x 478.68759pt.
-
-
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 53--53
-[]|\TU/Arial(0)/b/n/13 Luồng sự kiện
- []
-
-[15<./image/sequence/2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 99--99
-[]|\TU/Arial(0)/b/n/13 Luồng sự kiện
- []
-
-[16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 137--137
-[]|\TU/Arial(0)/b/n/13 Luồng sự kiện
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-[]|\TU/Arial(0)/b/n/13 Luồng sự kiện
- []
-
-
-Underfull \hbox (badness 1102) in paragraph at lines 181--182
-[]\TU/Arial(0)/m/n/13 pend-ing $\TU/texgyretermes-math.otf(1)/m/n/13 →$ \TU/A
-rial(0)/m/n/13 con-firmed $\TU/texgyretermes-math.otf(1)/m/n/13 →$ \TU/Arial(
-0)/m/n/13 pro-cess-ing $\TU/texgyretermes-math.otf(1)/m/n/13 →$
- []
-
-[19]
-<image/sequence/3a.png, id=350, 384.2355pt x 629.9535pt>
-File: image/sequence/3a.png Graphic file (type png)
-<use image/sequence/3a.png>
-Package luatex.def Info: image/sequence/3a.png  used on input line 200.
-(luatex.def)             Requested size: 152.95998pt x 250.77539pt.
-<image/sequence/3b.png, id=351, 384.2355pt x 754.61925pt>
-File: image/sequence/3b.png Graphic file (type png)
-<use image/sequence/3b.png>
-Package luatex.def Info: image/sequence/3b.png  used on input line 206.
-(luatex.def)             Requested size: 152.95998pt x 300.40303pt.
-
-
-[20]
-
-[21<./image/sequence/3a.png><./image/sequence/3b.png>]
-<image/sequence/4a.png, id=368, 253.54726pt x 618.51076pt>
-File: image/sequence/4a.png Graphic file (type png)
-<use image/sequence/4a.png>
-Package luatex.def Info: image/sequence/4a.png  used on input line 219.
-(luatex.def)             Requested size: 152.95998pt x 373.15729pt.
-<image/sequence/4b.png, id=369, 253.54726pt x 828.696pt>
-File: image/sequence/4b.png Graphic file (type png)
-<use image/sequence/4b.png>
-Package luatex.def Info: image/sequence/4b.png  used on input line 225.
-(luatex.def)             Requested size: 152.95998pt x 499.96536pt.
-
-
-[22<./image/sequence/4a.png><./image/sequence/4b.png>]
-<image/sequence/5.png, id=376, 2967.085pt x 1413.28pt>
-File: image/sequence/5.png Graphic file (type png)
-<use image/sequence/5.png>
-Package luatex.def Info: image/sequence/5.png  used on input line 239.
-(luatex.def)             Requested size: 455.24411pt x 216.83495pt.
-
-Overfull \hbox (1.19875pt too wide) in paragraph at lines 249--250
-[]\TU/Arial(0)/b/n/13 Khởi động\TU/Arial(0)/m/n/13 : Splash Screen $\TU/te
-xgyretermes-math.otf(1)/m/n/13 →$ \TU/Arial(0)/m/n/13 Login/Reg-is-ter (nếu ch
-ưa đăng nhập) $\TU/texgyretermes-math.otf(1)/m/n/13 →$ \TU/Arial(0)/m/n/
-13 Home 
- []
-
-) (./components/Section-VI/main.tex
-
-[23<./image/sequence/5.png>]
-
-[24]
-
-[25]
-Underfull \hbox (badness 5592) in paragraph at lines 141--142
-[]|\TU/Arial(0)/m/n/13 Màu sắc đã chọn (name,
- []
-
-
-
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
-\TU/Arial(0)/m/n/13 uct, name, brand, im-age,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
-[]|\TU/Arial(0)/m/n/13 ship-pin-gAd-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 171--171
-[]|\TU/Arial(0)/m/n/13 pay-ment-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
-[]|\TU/Arial(0)/m/n/13 Phương thức: ”COD”hoặc
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 173--173
-[]|\TU/Arial(0)/m/n/13 pay-mentSta-
- []
-
-
-
-[27]
-
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
-[]|\TU/Arial(0)/m/n/13 isVer-i-fied-Pur-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-[]|\TU/Arial(0)/m/n/13 sen-ti-men-t-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
-[]|\TU/Arial(0)/m/n/13 over-allSen-ti-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--280
-[]|\TU/Arial(0)/m/n/13 mod-er-a-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 282--282
-[]|\TU/Arial(0)/m/n/13 mod-er-a-
- []
-
-
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 295--296
-\TU/Arial(0)/m/n/13 Per-for-mance, Dis-play, De-
- []
-
-
-Underfull \hbox (badness 1968) in paragraph at lines 297--298
-[]|\TU/Arial(0)/m/n/13 Cảm xúc: ”pos-i-tive”, ”neg-a-
- []
-
-
-
-[30]
-Underfull \hbox (badness 10000) in paragraph at lines 327--327
-[]|\TU/Arial(0)/m/n/13 mi-nOrder-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--339
-[]|\TU/Arial(0)/m/n/13 ap-pli-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--339
-[]|\TU/Arial(0)/m/n/13 Ar-ray[Ob-jec-
- []
-
-
-
-[31]
-<image/sequence/6.png, id=422, 2712.1325pt x 2033.5975pt>
+[5]
+
+[6]
+Missing character: There is no ư (U+01B0) in font name:Arial/I:mode=node;script
+=latn;language=dflt;+tlig;!
+Missing character: There is no ư (U+01B0) in font name:Arial/I:mode=node;script
+=latn;language=dflt;+tlig;!
+
+
+[7
+Missing character: There is no ư (U+01B0) in font name:Arial/I:mode=node;script
+=latn;language=dflt;+tlig;!
+]
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+<image/sequence/6.png, id=199, 2712.1325pt x 2033.5975pt>
 File: image/sequence/6.png Graphic file (type png)
 <use image/sequence/6.png>
-Package luatex.def Info: image/sequence/6.png  used on input line 350.
-(luatex.def)             Requested size: 455.24411pt x 341.33176pt.
-) (./components/Section-VII/main.tex
-
-[32<./image/sequence/6.png>]
-<image/app/1.jpg, id=428, 734.745pt x 1235.21475pt>
-File: image/app/1.jpg Graphic file (type jpg)
-<use image/app/1.jpg>
-Package luatex.def Info: image/app/1.jpg  used on input line 25.
-(luatex.def)             Requested size: 163.88739pt x 275.51765pt.
-<image/app/2.jpg, id=429, 734.745pt x 1147.28625pt>
-File: image/app/2.jpg Graphic file (type jpg)
-<use image/app/2.jpg>
-Package luatex.def Info: image/app/2.jpg  used on input line 31.
-(luatex.def)             Requested size: 163.88739pt x 255.90498pt.
+Package luatex.def Info: image/sequence/6.png  used on input line 117.
+(luatex.def)             Requested size: 409.71692pt x 307.19858pt.
 
 
-[33<./image/app/1.jpg><./image/app/2.jpg>]
-<image/app/momo.png, id=434, 448.67625pt x 449.2785pt>
-File: image/app/momo.png Graphic file (type png)
-<use image/app/momo.png>
-Package luatex.def Info: image/app/momo.png  used on input line 76.
-(luatex.def)             Requested size: 455.24411pt x 455.8723pt.
+[8
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+<./image/sequence/6.png>]
+
+[9]
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
 
 
-[34]
+[10
+Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
+latn;language=dflt;+tlig;!
+Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
+t=latn;language=dflt;+tlig;!
+]
+Overfull \hbox (17.13278pt too wide) in paragraph at lines 212--213
+\TU/Arial(0)/m/n/13 is-Flagged=true, mod-er-a-tionSta-tus=’pend-ing’ → Ad-
+min duyệt thủ công (Ap-prove/Re-
+ []
 
-[35<./image/app/momo.png>]
-<image/app/3.jpg, id=450, 1224.575pt x 2722.17pt>
-File: image/app/3.jpg Graphic file (type jpg)
-<use image/app/3.jpg>
-Package luatex.def Info: image/app/3.jpg  used on input line 93.
-(luatex.def)             Requested size: 227.62206pt x 505.96118pt.
+) (./components/Section-V/main.tex
+
+[11]
+<image/sequence/2.png, id=217, 1519.6775pt x 1597.97pt>
+File: image/sequence/2.png Graphic file (type png)
+<use image/sequence/2.png>
+Package luatex.def Info: image/sequence/2.png  used on input line 16.
+(luatex.def)             Requested size: 409.71692pt x 430.82372pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]|\TU/Arial(0)/m/n/13 Thanh toán
+ []
 
 
-[36<./image/app/3.jpg>]
-
-[37]
-<image/app/dashboard.png, id=460, 1156.32pt x 828.696pt>
-File: image/app/dashboard.png Graphic file (type png)
-<use image/app/dashboard.png>
-Package luatex.def Info: image/app/dashboard.png  used on input line 125.
-(luatex.def)             Requested size: 409.71692pt x 293.62643pt.
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]|\TU/Arial(0)/m/n/13 Khách
+ []
 
 
-[38<./image/app/dashboard.png>]) (./components/Section-VIII/main.tex
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+\TU/Arial(0)/m/n/13 hàng,
+ []
 
-[39]
 
-[40]
+Underfull \hbox (badness 6001) in paragraph at lines 33--34
+\TU/Arial(0)/m/n/13 phương thức (COD/-MoMo) → Xác
+ []
 
-[41]
-Overfull \hbox (16.52664pt too wide) in paragraph at lines 70--71
-[]\TU/Arial(0)/b/n/13 Real-time Chat\TU/Arial(0)/m/n/13 : Tích hợp chat tr
-ực tiếp với cus-tomer ser-vice sử dụng Socket.io
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
+[]|\TU/Arial(0)/m/n/13 Khách
+ []
+
+
+Underfull \hbox (badness 3919) in paragraph at lines 35--36
+\TU/Arial(0)/m/n/13 up-load ảnh) → Con-tent Mod-er-a-tion
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 37--37
+[]|\TU/Arial(0)/m/n/13 Quản lý đơn
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\TU/Arial(0)/m/n/13 Kiểm duyệt
  []
 
 
 
-[42]) (./components/reference.tex
+[12<./image/sequence/2.png>]
 
-[43]
+[13]
+<image/sequence/3a.png, id=227, 384.2355pt x 629.9535pt>
+File: image/sequence/3a.png Graphic file (type png)
+<use image/sequence/3a.png>
+Package luatex.def Info: image/sequence/3a.png  used on input line 53.
+(luatex.def)             Requested size: 142.03355pt x 232.85806pt.
+<image/sequence/3b.png, id=228, 384.2355pt x 754.61925pt>
+File: image/sequence/3b.png Graphic file (type png)
+<use image/sequence/3b.png>
+Package luatex.def Info: image/sequence/3b.png  used on input line 59.
+(luatex.def)             Requested size: 142.03355pt x 278.93991pt.
+<image/sequence/4a.png, id=229, 253.54726pt x 618.51076pt>
+File: image/sequence/4a.png Graphic file (type png)
+<use image/sequence/4a.png>
+Package luatex.def Info: image/sequence/4a.png  used on input line 72.
+(luatex.def)             Requested size: 142.03355pt x 346.49577pt.
+<image/sequence/4b.png, id=230, 253.54726pt x 828.696pt>
+File: image/sequence/4b.png Graphic file (type png)
+<use image/sequence/4b.png>
+Package luatex.def Info: image/sequence/4b.png  used on input line 78.
+(luatex.def)             Requested size: 142.03355pt x 464.24362pt.
+
+
+[14<./image/sequence/3a.png><./image/sequence/3b.png>])
+(./components/Section-VI/main.tex
+
+[15<./image/sequence/4a.png><./image/sequence/4b.png>]
+File: image/sequence/6.png Graphic file (type png)
+<use image/sequence/6.png>
+Package luatex.def Info: image/sequence/6.png  used on input line 9.
+(luatex.def)             Requested size: 432.48051pt x 324.26517pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+[]|\TU/Arial(0)/m/n/13 Danh sách địa chỉ (full-Name,
+ []
+
+
+Underfull \hbox (badness 7486) in paragraph at lines 29--30
+\TU/Arial(0)/m/n/13 phone, province, dis-trict, ward,
+ []
+
+
+
+[16]
+Underfull \hbox (badness 1062) in paragraph at lines 53--54
+[]|\TU/Arial(0)/m/n/13 {ram, rom, chip, bat-tery, screen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+[]|\TU/Arial(0)/m/n/13 {prod-uct, name, brand, im-age,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+[]|\TU/Arial(0)/m/n/13 pend-ing/-con-firmed/pro-cess-ing/-
+ []
+
+
+Overfull \hbox (82.14383pt too wide) in paragraph at lines 71--88
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+[]|\TU/Arial(0)/m/n/13 {as-pect, sen-ti-ment, con-fi-dence,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+[]|\TU/Arial(0)/m/n/13 ”pos-i-tive”/”neg-a-tive”/”neu-
+ []
+
+
+Overfull \hbox (35.90115pt too wide) in paragraph at lines 95--112
+ [][] 
+ []
+
+
+
+[17]) (./components/Section-VIII/main.tex
+
+[18]
+Overfull \hbox (6.77258pt too wide) in paragraph at lines 22--23
+[]\TU/Arial(0)/m/n/13 Đạt F1-Score: As-pect De-tec-tion 89.39%, Sen-ti-ment 
+Clas-si-fi-ca-tion 96.37% 
+ []
+
+
+
+[19]) (./components/reference.tex
+
+[20]
 Underfull \hbox (badness 7963) in paragraph at lines 7--9
 []\TU/Arial(0)/m/n/13 Google De-vel-op-ers, ”Flut-ter Doc-u-men-ta-tion - Buil
 d apps for any
@@ -2572,7 +2468,7 @@ d apps for any
 \openout9 = main.thm
 
 
-[44
+[21
 
 ] (./main.aux)
  ***********
@@ -2580,35 +2476,27 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 48EA6632B4C3DA74B5175D200DA67AD6;6050.
+(rerunfilecheck)             Checksum: 787DAAE1AF63E7B31ECD57F948DDF8FC;3991.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51840 strings out of 476291
+ 51656 strings out of 476291
  125146,1977958 words of node,token memory allocated
- 1041 words of node memory still in use:
+ 1035 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 13 attribute, 158 glue_spe
-c, 8 attribute_list, 2 write, 1 pdf_action nodes
-   avail lists: 1:1,2:1993,3:399,4:132,5:234,6:187,7:4404,8:36,9:1608,10:10,11:1
-54
- 72549 multiletter control sequences out of 65536+600000
- 79 fonts using 29089667 bytes
- 108i,12n,101p,862b,743s stack positions out of 10000i,1000n,20000p,200000b,200000s
+c, 8 attribute_list, 2 write nodes
+   avail lists: 1:1,2:1351,3:285,4:106,5:166,6:74,7:4190,8:36,9:1079,10:9,11:179
 
-warning  (pdf backend): unreferenced destination with name 'table.4'
-
-warning  (pdf backend): unreferenced destination with name 'table.3'
-
-warning  (pdf backend): unreferenced destination with name 'table.2'
-
-warning  (pdf backend): unreferenced destination with name 'table.1'
+ 72474 multiletter control sequences out of 65536+600000
+ 81 fonts using 30577839 bytes
+ 108i,11n,101p,794b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/thanh/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono12-
 regular.otf><C:/WINDOWS/Fonts/arialni.ttf><C:/Users/thanh/AppData/Local/Programs
 /MiKTeX/fonts/opentype/public/tex-gyre-math/texgyretermes-math.otf><C:/WINDOWS/F
 onts/arialbd.ttf><C:/WINDOWS/Fonts/arial.ttf>
-Output written on main.pdf (49 pages, 1975624 bytes).
+Output written on main.pdf (25 pages, 897091 bytes).
 
-PDF statistics: 555 PDF objects out of 1000 (max. 8388607)
- 166 named destinations out of 1000 (max. 131072)
- 264 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 340 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 131072)
+ 208 words of extra memory for PDF output out of 10000 (max. 100000000)
 

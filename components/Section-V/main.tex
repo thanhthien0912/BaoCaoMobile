@@ -1,255 +1,94 @@
 \newpage
 \section{\textbf{PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}}
 
-\subsection{Phân Tích Hệ Thống}
+\subsection{Phân tích Use Case}
 
-\textbf{Biểu đồ Use Case}
-
-\textbf{Use Case Tổng quát} \\
-Hệ thống "VeritaShop - Ứng Dụng Thương Mại Điện Tử Di Động" bao gồm các tác nhân chính và các chức năng tổng quát như sau:
-
+\textbf{Các tác nhân chính:}
 \begin{itemize}
-    \item \textbf{Khách hàng (Customer)}: Đăng ký, Đăng nhập, Xem sản phẩm, Tìm kiếm/Lọc, Thêm giỏ hàng, Quản lý Wishlist, Thanh toán (COD/MoMo), Xem lịch sử đơn hàng, Đánh giá sản phẩm.
-    \item \textbf{Quản trị viên (Admin)}: Đăng nhập, Quản lý sản phẩm (CRUD), Quản lý đơn hàng, Quản lý người dùng, Quản lý mã giảm giá, Kiểm duyệt đánh giá, Xem thống kê Dashboard.
-    \item \textbf{Hệ thống thanh toán (MoMo)}: Xử lý yêu cầu thanh toán, Gửi thông báo kết quả (IPN).
-    \item \textbf{Hệ thống AI}: Phân tích cảm xúc đánh giá (ABSA), Kiểm duyệt nội dung (Content Moderation).
+    \item \textbf{Khách hàng}: Đăng ký/nhập, xem sản phẩm, tìm kiếm, giỏ hàng, thanh toán, đánh giá
+    \item \textbf{Quản trị viên}: Quản lý sản phẩm, đơn hàng, người dùng, coupon, kiểm duyệt đánh giá
+    \item \textbf{Hệ thống MoMo}: Xử lý thanh toán, gửi kết quả IPN
+    \item \textbf{Hệ thống AI}: Phân tích ABSA, Content Moderation
 \end{itemize}
 
-% Placeholder cho hình Use Case Tổng quát
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{image/sequence/2.png}
+    \includegraphics[width=0.9\textwidth]{image/sequence/2.png}
     \caption{Sơ đồ Use Case Tổng quát hệ thống VeritaShop}
-    \label{fig:usecase_tongquat}
+    \label{fig:usecase}
 \end{figure}
 
-\textbf{Đặc tả các Use Case chính}
+\subsection{Đặc tả Use Case chính}
 
-\textbf{1. Xem và Tìm kiếm Sản phẩm} \\
-Cho phép khách hàng duyệt danh sách sản phẩm với các bộ lọc và sắp xếp đa dạng.
+\begin{table}[H]
+\centering
+\caption{Đặc tả các Use Case chính}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{2.8cm}|p{2.5cm}|p{8cm}|}
+\hline
+\textbf{Use Case} & \textbf{Tác nhân} & \textbf{Mô tả chi tiết} \\
+\hline
+Tìm kiếm sản phẩm & Khách hàng & Lọc theo brand (iPhone, Samsung...), khoảng giá, tình trạng (mới, like new, used). Sắp xếp theo giá/rating/mới nhất. Server-side search với phân trang. \\
+\hline
+Thanh toán đơn hàng & Khách hàng, MoMo & Checkout 5 bước: Review giỏ → Chọn địa chỉ → Áp dụng coupon → Chọn phương thức (COD/MoMo) → Xác nhận. MoMo: Deep Link mở app → Xác nhận → IPN callback. \\
+\hline
+Đánh giá sản phẩm & Khách hàng, AI & Viết review (1-5 sao, tiêu đề, nội dung, upload ảnh) → Content Moderation kiểm tra → ABSA phân tích cảm xúc theo aspects → Lưu kết quả. \\
+\hline
+Quản lý đơn hàng & Admin & Xem danh sách với bộ lọc. Cập nhật trạng thái: pending → confirmed → processing → shipping → delivered (hoặc cancelled). \\
+\hline
+Kiểm duyệt đánh giá & Admin & Xem review bị flag. Xem kết quả ABSA và Content Moderation. Approve (hiển thị) / Reject (ẩn) / Delete. \\
+\hline
+\end{tabular}
+\end{table}
 
-\begin{longtable}{|>\bfseries m{4cm}|m{10cm}|}
-\caption{Đặc tả Use Case: Xem và Tìm kiếm Sản phẩm}
-\label{table:usecase-search}\\
-\hline
-Tên Use Case & Xem và Tìm kiếm Sản phẩm \\
-\hline
-Mô tả & Khách hàng duyệt danh sách điện thoại, tìm kiếm theo từ khóa và lọc theo tiêu chí. \\
-\hline
-Tác nhân & Khách hàng \\
-\hline
-Tiền điều kiện &
-\begin{itemize}
-    \item Ứng dụng đã được cài đặt và khởi động.
-    \item Có kết nối mạng Internet.
-\end{itemize} \\
-\hline
-Hậu điều kiện &
-\begin{itemize}
-    \item Danh sách sản phẩm phù hợp được hiển thị.
-    \item Khách hàng có thể xem chi tiết sản phẩm.
-\end{itemize} \\
-\hline
-Luồng sự kiện chính &
-\begin{enumerate}
-    \item Khách hàng mở màn hình danh sách sản phẩm.
-    \item Hệ thống hiển thị danh sách sản phẩm với phân trang.
-    \item Khách hàng nhập từ khóa tìm kiếm hoặc chọn bộ lọc.
-    \item Bộ lọc gồm: Brand (iPhone, Samsung, Xiaomi, OPPO, Vivo), Giá (khoảng giá), Tình trạng (Mới, Like New, Đã dùng).
-    \item Khách hàng chọn sắp xếp: Giá tăng/giảm, Rating cao nhất, Mới nhất.
-    \item Hệ thống gọi API server-side search và trả về kết quả.
-    \item Khách hàng chọn sản phẩm để xem chi tiết.
-\end{enumerate} \\
-\hline
-Luồng thay thế &
-\begin{itemize}
-    \item \textbf{Không có kết quả}: Hiển thị thông báo "Không tìm thấy sản phẩm phù hợp".
-    \item \textbf{Lỗi mạng}: Hiển thị thông báo và nút "Thử lại".
-\end{itemize} \\
-\hline
-\end{longtable}
+\newpage
+\subsection{Thiết kế Activity Diagram}
 
-\textbf{2. Thanh toán Đơn hàng} \\
-Quy trình hoàn tất đơn hàng với nhiều phương thức thanh toán.
-
-\begin{longtable}{|>\bfseries m{4cm}|m{10cm}|}
-\caption{Đặc tả Use Case: Thanh toán Đơn hàng}
-\label{table:usecase-checkout}\\
-\hline
-Tên Use Case & Thanh toán Đơn hàng \\
-\hline
-Mô tả & Khách hàng hoàn tất mua hàng bằng COD hoặc MoMo. \\
-\hline
-Tác nhân & Khách hàng, Hệ thống MoMo \\
-\hline
-Tiền điều kiện &
-\begin{itemize}
-    \item Khách hàng đã đăng nhập.
-    \item Giỏ hàng có ít nhất một sản phẩm.
-    \item Có địa chỉ giao hàng.
-\end{itemize} \\
-\hline
-Hậu điều kiện &
-\begin{itemize}
-    \item Đơn hàng được tạo với trạng thái "pending".
-    \item Sản phẩm trong giỏ hàng bị xóa.
-    \item Email xác nhận được gửi (nếu có).
-\end{itemize} \\
-\hline
-Luồng sự kiện chính &
-\begin{enumerate}
-    \item Khách hàng chọn "Thanh toán" từ giỏ hàng.
-    \item Hệ thống hiển thị màn hình Checkout với tóm tắt đơn hàng.
-    \item Khách hàng chọn/thêm địa chỉ giao hàng.
-    \item Khách hàng áp dụng mã giảm giá (coupon) nếu có.
-    \item Khách hàng chọn phương thức thanh toán: COD hoặc MoMo.
-    \item Nếu COD: Xác nhận đặt hàng, đơn được tạo ngay.
-    \item Nếu MoMo: Chuyển hướng sang app MoMo, xác nhận thanh toán, đợi IPN callback.
-    \item Hệ thống tạo đơn hàng và hiển thị màn hình "Đặt hàng thành công".
-\end{enumerate} \\
-\hline
-Luồng thay thế &
-\begin{itemize}
-    \item \textbf{Sản phẩm hết hàng}: Thông báo và yêu cầu cập nhật giỏ hàng.
-    \item \textbf{Mã giảm giá không hợp lệ}: Thông báo lỗi và cho phép tiếp tục không có coupon.
-    \item \textbf{Thanh toán MoMo thất bại}: Quay về app, hiển thị "Giao dịch thất bại", cho phép thử lại.
-\end{itemize} \\
-\hline
-\end{longtable}
-
-\textbf{3. Đánh giá Sản phẩm (với ABSA)} \\
-Khách hàng viết đánh giá và hệ thống tự động phân tích cảm xúc.
-
-\begin{longtable}{|>\bfseries m{4cm}|m{10cm}|}
-\caption{Đặc tả Use Case: Đánh giá Sản phẩm}
-\label{table:usecase-review}\\
-\hline
-Tên Use Case & Đánh giá Sản phẩm với ABSA \\
-\hline
-Mô tả & Khách hàng đánh giá sản phẩm đã mua, hệ thống phân tích cảm xúc tự động. \\
-\hline
-Tác nhân & Khách hàng, Hệ thống AI (ABSA, Content Moderation) \\
-\hline
-Tiền điều kiện & Khách hàng đã đăng nhập và đã mua sản phẩm. \\
-\hline
-Hậu điều kiện & Đánh giá được lưu với kết quả phân tích cảm xúc. \\
-\hline
-Luồng sự kiện chính &
-\begin{enumerate}
-    \item Khách hàng chọn "Viết đánh giá" từ chi tiết sản phẩm hoặc lịch sử đơn hàng.
-    \item Hệ thống hiển thị form đánh giá.
-    \item Khách hàng chọn số sao (1-5), nhập tiêu đề và nội dung.
-    \item Khách hàng upload hình ảnh (tùy chọn, tối đa 5 ảnh).
-    \item Khách hàng gửi đánh giá.
-    \item Backend thực hiện Content Moderation kiểm tra nội dung.
-    \item Backend thực hiện ABSA phân tích cảm xúc theo aspects.
-    \item Đánh giá được lưu với sentimentAnalysis và overallSentiment.
-    \item Thông báo "Đánh giá thành công" (hoặc "Đang chờ duyệt" nếu bị flag).
-\end{enumerate} \\
-\hline
-Luồng thay thế &
-\begin{itemize}
-    \item \textbf{Nội dung vi phạm}: Đánh giá bị flag, chuyển sang moderationStatus='pending' cho Admin duyệt.
-\end{itemize} \\
-\hline
-\end{longtable}
-
-\textbf{4. Quản lý Đơn hàng (Admin)} \\
-Quản trị viên cập nhật trạng thái đơn hàng theo quy trình.
-
-\begin{longtable}{|>\bfseries m{4cm}|m{10cm}|}
-\caption{Đặc tả Use Case: Quản lý Đơn hàng}
-\label{table:usecase-admin-order}\\
-\hline
-Tên Use Case & Quản lý Đơn hàng \\
-\hline
-Mô tả & Admin xem, cập nhật trạng thái và xử lý đơn hàng. \\
-\hline
-Tác nhân & Quản trị viên \\
-\hline
-Tiền điều kiện & Admin đã đăng nhập với role='admin'. \\
-\hline
-Hậu điều kiện & Trạng thái đơn hàng được cập nhật, timestamps được ghi nhận. \\
-\hline
-Luồng sự kiện chính &
-\begin{enumerate}
-    \item Admin truy cập màn hình Quản lý Đơn hàng.
-    \item Hệ thống hiển thị danh sách đơn hàng với bộ lọc (trạng thái, ngày).
-    \item Admin chọn đơn hàng để xem chi tiết.
-    \item Admin cập nhật trạng thái theo quy trình:
-    \begin{itemize}
-        \item pending $\rightarrow$ confirmed $\rightarrow$ processing $\rightarrow$ shipping $\rightarrow$ delivered
-        \item Hoặc: pending $\rightarrow$ cancelled
-    \end{itemize}
-    \item Hệ thống lưu trạng thái mới và timestamp tương ứng.
-    \item Khách hàng nhận thông báo về trạng thái đơn hàng.
-\end{enumerate} \\
-\hline
-\end{longtable}
-
-\subsection{Thiết Kế Hệ Thống}
-
-\textbf{Biểu đồ Activity (Hoạt động)}
-
-\textbf{Quy trình Checkout và Thanh toán}
+\textbf{Quy trình Checkout và Thanh toán:}
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth]{image/sequence/3a.png}
+        \includegraphics[width=0.65\textwidth]{image/sequence/3a.png}
         \caption{Giai đoạn chọn sản phẩm và địa chỉ}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth]{image/sequence/3b.png}
+        \includegraphics[width=0.65\textwidth]{image/sequence/3b.png}
         \caption{Giai đoạn thanh toán và hoàn tất}
     \end{subfigure}
     \caption{Sơ đồ hoạt động chức năng Checkout}
     \label{fig:activity_checkout}
 \end{figure}
-\newpage
-\textbf{Quy trình Thanh toán MoMo}
+
+\textbf{Quy trình Thanh toán MoMo:}
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth]{image/sequence/4a.png}
-        \caption{Giai đoạn tạo yêu cầu thanh toán}
+        \includegraphics[width=0.65\textwidth]{image/sequence/4a.png}
+        \caption{Tạo yêu cầu thanh toán}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth]{image/sequence/4b.png}
-        \caption{Giai đoạn xử lý IPN callback}
+        \includegraphics[width=0.65\textwidth]{image/sequence/4b.png}
+        \caption{Xử lý IPN callback}
     \end{subfigure}
-    \caption{Sơ đồ hoạt động chức năng Thanh toán MoMo}
+    \caption{Sơ đồ hoạt động thanh toán MoMo}
     \label{fig:activity_momo}
 \end{figure}
-\newpage
-\textbf{Biểu đồ Sequence (Tuần tự)}
 
-\textbf{Luồng Đánh giá Sản phẩm với ABSA}
-
-% Placeholder cho hình Sequence Diagram
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\textwidth]{image/sequence/5.png}
-    \caption{Sơ đồ tuần tự chức năng Đánh giá với ABSA}
-    \label{fig:sequence_review}
-\end{figure}
-
-\textbf{Biểu đồ Luồng Màn hình (Screen Flow)}
-
-\textbf{Luồng màn hình chính - Customer App}
+\subsection{Luồng màn hình Customer App}
 
 \begin{enumerate}
-    \item \textbf{Khởi động}: Splash Screen $\rightarrow$ Login/Register (nếu chưa đăng nhập) $\rightarrow$ Home
-    \item \textbf{Mua sắm}: Home $\rightarrow$ Product List $\rightarrow$ Product Detail $\rightarrow$ Add to Cart hoặc Buy Now
-    \item \textbf{Thanh toán}: Cart $\rightarrow$ Checkout $\rightarrow$ Address Selection $\rightarrow$ Payment $\rightarrow$ Payment Processing $\rightarrow$ Order Success
-    \item \textbf{Đơn hàng}: Profile $\rightarrow$ Order History $\rightarrow$ Order Detail
-    \item \textbf{Đánh giá}: Product Detail $\rightarrow$ Reviews $\rightarrow$ Write Review $\rightarrow$ ABSA Analysis Result
+    \item \textbf{Khởi động}: Splash → Login/Register → Home
+    \item \textbf{Mua sắm}: Home → Product List → Product Detail → Add to Cart / Buy Now
+    \item \textbf{Thanh toán}: Cart → Checkout → Address → Payment → Order Success
+    \item \textbf{Đơn hàng}: Profile → Order History → Order Detail
+    \item \textbf{Đánh giá}: Product Detail → Reviews → Write Review → ABSA Result
 \end{enumerate}
 
