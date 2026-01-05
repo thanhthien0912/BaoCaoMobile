@@ -1,0 +1,118 @@
+
+\newpage
+
+\section{\textbf{TỔNG QUAN VỀ ỨNG DỤNG THƯƠNG MẠI ĐIỆN TỬ DI ĐỘNG}}
+
+\subsection{Giới thiệu}
+Trong kỷ nguyên số hóa, thương mại điện tử (E-commerce) đã trở thành phương thức mua sắm phổ biến với hàng triệu người tiêu dùng trên toàn thế giới. Tại Việt Nam, thị trường điện thoại thông minh luôn duy trì sự sôi động với doanh số hàng chục triệu máy mỗi năm, cùng sự đa dạng về thương hiệu từ Apple, Samsung đến Xiaomi, OPPO, Vivo. Người tiêu dùng ngày càng ưa chuộng việc tìm kiếm, so sánh thông số kỹ thuật và mua sắm điện thoại thông qua các ứng dụng di động nhờ sự tiện lợi và khả năng tiếp cận thông tin toàn diện.
+
+Tuy nhiên, các ứng dụng thương mại điện tử đa ngành hiện có như Shopee, Lazada thường thiếu sự chuyên sâu về thông tin kỹ thuật điện thoại, trong khi các chuỗi bán lẻ lớn như Thế Giới Di Động tập trung vào mô hình truyền thống. Điều này tạo ra cơ hội cho một ứng dụng chuyên biệt, tập trung hoàn toàn vào trải nghiệm mua sắm điện thoại.
+
+Đồ án ``VeritaShop'' được xây dựng nhằm giải quyết các vấn đề trên thông qua một ứng dụng thương mại điện tử di động chuyên biệt cho điện thoại. Dự án cung cấp ứng dụng di động đa nền tảng cho khách hàng và một hệ thống quản trị web toàn diện cho người bán, tích hợp các công nghệ tiên tiến như phân tích cảm xúc đánh giá sản phẩm (ABSA) và kiểm duyệt nội dung tự động. Chương này sẽ trình bày tổng quan về bối cảnh, mục tiêu, yêu cầu chức năng và kiến trúc kỹ thuật của hệ thống.
+
+\subsection{Tổng quan hệ thống}
+
+\textbf{Mục đích hệ thống}
+
+Hệ thống được thiết kế với mục tiêu cốt lõi là cung cấp trải nghiệm mua sắm điện thoại trực tuyến chuyên nghiệp và toàn diện. Các mục tiêu cụ thể bao gồm:
+\begin{itemize}
+    \item \textbf{Trải nghiệm mua sắm tối ưu}: Cung cấp giao diện trực quan, tìm kiếm và lọc sản phẩm mạnh mẽ theo thương hiệu, giá, thông số kỹ thuật.
+    \item \textbf{Thông tin sản phẩm chi tiết}: Hiển thị đầy đủ thông số kỹ thuật (RAM, ROM, Chip, Pin, Màn hình, Camera), màu sắc, hình ảnh và đánh giá người dùng.
+    \item \textbf{Thanh toán linh hoạt}: Hỗ trợ đa phương thức thanh toán bao gồm COD (Thanh toán khi nhận hàng) và ví điện tử MoMo.
+    \item \textbf{Đánh giá thông minh}: Tích hợp phân tích cảm xúc tự động (ABSA) để phân loại đánh giá theo từng khía cạnh sản phẩm.
+    \item \textbf{Quản lý hiệu quả}: Cung cấp bảng điều khiển quản trị toàn diện cho việc quản lý sản phẩm, đơn hàng, người dùng và đánh giá.
+\end{itemize}
+
+\textbf{Khảo sát hiện trạng và giải pháp}
+
+Hiện tại, người mua điện thoại trực tuyến thường gặp các vấn đề:
+\begin{itemize}
+    \item \textbf{Thông tin phân tán}: Phải tra cứu thông số kỹ thuật từ nhiều nguồn khác nhau.
+    \item \textbf{Đánh giá không đáng tin cậy}: Khó phân biệt đánh giá thật và ảo, thiếu phân tích chi tiết theo từng khía cạnh.
+    \item \textbf{Thanh toán hạn chế}: Một số nền tảng chưa tích hợp đầy đủ các phương thức thanh toán phổ biến.
+\end{itemize}
+
+Giải pháp ``VeritaShop'' mang lại sự khác biệt:
+\begin{itemize}
+    \item Tập trung chuyên sâu vào điện thoại với thông số kỹ thuật đầy đủ, chi tiết.
+    \item Hệ thống đánh giá tích hợp ABSA phân tích cảm xúc theo từng khía cạnh (Pin, Camera, Hiệu năng, Màn hình).
+    \item Content Moderation tự động phát hiện và lọc nội dung không phù hợp.
+    \item Tích hợp thanh toán MoMo với Deep Link và IPN callback.
+    \item Hỗ trợ nhiều tình trạng sản phẩm: Mới, Like New, Đã sử dụng.
+\end{itemize}
+
+\textbf{Yêu cầu hoạt động của ứng dụng}
+
+\textit{Phần dành cho Khách hàng (Mobile App)}
+
+Ứng dụng di động là cổng giao tiếp chính của khách hàng với hệ thống, bao gồm các chức năng:
+\begin{itemize}
+    \item \textbf{Xác thực người dùng}: Đăng ký, đăng nhập với JWT, quên mật khẩu qua email, PIN Lock bảo mật.
+    \item \textbf{Quản lý sản phẩm}: Xem danh sách, tìm kiếm server-side, lọc theo Brand/Giá/Tình trạng, sắp xếp theo nhiều tiêu chí.
+    \item \textbf{Chi tiết sản phẩm}: Xem thông số kỹ thuật, hình ảnh, màu sắc, đánh giá và rating.
+    \item \textbf{Giỏ hàng \& Wishlist}: Thêm/xóa sản phẩm, cập nhật số lượng, chọn màu sắc, quản lý sản phẩm yêu thích.
+    \item \textbf{Thanh toán}: Chọn địa chỉ giao hàng, áp dụng mã giảm giá, thanh toán COD hoặc MoMo.
+    \item \textbf{Quản lý đơn hàng}: Xem lịch sử, theo dõi trạng thái, hủy đơn hàng khi cần.
+    \item \textbf{Đánh giá sản phẩm}: Viết review với hình ảnh, xem phân tích cảm xúc tự động.
+\end{itemize}
+
+\textit{Phần dành cho Quản trị viên (Admin Dashboard)}
+
+Cổng thông tin web dành cho quản trị viên hệ thống:
+\begin{itemize}
+    \item \textbf{Dashboard}: Xem biểu đồ thống kê doanh thu, số đơn hàng, sản phẩm bán chạy, top khách hàng.
+    \item \textbf{Quản lý sản phẩm}: CRUD sản phẩm, upload ảnh lên Cloudinary, quản lý thông số kỹ thuật và màu sắc.
+    \item \textbf{Quản lý đơn hàng}: Cập nhật trạng thái đơn hàng theo quy trình (pending→confirmed→processing→shipping→delivered).
+    \item \textbf{Quản lý người dùng}: Xem danh sách, khóa/mở khóa tài khoản, xem lịch sử mua hàng.
+    \item \textbf{Quản lý mã giảm giá}: Tạo coupon với điều kiện áp dụng, giới hạn sử dụng, thời hạn hiệu lực.
+    \item \textbf{Kiểm duyệt đánh giá}: Xem đánh giá bị flag, duyệt/từ chối, xem kết quả phân tích ABSA và Content Moderation.
+    \item \textbf{Xuất báo cáo}: Export doanh thu theo CSV, Excel với bộ lọc thời gian.
+\end{itemize}
+
+\subsection{Thiết kế tương tác}
+Trải nghiệm người dùng (UX) là ưu tiên hàng đầu trong thiết kế hệ thống:
+\begin{itemize}
+    \item \textbf{Mobile App (Flutter)}: Giao diện Material Design hiện đại với hỗ trợ Dark/Light mode. Luồng mua hàng được tối giản hóa từ xem sản phẩm đến thanh toán. Hỗ trợ mua ngay (Direct Checkout) mà không cần thêm vào giỏ hàng.
+    \item \textbf{Admin Dashboard}: Giao diện Dashboard trực quan với biểu đồ fl\_chart, bảng dữ liệu có phân trang và tìm kiếm. Responsive design cho phép truy cập từ nhiều loại thiết bị.
+\end{itemize}
+
+\subsection{Phương pháp tiếp cận và giải quyết vấn đề}
+
+\textbf{Mô hình tổng quát hệ thống}
+
+Hệ thống hoạt động theo mô hình Client-Server với kiến trúc RESTful API:
+\begin{itemize}
+    \item \textbf{Mobile Client}: Ứng dụng Flutter đa nền tảng (Android, iOS, Web, Desktop), giao tiếp với Server qua HTTP/HTTPS.
+    \item \textbf{Backend Server}: Node.js/Express.js đóng vai trò trung tâm xử lý logic nghiệp vụ, xác thực JWT, kết nối Database.
+    \item \textbf{Database}: MongoDB Atlas lưu trữ dữ liệu phi cấu trúc (NoSQL) đảm bảo khả năng mở rộng và linh hoạt.
+    \item \textbf{Cloud Storage}: Cloudinary quản lý upload và phân phối hình ảnh sản phẩm và đánh giá.
+    \item \textbf{Payment Gateway}: MoMo sandbox xử lý thanh toán trực tuyến với cơ chế IPN callback.
+\end{itemize}
+
+\textbf{Kiến trúc phần mềm và Công nghệ}
+
+Dự án sử dụng bộ công nghệ (Tech Stack) hiện đại và phổ biến:
+\begin{itemize}
+    \item \textbf{Backend}: Node.js 18+ và Express.js cung cấp hiệu năng cao cho các tác vụ I/O. Xác thực người dùng an toàn bằng JWT (JSON Web Token). Express-validator đảm bảo kiểm tra dữ liệu đầu vào.
+    \item \textbf{Database}: MongoDB (triển khai trên MongoDB Atlas) với Mongoose ODM cho phép định nghĩa Schema linh hoạt và truy vấn hiệu quả.
+    \item \textbf{Mobile}: Flutter 3.8.1+ (Dart) cho phép phát triển ứng dụng đa nền tảng với hiệu suất native. Sử dụng Provider cho quản lý trạng thái, Dio cho HTTP client, và các plugin như image\_picker, cached\_network\_image.
+    \item \textbf{Cloud Services}: 
+        \begin{itemize}
+            \item \textbf{Cloudinary}: CDN và API quản lý hình ảnh với tối ưu hóa tự động.
+            \item \textbf{MoMo API}: Cổng thanh toán với Deep Link và IPN webhook.
+        \end{itemize}
+    \item \textbf{Bảo mật}: JWT cho xác thực, bcrypt cho mã hóa mật khẩu, PIN Lock tùy chọn cho bảo mật bổ sung.
+    \item \textbf{AI/ML Integration}: 
+        \begin{itemize}
+            \item \textbf{ABSA (Aspect-Based Sentiment Analysis)}: Phân tích cảm xúc đánh giá theo từng khía cạnh sản phẩm.
+            \item \textbf{Content Moderation}: Tự động phát hiện nội dung vi phạm (harassment, hate, violence, sexual content).
+        \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{image/sequence/1.png}
+    \caption{Sơ đồ Kiến trúc Hệ thống VeritaShop}
+    \label{fig:sys_arch}
+\end{figure}
+

@@ -1,0 +1,354 @@
+\newpage
+\section{\textbf{THIẾT KẾ CƠ SỞ DỮ LIỆU}}
+
+\subsection{Thiết kế sơ đồ}
+Dựa trên các yêu cầu phân tích của hệ thống thương mại điện tử VeritaShop, hệ thống bao gồm các thực thể chính: Người dùng (Users), Sản phẩm (Products), Giỏ hàng (Carts), Đơn hàng (Orders), Thanh toán (Payments), Đánh giá (Reviews) và Mã giảm giá (Coupons). Mối quan hệ giữa chúng được mô tả như sau:
+\begin{itemize}
+    \item Một \textbf{User} có thể có nhiều \textbf{Carts}, nhiều \textbf{Orders} và nhiều \textbf{Reviews}.
+    \item Một \textbf{Product} có thể xuất hiện trong nhiều \textbf{Carts} và có nhiều \textbf{Reviews}.
+    \item Một \textbf{Order} thuộc về một \textbf{User} và có một \textbf{Payment}.
+    \item Một \textbf{Coupon} có thể được áp dụng cho nhiều \textbf{Orders}.
+\end{itemize}
+
+\subsection{Thiết kế chi tiết Collection (MongoDB)}
+
+\textbf{1. Users (Người dùng)}
+Lưu trữ thông tin cá nhân, tài khoản và địa chỉ giao hàng của khách hàng và quản trị viên.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Users}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+name & String & Có & Họ và tên đầy đủ \\
+\hline
+email & String & Có & Email (Unique, dùng để đăng nhập) \\
+\hline
+password & String & Có & Mật khẩu đã mã hóa (bcrypt) \\
+\hline
+avatar & String & Không & URL ảnh đại diện (Cloudinary) \\
+\hline
+addresses & Array & Không & Danh sách địa chỉ giao hàng \\
+\hline
+role & String & Có & Vai trò: "user" hoặc "admin" \\
+\hline
+isLocked & Boolean & Có & Trạng thái khóa tài khoản \\
+\hline
+createdAt & Date & Có & Thời gian tạo \\
+\hline
+updatedAt & Date & Có & Thời gian cập nhật \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Cấu trúc Address (Embedded Document):}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Mô tả} \\
+\hline
+fullName & String & Tên người nhận \\
+\hline
+phone & String & Số điện thoại \\
+\hline
+province & String & Tỉnh/Thành phố \\
+\hline
+district & String & Quận/Huyện \\
+\hline
+ward & String & Phường/Xã \\
+\hline
+streetAddress & String & Địa chỉ chi tiết \\
+\hline
+isDefault & Boolean & Địa chỉ mặc định \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{2. Products (Sản phẩm)}
+Lưu trữ thông tin chi tiết sản phẩm điện thoại.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Products}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+name & String & Có & Tên sản phẩm \\
+\hline
+brand & String & Có & Thương hiệu (iPhone, Samsung, Xiaomi...) \\
+\hline
+description & String & Có & Mô tả chi tiết \\
+\hline
+price & Number & Có & Giá bán hiện tại (VNĐ) \\
+\hline
+originalPrice & Number & Không & Giá gốc (để tính \% giảm) \\
+\hline
+images & Array[String] & Có & Danh sách URL hình ảnh \\
+\hline
+specs & Object & Có & Thông số kỹ thuật (ram, rom, chip, battery, screen, camera) \\
+\hline
+colors & Array[Object] & Có & Danh sách màu sắc (name, code, image) \\
+\hline
+condition & String & Có & Tình trạng: "new", "likenew", "used" \\
+\hline
+warranty & String & Không & Thời gian bảo hành \\
+\hline
+stock & Number & Có & Số lượng tồn kho \\
+\hline
+rating & Number & Có & Điểm đánh giá trung bình (0-5) \\
+\hline
+reviewCount & Number & Có & Số lượng đánh giá \\
+\hline
+isFeatured & Boolean & Có & Sản phẩm nổi bật \\
+\hline
+tags & Array[String] & Không & Tags phân loại \\
+\hline
+isActive & Boolean & Có & Trạng thái hiển thị \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{3. Carts (Giỏ hàng)}
+Lưu trữ sản phẩm trong giỏ hàng của người dùng.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Carts}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+user & ObjectId & Có & Tham chiếu đến Users \\
+\hline
+product & ObjectId & Có & Tham chiếu đến Products \\
+\hline
+quantity & Number & Có & Số lượng sản phẩm \\
+\hline
+color & Object & Có & Màu sắc đã chọn (name, code) \\
+\hline
+createdAt & Date & Có & Thời gian thêm vào giỏ \\
+\hline
+updatedAt & Date & Có & Thời gian cập nhật \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{4. Orders (Đơn hàng)}
+Lưu trữ thông tin đơn hàng và trạng thái xử lý.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Orders}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+user & ObjectId & Có & Tham chiếu đến Users \\
+\hline
+orderNumber & String & Có & Mã đơn hàng (Unique) \\
+\hline
+items & Array[Object] & Có & Danh sách sản phẩm (product, name, brand, image, color, quantity, price) \\
+\hline
+shippingAddress & Object & Có & Địa chỉ giao hàng \\
+\hline
+paymentMethod & String & Có & Phương thức: "COD" hoặc "MoMo" \\
+\hline
+paymentStatus & String & Có & Trạng thái thanh toán \\
+\hline
+subtotal & Number & Có & Tạm tính \\
+\hline
+shippingFee & Number & Có & Phí vận chuyển (miễn phí >= 500k) \\
+\hline
+tax & Number & Không & Thuế \\
+\hline
+discount & Number & Không & Số tiền giảm giá \\
+\hline
+coupon & String & Không & Mã coupon đã áp dụng \\
+\hline
+total & Number & Có & Tổng thanh toán \\
+\hline
+status & String & Có & Trạng thái đơn hàng \\
+\hline
+note & String & Không & Ghi chú khách hàng \\
+\hline
+cancelReason & String & Không & Lý do hủy (nếu có) \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Order Status Values:}
+\begin{itemize}
+    \item \texttt{pending}: Chờ xác nhận
+    \item \texttt{confirmed}: Đã xác nhận
+    \item \texttt{processing}: Đang xử lý
+    \item \texttt{shipping}: Đang giao hàng
+    \item \texttt{delivered}: Đã giao hàng
+    \item \texttt{cancelled}: Đã hủy
+    \item \texttt{refunded}: Đã hoàn tiền
+\end{itemize}
+
+\textbf{5. Payments (Thanh toán)}
+Lưu trữ thông tin thanh toán, đặc biệt là giao dịch MoMo.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Payments}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+order & ObjectId & Có & Tham chiếu đến Orders \\
+\hline
+user & ObjectId & Có & Tham chiếu đến Users \\
+\hline
+method & String & Có & Phương thức: "COD", "MoMo" \\
+\hline
+amount & Number & Có & Số tiền thanh toán \\
+\hline
+requestId & String & Không & MoMo Request ID \\
+\hline
+transId & String & Không & MoMo Transaction ID \\
+\hline
+payUrl & String & Không & URL thanh toán MoMo \\
+\hline
+deeplink & String & Không & Deep Link mở App MoMo \\
+\hline
+status & String & Có & Trạng thái: "pending", "paid", "failed", "refunded" \\
+\hline
+resultCode & Number & Không & MoMo Result Code \\
+\hline
+message & String & Không & Thông báo từ MoMo \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{6. Reviews (Đánh giá)}
+Lưu trữ đánh giá sản phẩm với kết quả phân tích ABSA và Content Moderation.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Reviews}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+user & ObjectId & Có & Tham chiếu đến Users \\
+\hline
+product & ObjectId & Có & Tham chiếu đến Products \\
+\hline
+rating & Number & Có & Số sao (1-5) \\
+\hline
+title & String & Không & Tiêu đề đánh giá \\
+\hline
+text & String & Có & Nội dung đánh giá \\
+\hline
+images & Array[String] & Không & Hình ảnh đánh giá (tối đa 5) \\
+\hline
+isVerifiedPurchase & Boolean & Có & Đã mua hàng thực sự \\
+\hline
+likes & Number & Có & Số lượt thích \\
+\hline
+sentimentAnalysis & Array[Object] & Không & Kết quả phân tích ABSA \\
+\hline
+overallSentiment & String & Không & Cảm xúc tổng thể: "positive", "negative", "neutral", "mixed" \\
+\hline
+isFlagged & Boolean & Có & Bị đánh dấu vi phạm \\
+\hline
+moderationStatus & String & Có & Trạng thái duyệt: "pending", "approved", "rejected" \\
+\hline
+moderationResult & Object & Không & Kết quả Content Moderation \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Cấu trúc SentimentAnalysis (Embedded):}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Mô tả} \\
+\hline
+aspect & String & Khía cạnh: Battery, Camera, Performance, Display, Design, Price, Service, Delivery \\
+\hline
+sentiment & String & Cảm xúc: "positive", "negative", "neutral", "none" \\
+\hline
+confidence & Number & Độ tin cậy (0-1) \\
+\hline
+scores & Object & Điểm chi tiết: positive, negative, neutral \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{7. Coupons (Mã giảm giá)}
+Lưu trữ thông tin mã khuyến mãi và điều kiện áp dụng.
+
+\begin{table}[H]
+\caption{Cấu trúc Collection Coupons}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Bắt buộc} & \textbf{Mô tả} \\
+\hline
+\_id & ObjectId & Có & Khóa chính \\
+\hline
+code & String & Có & Mã giảm giá (Unique) \\
+\hline
+discountType & String & Có & Loại giảm: "percentage" hoặc "fixed" \\
+\hline
+discountValue & Number & Có & Giá trị giảm (\% hoặc VNĐ) \\
+\hline
+maxDiscount & Number & Không & Giảm tối đa (cho loại \%) \\
+\hline
+minOrderValue & Number & Không & Giá trị đơn hàng tối thiểu \\
+\hline
+usageLimit & Number & Không & Giới hạn số lần sử dụng \\
+\hline
+usedCount & Number & Có & Số lần đã sử dụng \\
+\hline
+validFrom & Date & Có & Ngày bắt đầu hiệu lực \\
+\hline
+validUntil & Date & Có & Ngày hết hạn \\
+\hline
+isActive & Boolean & Có & Trạng thái kích hoạt \\
+\hline
+applicableProducts & Array[ObjectId] & Không & Sản phẩm áp dụng (null = tất cả) \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+\subsection{Mô hình quan hệ (Schema Diagram)}
+Hình dưới đây mô tả mối quan hệ tham chiếu giữa các collection trong cơ sở dữ liệu MongoDB của hệ thống VeritaShop.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{image/sequence/6.png}
+    \caption{Sơ đồ quan hệ cơ sở dữ liệu VeritaShop}
+    \label{fig:db_schema}
+\end{figure}
+

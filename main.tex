@@ -1,0 +1,263 @@
+\documentclass[14pt, a4paper]{article}
+\usepackage[a4paper,tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=2.0cm]{geometry}
+\usepackage{booktabs}
+\usepackage{anyfontsize}
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{subfigure} % deprecated and conflicts with subcaption/tocloft
+% \usepackage[utf8]{inputenc} % XeLaTeX handles UTF-8 natively
+\usepackage[vietnamese]{babel}
+\usepackage{indentfirst}
+\usepackage{color}
+% \usepackage[utf8]{inputenc} % loaded above, before babel
+% \usepackage{emoji} % requires LuaLaTeX; disabled for pdfLaTeX
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphics}
+\usepackage{graphicx}
+% \usepackage{pdfpages}
+\usepackage{longtable, makecell, multirow, booktabs}
+% \usepackage{caption}
+% \usepackage{makecell}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{everypage}
+\usepackage{titlesec}
+\usepackage{tocloft} % Để tùy chỉnh mục lục
+\usepackage{fontspec} % XeLaTeX/LuaLaTeX
+% \usepackage[T5]{fontenc} % not needed with XeLaTeX
+\usepackage[thmmarks, amsmath]{ntheorem}%
+\usepackage{mdframed}
+% \usepackage{xeCJK} % XeLaTeX only
+\usepackage{array}
+\usepackage{arydshln}
+\usepackage{pgfgantt}
+\usepackage[ruled,vlined,linesnumbered,resetcount,algosection]{algorithm2e}
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
+% \usepackage{algcompatible}
+% \usepackage{adjustbox} % duplicate; keep [export] variant below
+\setmainfont{Arial}
+% Math font separate from main (avoid Arial in equations)
+\usepackage{unicode-math}
+\setmathfont{texgyretermes-math.otf}
+% \usepackage{newtxtext,newtxmath} % not used with Arial/XeLaTeX
+% \usepackage{hyperref} % duplicate; kept once below with setup
+\usepackage{tabularx}
+\usepackage{float}
+% \usepackage{pgfgantt} % duplicate; loaded above
+% \usepackage{xcolor} % duplicate; loaded below
+\usepackage{comment}
+%dong khung
+
+
+% ...existing code...
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,           % Dùng màu chữ thay vì khung
+    linkcolor=black,          % Màu link nội bộ (mục lục)
+    citecolor=blue,           % Màu citation
+    urlcolor=blue,            % Màu URL
+    pdfborder={0 0 0},        % Tắt hoàn toàn border
+}
+% ...existing code...
+
+
+
+
+\usepackage{framed}
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+
+%\renewcommand\sfdefault{phv}
+%\renewcommand\mddefault{mc}
+
+% Gây lỗi không in đậm được
+% \renewcommand\bfdefault{bc}
+
+\setganttlinklabel{s-s}{START-TO-START}
+\setganttlinklabel{f-s}{FINISH-TO-START}
+\setganttlinklabel{f-f}{FINISH-TO-FINISH}
+\sffamily
+
+%\input setbmp
+\usepackage[export]{adjustbox}
+% \usepackage{subcaption}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+%code 
+\usepackage{listings}
+\newcommand{\Lpagenumber}{\ifdim\textwidth=\linewidth\else\bgroup
+  \dimendef\margin=0 %use \margin instead of \dimen0
+  \ifodd\value{page}\margin=\oddsidemargin
+  \else\margin=\evensidemargin
+  \fi
+  \raisebox{\dimexpr -\topmargin-\headheight-\headsep-0.5\linewidth}[0pt][0pt]{%
+    \rlap{\hspace{\dimexpr \margin+\textheight+\footskip}%
+    \llap{\rotatebox{90}{\thepage}}}}%
+\egroup\fi}
+\AddEverypageHook{\Lpagenumber}%
+
+% Can le van ban (duplicate of geometry at top) — removed to avoid conflicts
+% \usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+%\usepackage{fancyhdr}
+
+% Numbering for section, subsection, etc.
+\renewcommand{\thesection}{\arabic{section}}
+% Section spacing and label formatting (tighter label gap)
+\titlespacing{\section}{0pt}{*1.6}{0.3em}
+% Show "Chương <số>. <Tiêu đề>" with moderate separation
+\titleformat{\section}{\bfseries\large}{Chương\ \thesection.}{0.35em}{}
+% Subsection numbering: 1.1, 1.2, 2.1, 2.2, etc.
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+% Subsubsection numbering: 1.1.1, 1.1.2, etc.
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+% Spacing giữa số và tiêu đề cho các cấp mục
+\titleformat{\subsection}{\bfseries\large}{\thesubsection.}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{*1.0}{0.3em}
+\titleformat{\subsubsection}{\bfseries\normalsize}{\thesubsubsection.}{0.5em}{}
+
+% subsubsbusection
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{0em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+% Tighten ToC spacing for custom subsubsubsection level
+\def\l@subsubsubsection{\@dottedtocline{4}{3.8em}{2.6em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+% ToC entries: prefix with "Chương"; ensure spacing and adequate widths
+\renewcommand{\cftsecpresnum}{Chương~}
+\renewcommand{\cftsecaftersnum}{.\space}
+% Set ToC indents and number widths (allow for "Chương" prefix)
+\cftsetindents{section}{0em}{6.8em}
+\setlength{\cftsecnumwidth}{6.8em}
+\cftsetindents{subsection}{1.5em}{2.5em}
+\setlength{\cftsubsecnumwidth}{2.5em}
+\cftsetindents{subsubsection}{3.2em}{3.8em}
+\setlength{\cftsubsubsecnumwidth}{3.8em}
+% subsubsubsection is custom; controlled by \l@subsubsubsection
+\newlength{\cftsubsubsubsectionindent}
+\newlength{\cftsubsubsubsectionnumwidth}
+\cftsetindents{subsubsubsection}{5.0em}{2.6em}
+
+
+% Numbering for label itemization
+\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\labelitemi}{$-$}
+\renewcommand{\labelitemii}{$+$}
+
+\usepackage{scrextend}
+\changefontsizes{13pt}
+
+\renewcommand{\contentsname}{MỤC LỤC}
+
+\renewcommand{\listfigurename}{DANH SÁCH HÌNH VẼ}
+
+\renewcommand{\listtablename}{DANH SÁCH BẢNG}
+
+\renewcommand{\tablename}{Bảng}
+
+\renewcommand{\figurename}{Hình}
+
+\let\sectionautorefname\sectionautorefname
+% \let\subsectionautorefname\sectionautorefname
+% \let\subsubsectionautorefname\sectionautorefname
+% \let\subsubsubsectionautorefname\sectionautorefname
+\usepackage{textcomp}
+\usepackage{listings,cleveref}
+%\usepackage{minted}      % (requires -shell-escape)
+\usepackage{xcolor}
+\usepackage{filecontents}
+\theoremheaderfont{\bfseries\upshape}
+\theorembodyfont{\normalfont}
+\theoremstyle{break}
+\theoremseparator{\smallskip}
+\newtheorem{defi}{Định nghĩa}[section]
+\theoremstyle{break}
+\theoremseparator{\smallskip}
+\newtheorem{example}[defi]{Ví dụ}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\newcommand{\source}[1]{\caption*{Nguồn: {#1}} }
+\newcommand{\secref}[1]{\autoref{#1}. \nameref{#1}}
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+\newcommand{\mysubparagraph}[1]{\subparagraph{#1}\mbox{}\\}
+
+\newcommand\vartextvisiblespace[1][.3em]{%
+  \mbox{\kern.1em\vrule height.3ex}%
+  \vbox{\hrule width#1}%
+  \hbox{\vrule height.3ex}
+}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}} 
+
+
+
+
+
+
+
+\begin{document}
+\pagenumbering{gobble}
+% \captionsetup{justification=centering}
+
+\captionsetup[figure]{labelformat=simple, labelsep=period}
+
+\captionsetup[table]{labelformat=simple, labelsep=period}
+
+\input{components/title}
+%\input{components/project_info.tex}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+% \listoftables
+% \newpage
+\listoffigures
+\newpage
+% \setcounter{secnumdepth}{0} % Tắt đánh số section
+\listoftables
+\clearpage
+
+\setcounter{secnumdepth}{9} % Đảm bảo đánh số cho các cấp thấp hơn
+
+\pagenumbering{arabic}
+\input{components/project_info}
+\input{components/Section-I/main}
+\input{components/Section-II/main}
+\input{components/Section-III/main}
+\input{components/Section-IV/main}
+\input{components/Section-V/main}
+\input{components/Section-VI/main}
+\input{components/Section-VII/main}
+\input{components/Section-VIII/main}
+\input{components/reference.tex}
+\end{document}

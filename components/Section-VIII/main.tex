@@ -1,0 +1,94 @@
+\newpage
+\section{\textbf{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}
+
+\subsection{Kết luận}
+
+Sau quá trình nghiên cứu và thực hiện, đồ án "VeritaShop - Ứng Dụng Thương Mại Điện Tử Di Động" đã hoàn thành các mục tiêu đề ra ban đầu, xây dựng thành công một nền tảng mua sắm điện thoại trực tuyến toàn diện với nhiều tính năng nổi bật.
+
+\textbf{Các kết quả đạt được bao gồm:}
+\begin{enumerate}
+    \item \textbf{Về mặt công nghệ}:
+    \begin{itemize}
+        \item Xây dựng thành công ứng dụng di động đa nền tảng bằng \textbf{Flutter 3.8.1+}, hoạt động mượt mà trên Android, iOS, Web và Desktop từ một codebase duy nhất.
+        \item Làm chủ kiến trúc \textbf{RESTful API} với Backend \textbf{Node.js/Express.js}, đảm bảo hiệu năng cao và khả năng mở rộng.
+        \item Tích hợp thành công cổng thanh toán \textbf{MoMo} với cơ chế Deep Link và IPN callback, mang lại trải nghiệm thanh toán liền mạch.
+        \item Triển khai hệ thống phân tích cảm xúc \textbf{ABSA (Aspect-Based Sentiment Analysis)} cho đánh giá sản phẩm, giúp người mua có cái nhìn chi tiết về từng khía cạnh của điện thoại.
+        \item Xây dựng hệ thống \textbf{Content Moderation} tự động, bảo vệ cộng đồng khỏi nội dung không phù hợp.
+        \item Hệ thống Database \textbf{MongoDB Atlas} với Mongoose ODM hoạt động ổn định, xử lý tốt các truy vấn phức tạp và aggregation cho báo cáo.
+        \item Tích hợp \textbf{Cloudinary} quản lý hình ảnh sản phẩm và đánh giá với CDN toàn cầu.
+    \end{itemize}
+    
+    \item \textbf{Về mặt chức năng}:
+    \begin{itemize}
+        \item \textbf{Customer App}: Đầy đủ các tính năng mua sắm từ xem sản phẩm, tìm kiếm/lọc nâng cao, giỏ hàng, wishlist, checkout đến đánh giá sản phẩm.
+        \item \textbf{Admin Dashboard}: Hệ thống quản trị toàn diện với CRUD sản phẩm, quản lý đơn hàng, người dùng, mã giảm giá, kiểm duyệt đánh giá và xuất báo cáo.
+        \item \textbf{Thanh toán}: Hỗ trợ COD và MoMo, tự động tính phí ship (miễn phí >= 500,000 VNĐ), áp dụng mã khuyến mãi.
+        \item \textbf{Bảo mật}: JWT authentication, bcrypt mã hóa mật khẩu, PIN Lock tùy chọn, HTTPS.
+    \end{itemize}
+    
+    \item \textbf{Về mặt thực tiễn}:
+    \begin{itemize}
+        \item Giải quyết được bài toán mua sắm điện thoại trực tuyến với thông tin chi tiết và đáng tin cậy.
+        \item Cung cấp công cụ phân tích đánh giá thông minh giúp người mua đưa ra quyết định chính xác hơn.
+        \item Hỗ trợ người bán quản lý hiệu quả sản phẩm, đơn hàng và nội dung đánh giá.
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Hạn chế tồn tại:}
+\begin{itemize}
+    \item Chưa tích hợp Push Notifications (Firebase Cloud Messaging) để thông báo real-time về trạng thái đơn hàng.
+    \item Giao diện hiện chỉ hỗ trợ tiếng Việt, chưa có đa ngôn ngữ (i18n).
+    \item MoMo đang ở môi trường sandbox, chưa triển khai production.
+    \item Chưa tích hợp các phương thức thanh toán khác như VNPay, ZaloPay, thẻ quốc tế.
+    \item Tính năng Chat/Support trực tiếp với customer service chưa được phát triển.
+    \item Chưa có tính năng so sánh sản phẩm song song.
+\end{itemize}
+
+\subsection{Hướng phát triển}
+
+Để đưa sản phẩm vào ứng dụng thực tế quy mô lớn, nhóm đề xuất các hướng phát triển trong tương lai:
+
+\textbf{1. Mở rộng tính năng người dùng}
+\begin{itemize}
+    \item \textbf{Push Notifications}: Tích hợp Firebase Cloud Messaging để gửi thông báo đơn hàng, khuyến mãi, nhắc đánh giá.
+    \item \textbf{Đa ngôn ngữ}: Hỗ trợ tiếng Anh và các ngôn ngữ khác sử dụng package intl và flutter\_localizations.
+    \item \textbf{Social Login}: Đăng nhập nhanh qua Google, Facebook, Apple ID.
+    \item \textbf{So sánh sản phẩm}: Cho phép chọn 2-3 điện thoại để so sánh thông số kỹ thuật.
+    \item \textbf{Wishlist Sharing}: Chia sẻ danh sách yêu thích qua link hoặc mạng xã hội.
+\end{itemize}
+
+\textbf{2. Mở rộng thanh toán}
+\begin{itemize}
+    \item \textbf{VNPay, ZaloPay}: Tích hợp thêm các cổng thanh toán phổ biến tại Việt Nam.
+    \item \textbf{Thẻ quốc tế}: Hỗ trợ Visa, Mastercard thông qua Stripe hoặc PayPal.
+    \item \textbf{Trả góp}: Liên kết với các đối tác tài chính để hỗ trợ mua trả góp 0\%.
+    \item \textbf{Ví VeritaShop}: Tạo ví nội bộ để lưu tiền và thanh toán nhanh.
+\end{itemize}
+
+\textbf{3. Nâng cao trải nghiệm}
+\begin{itemize}
+    \item \textbf{Real-time Chat}: Tích hợp chat trực tiếp với customer service sử dụng Socket.io hoặc Firebase.
+    \item \textbf{Order Tracking}: Theo dõi đơn hàng với bản đồ và ETA delivery.
+    \item \textbf{AR Preview}: Sử dụng Augmented Reality để xem kích thước điện thoại thực tế.
+    \item \textbf{Voice Search}: Tìm kiếm sản phẩm bằng giọng nói.
+\end{itemize}
+
+\textbf{4. Phát triển AI/ML}
+\begin{itemize}
+    \item \textbf{Recommendation System}: Đề xuất sản phẩm dựa trên hành vi mua sắm và xem.
+    \item \textbf{Price Prediction}: Dự đoán xu hướng giá để đưa ra thời điểm mua tốt nhất.
+    \item \textbf{Chatbot AI}: Tích hợp Google Gemini hoặc ChatGPT để tư vấn chọn điện thoại.
+    \item \textbf{Image Search}: Tìm kiếm sản phẩm bằng hình ảnh chụp.
+\end{itemize}
+
+\textbf{5. Tối ưu hóa và Scale}
+\begin{itemize}
+    \item \textbf{Caching}: Redis caching cho API responses thường xuyên truy cập.
+    \item \textbf{CDN}: Tối ưu phân phối nội dung tĩnh và hình ảnh.
+    \item \textbf{Microservices}: Chia nhỏ Backend thành các service độc lập (Product, Order, Payment, Review).
+    \item \textbf{CI/CD}: Thiết lập pipeline tự động với GitHub Actions, Railway, Vercel.
+\end{itemize}
+
+\vspace{1cm}
+Đồ án này là bước khởi đầu quan trọng, minh chứng cho khả năng ứng dụng các công nghệ hiện đại vào xây dựng nền tảng thương mại điện tử chuyên biệt. Nhóm thực hiện hy vọng sản phẩm VeritaShop sẽ tiếp tục được hoàn thiện và có cơ hội triển khai thực tế, góp phần phát triển ngành bán lẻ điện thoại trực tuyến tại Việt Nam.
+
