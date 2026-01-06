@@ -66,8 +66,9 @@ Hệ thống được huấn luyện nhận diện 11 khía cạnh đặc thù c
 \begin{table}[H]
 \centering
 \caption{11 Aspects trong mô hình ABSA}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|l|p{8cm}|}
+\footnotesize
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|c|l|p{7cm}|}
 \hline
 \textbf{STT} & \textbf{Aspect} & \textbf{Mô tả} \\
 \hline
@@ -106,7 +107,7 @@ Hệ thống được huấn luyện nhận diện 11 khía cạnh đặc thù c
 Đồ án sử dụng VisoBERT làm backbone thay vì PhoBERT vì các lý do:
 \begin{itemize}
     \item Huấn luyện trên 14GB dữ liệu mạng xã hội Việt Nam
-    \item Hiểu tốt emoji/icon thường gặp trong bình luận (👍, ❤️, 😡...)
+    \item Hiểu tốt emoji/icon thường gặp trong bình luận
     \item Xử lý được teencode và ngôn ngữ không chuẩn ("k" = "không", "đc" = "được")
     \item Phù hợp với văn phong bình luận mua hàng hơn PhoBERT (huấn luyện trên báo chí)
 \end{itemize}
@@ -123,7 +124,17 @@ Thay vì dùng 1 mô hình làm 2 việc cùng lúc (Multi-Task Learning), nhóm
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{image/sequence/1.png}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{image/sequence/ad_model.png}
+        \caption{Mô hình AD (Aspect Detection)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{image/sequence/sc_model.png}
+        \caption{Mô hình SC (Sentiment Classification)}
+    \end{subfigure}
     \caption{Kiến trúc Single-Task Learning cho ABSA}
     \label{fig:stl_arch}
 \end{figure}
@@ -195,11 +206,11 @@ Giữ lại Emoji & (like), (love), (angry) & (giữ nguyên - mang sắc thái)
 \hline
 BiLSTM & 85.69\% & 39.83\% & 82.85\% & 34.28\% \\
 \hline
-BiLSTM + Conv1D & 86.23\% & 36.87\% & 84.09\% & 33.48\% \\
+BiLSTM + Conv1D & 86.23\% & 36.87\% & \textbf{84.09\%} & 33.48\% \\
 \hline
-PhoBERT & 88.84\% & 92.06\% & 66.28\% & 92.93\% \\
+PhoBERT & 88.84\% & \textbf{92.06\%} & 66.28\% & \textbf{92.93\%} \\
 \hline
-\textbf{VisoBERT} & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & 93.63\% \\
+\textbf{VisoBERT} & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & \textbf{93.63\%} \\
 \hline
 \end{tabular}
 \end{table}
@@ -210,7 +221,6 @@ PhoBERT & 88.84\% & 92.06\% & 66.28\% & 92.93\% \\
 \begin{itemize}
     \item PhoBERT-STL: AD tăng +22.56\% so với MTL
     \item VisoBERT-STL: AD tăng +6.71\%, SC tăng +2.74\% so với MTL
-    \item Huấn luyện riêng biệt giúp tránh xung đột giữa các nhiệm vụ
 \end{itemize}
 
 \textbf{2. Transformer vượt trội BiLSTM:}

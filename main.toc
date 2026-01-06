@@ -4,13 +4,13 @@
 \contentsline {section}{\numberline {1}\textbf {TỔNG QUAN HỆ THỐNG}}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Giới thiệu}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Yêu cầu chức năng}{1}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Kiến trúc hệ thống}{2}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Quy trình thanh toán MoMo}{3}{subsection.1.4}%
-\contentsline {section}{\numberline {2}\textbf {CƠ SỞ LÝ THUYẾT}}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Công nghệ Backend}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Công nghệ Mobile}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Công nghệ Tích hợp}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}ABSA - Aspect-Based Sentiment Analysis}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {1.3}Kiến trúc hệ thống}{1}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Quy trình thanh toán MoMo}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}\textbf {CƠ SỞ LÝ THUYẾT}}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Công nghệ Backend}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Công nghệ Mobile}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Công nghệ Tích hợp}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}ABSA - Aspect-Based Sentiment Analysis}{4}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Content Moderation}{9}{subsection.2.5}%
 \contentsline {section}{\numberline {3}\textbf {PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Phân tích Use Case}{10}{subsection.3.1}%
@@ -28,4 +28,4 @@
 \contentsline {subsection}{\numberline {5.2}Hạn chế cần khắc phục}{15}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Hướng phát triển}{15}{subsection.5.3}%
 \contentsline {section}{TÀI LIỆU THAM KHẢO}{16}{subsection.5.3}%
-\contentsline {section}{ĐÁNH GIÁ THÀNH VIÊN}{17}{subsection.5.3}%
+\contentsline {section}{ĐÁNH GIÁ THÀNH VIÊN}{17}{section*.13}%

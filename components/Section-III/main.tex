@@ -4,20 +4,12 @@
 \section{\textbf{TỔNG QUAN HỆ THỐNG}}
 
 \subsection{Giới thiệu}
-Trong bối cảnh thương mại điện tử phát triển mạnh mẽ, thị trường điện thoại thông minh tại Việt Nam luôn duy trì sự sôi động với doanh số hàng chục triệu máy mỗi năm. Các ứng dụng đa ngành như Shopee, Lazada tuy phổ biến nhưng thiếu sự chuyên sâu về thông tin kỹ thuật điện thoại, trong khi các chuỗi bán lẻ lớn tập trung vào mô hình truyền thống.
+Trong bối cảnh thương mại điện tử phát triển mạnh mẽ, thị trường điện thoại thông minh tại Việt Nam luôn duy trì sự sôi động với doanh số hàng chục triệu máy mỗi năm. Các nền tảng lớn như Shopee, Lazada, Tiki tuy phổ biến nhưng thiếu khả năng phân tích cảm xúc tự động từ bình luận sản phẩm.
 
-\textbf{Khảo sát các nền tảng hiện tại:}
+\textbf{VeritaShop} được xây dựng nhằm giải quyết các hạn chế trên:
 \begin{itemize}
-    \item \textbf{Shopee}: Hệ thống đánh giá cơ bản, thiếu phân tích cảm xúc tự động từ bình luận
-    \item \textbf{Lazada}: Tập trung giao diện, chưa tích hợp AI phân tích cảm xúc chính xác
-    \item \textbf{Tiki}: Hỗ trợ đánh giá ảnh/video, nhưng gặp vấn đề phân tích ngữ nghĩa tiếng Việt
-\end{itemize}
-
-\textbf{VeritaShop} được xây dựng nhằm giải quyết các hạn chế trên, cung cấp:
-\begin{itemize}
-    \item Ứng dụng thương mại điện tử chuyên biệt cho điện thoại
-    \item Thông tin chi tiết về thông số kỹ thuật và đánh giá sản phẩm
-    \item Phân tích cảm xúc đánh giá theo khía cạnh (ABSA) giúp người mua hiểu rõ ưu/nhược điểm
+    \item Ứng dụng TMĐT chuyên biệt cho điện thoại với thông số kỹ thuật chi tiết
+    \item Phân tích cảm xúc theo khía cạnh (ABSA) giúp người mua hiểu rõ ưu/nhược điểm
     \item Kiểm duyệt nội dung tự động bảo vệ cộng đồng
     \item Hệ thống quản trị toàn diện cho người bán
 \end{itemize}
@@ -26,24 +18,11 @@ Trong bối cảnh thương mại điện tử phát triển mạnh mẽ, thị 
 
 \textbf{Customer App (Mobile):}
 \begin{itemize}
-    \item \textbf{Xác thực}: Đăng ký, đăng nhập (JWT), quên mật khẩu (email), PIN Lock bảo mật
-    \item \textbf{Sản phẩm}: Xem danh sách, tìm kiếm server-side, lọc (brand, giá, tình trạng), sắp xếp (giá, rating, mới nhất)
-    \item \textbf{Chi tiết SP}: Thông số kỹ thuật đầy đủ (RAM, ROM, Chip, Pin, Màn hình, Camera), gallery ảnh, chọn màu sắc
-    \item \textbf{Mua sắm}: Giỏ hàng, wishlist, checkout 5 bước, áp dụng coupon
+    \item \textbf{Xác thực}: Đăng ký, đăng nhập JWT, quên mật khẩu, PIN Lock bảo mật
+    \item \textbf{Sản phẩm}: Xem danh sách, tìm kiếm, lọc theo brand/giá/tình trạng
+    \item \textbf{Mua sắm}: Giỏ hàng, wishlist, checkout, áp dụng coupon
     \item \textbf{Thanh toán}: COD và MoMo (Deep Link + IPN callback)
-    \item \textbf{Đánh giá}: Viết review (1-5 sao, ảnh), xem phân tích ABSA tự động
-    \item \textbf{Đơn hàng}: Lịch sử, theo dõi trạng thái, hủy đơn
-\end{itemize}
-
-\textbf{Admin Dashboard (Web):}
-\begin{itemize}
-    \item \textbf{Dashboard}: Thống kê doanh thu, biểu đồ, top sản phẩm/khách hàng
-    \item \textbf{Sản phẩm}: CRUD, upload ảnh Cloudinary, quản lý specs và màu sắc
-    \item \textbf{Đơn hàng}: Xem chi tiết, cập nhật trạng thái workflow
-    \item \textbf{Người dùng}: Danh sách, khóa/mở khóa tài khoản
-    \item \textbf{Coupon}: Tạo mã giảm giá với điều kiện áp dụng
-    \item \textbf{Đánh giá}: Kiểm duyệt review bị flag, xem kết quả ABSA
-    \item \textbf{Báo cáo}: Export CSV/Excel theo thời gian
+    \item \textbf{Đánh giá}: Viết review 1-5 sao, xem phân tích ABSA tự động
 \end{itemize}
 
 \subsection{Kiến trúc hệ thống}
@@ -54,9 +33,7 @@ Hệ thống VeritaShop được thiết kế theo mô hình Client-Server với
     \item \textbf{Mobile Client}: Flutter 3.8.1+ (Dart) - đa nền tảng Android, iOS, Web
     \item \textbf{Backend Server}: Node.js 18+ với Express.js framework
     \item \textbf{Database}: MongoDB Atlas (NoSQL) với Mongoose ODM
-    \item \textbf{Cloud Storage}: Cloudinary CDN cho hình ảnh sản phẩm và đánh giá
-    \item \textbf{Payment}: MoMo sandbox với Deep Link và IPN webhook
-    \item \textbf{AI/ML}: VisoBERT ABSA, Content Moderation API
+    \item \textbf{Tích hợp}: Cloudinary (ảnh), MoMo (thanh toán), VisoBERT (ABSA)
 \end{itemize}
 
 \begin{figure}[H]
@@ -68,23 +45,12 @@ Hệ thống VeritaShop được thiết kế theo mô hình Client-Server với
 
 \subsection{Quy trình thanh toán MoMo}
 
-Hệ thống tích hợp MoMo Payment Gateway với cơ chế Deep Link và IPN callback:
-
+Hệ thống tích hợp MoMo Payment Gateway với Deep Link và IPN callback:
 \begin{enumerate}
-    \item \textbf{Tạo đơn hàng}: Người dùng checkout → Backend tạo Order với status "pending"
-    \item \textbf{Khởi tạo thanh toán}: Backend gọi MoMo API với HMAC-SHA256 signature
-    \item \textbf{Nhận response}: MoMo trả về payUrl, deeplink, qrCodeUrl
-    \item \textbf{Mở MoMo app}: Flutter sử dụng url\_launcher mở Deep Link
-    \item \textbf{Xác nhận thanh toán}: Người dùng xác nhận trong app MoMo
-    \item \textbf{IPN Callback}: MoMo gửi kết quả về Backend qua webhook
-    \item \textbf{Cập nhật đơn hàng}: Backend verify signature → Cập nhật paymentStatus
-    \item \textbf{Thông báo kết quả}: App polling hoặc nhận push notification
+    \item Người dùng checkout → Backend tạo Order với status "pending"
+    \item Backend gọi MoMo API với HMAC-SHA256 signature → Nhận deeplink
+    \item Flutter sử dụng url\_launcher mở MoMo app
+    \item Người dùng xác nhận thanh toán trong app MoMo
+    \item MoMo gửi IPN callback → Backend verify signature → Cập nhật paymentStatus
 \end{enumerate}
-
-\textbf{Xử lý edge cases:}
-\begin{itemize}
-    \item Timeout 15 phút: Tự động hủy payment request cũ
-    \item Duplicate IPN: Kiểm tra transId trùng lặp
-    \item Mất kết nối: Cho phép retry với requestId mới
-\end{itemize}
 
