@@ -3,80 +3,22 @@
 
 \subsection{Kết luận}
 
-Đồ án "VeritaShop - Ứng Dụng Thương Mại Điện Tử Di Động" đã hoàn thành các mục tiêu đề ra ban đầu, xây dựng thành công nền tảng mua sắm điện thoại trực tuyến chuyên biệt với nhiều tính năng nổi bật.
-
-\textbf{Kết quả đạt được:}
-
-\begin{enumerate}
-    \item \textbf{Về công nghệ:}
-    \begin{itemize}
-        \item Ứng dụng Flutter 3.8.1+ đa nền tảng (Android, iOS, Web) hoạt động mượt mà
-        \item Backend Node.js/Express.js với RESTful API ổn định, MongoDB Atlas xử lý tốt
-        \item Tích hợp thành công MoMo payment với Deep Link + IPN callback
-        \item Cloudinary CDN quản lý hình ảnh hiệu quả
-    \end{itemize}
-    
-    \item \textbf{Về ABSA (Aspect-Based Sentiment Analysis):}
-    \begin{itemize}
-        \item Triển khai mô hình VisoBERT với chiến lược Single-Task Learning
-        \item Đạt F1-Score: Aspect Detection 89.39\%, Sentiment Classification 96.37\%
-        \item Nhận diện 11 aspects đặc thù cho E-commerce điện thoại
-        \item Focal Loss giải quyết hiệu quả vấn đề mất cân bằng dữ liệu
-    \end{itemize}
-    
-    \item \textbf{Về chức năng:}
-    \begin{itemize}
-        \item Customer App: Xem/tìm/lọc sản phẩm, giỏ hàng, checkout, thanh toán, đánh giá
-        \item Admin Dashboard: CRUD sản phẩm, quản lý đơn hàng, kiểm duyệt review, thống kê
-        \item Content Moderation tự động phát hiện nội dung vi phạm
-    \end{itemize}
-\end{enumerate}
-
-\textbf{Hạn chế tồn tại:}
+Đồ án đã hoàn thành mục tiêu xây dựng VeritaShop - ứng dụng thương mại điện tử chuyên biệt cho điện thoại với các kết quả:
 \begin{itemize}
-    \item Chưa tích hợp Push Notifications (Firebase Cloud Messaging)
-    \item Giao diện chỉ hỗ trợ tiếng Việt, chưa có đa ngôn ngữ
-    \item MoMo đang ở môi trường sandbox, chưa production
-    \item Chưa tích hợp VNPay, ZaloPay, thẻ quốc tế
-    \item Chưa có tính năng chat support và so sánh sản phẩm
+    \item Ứng dụng Flutter đa nền tảng, Backend Node.js/Express.js ổn định
+    \item Tích hợp MoMo payment (Deep Link + IPN), Cloudinary CDN
+    \item \textbf{ABSA với VisoBERT-STL}: AD F1=89.39\%, SC F1=96.37\%
+    \item Content Moderation tự động phát hiện nội dung vi phạm
 \end{itemize}
+
+\textbf{Hạn chế:} Chưa có Push Notifications, đa ngôn ngữ, VNPay/ZaloPay, chat support.
 
 \subsection{Hướng phát triển}
-
-\textbf{1. Mở rộng tính năng:}
 \begin{itemize}
-    \item Push notification với FCM, đa ngôn ngữ (intl package)
-    \item Social login (Google, Facebook, Apple)
-    \item So sánh sản phẩm, wishlist sharing
+    \item Push notification (FCM), social login, so sánh sản phẩm
+    \item VNPay, ZaloPay, trả góp 0\%
+    \item Real-time chat, order tracking, AR preview
+    \item Product recommendation, chatbot AI (Gemini)
+    \item Redis caching, microservices, CI/CD
 \end{itemize}
-
-\textbf{2. Mở rộng thanh toán:}
-\begin{itemize}
-    \item VNPay, ZaloPay, Visa/Mastercard (Stripe)
-    \item Trả góp 0\%, ví nội bộ VeritaShop
-\end{itemize}
-
-\textbf{3. Nâng cao trải nghiệm:}
-\begin{itemize}
-    \item Real-time chat với Socket.io/Firebase
-    \item Order tracking với bản đồ, ETA delivery
-    \item AR preview kích thước điện thoại
-\end{itemize}
-
-\textbf{4. Phát triển AI/ML:}
-\begin{itemize}
-    \item Product recommendation dựa trên hành vi
-    \item Chatbot tư vấn với Google Gemini/ChatGPT
-    \item Image search tìm sản phẩm bằng ảnh
-\end{itemize}
-
-\textbf{5. Tối ưu hóa và Scale:}
-\begin{itemize}
-    \item Redis caching cho API responses
-    \item Microservices architecture (Product, Order, Payment, Review services)
-    \item CI/CD pipeline với GitHub Actions
-\end{itemize}
-
-\vspace{0.5cm}
-Đồ án này minh chứng cho khả năng ứng dụng các công nghệ hiện đại (Flutter, Node.js, MongoDB, BERT) vào xây dựng nền tảng thương mại điện tử chuyên biệt. Đặc biệt, việc tích hợp ABSA với VisoBERT đạt hiệu quả cao (F1 > 89\%) mở ra hướng nghiên cứu ứng dụng NLP trong phân tích đánh giá sản phẩm. Nhóm hy vọng VeritaShop sẽ tiếp tục được hoàn thiện và có cơ hội triển khai thực tế.
 

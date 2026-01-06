@@ -1,120 +1,23 @@
 \newpage
 \section{\textbf{THIẾT KẾ CƠ SỞ DỮ LIỆU}}
 
-\subsection{Mô hình quan hệ}
-Hệ thống VeritaShop sử dụng MongoDB với 7 collections chính: Users, Products, Carts, Orders, Payments, Reviews, Coupons. Các collection liên kết với nhau thông qua tham chiếu ObjectId.
+Hệ thống sử dụng MongoDB với 7 collections: \textbf{Users}, \textbf{Products}, \textbf{Carts}, \textbf{Orders}, \textbf{Payments}, \textbf{Reviews}, \textbf{Coupons}. Các collection liên kết qua ObjectId.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{image/sequence/6.png}
+    \includegraphics[width=0.9\textwidth]{image/sequence/6.png}
     \caption{Sơ đồ quan hệ cơ sở dữ liệu VeritaShop}
     \label{fig:db_schema}
 \end{figure}
 
-\subsection{Cấu trúc Collections}
-
-\textbf{1. Users} - Lưu thông tin người dùng và địa chỉ giao hàng:
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{|l|l|p{7cm}|}
-\hline
-\textbf{Trường} & \textbf{Kiểu} & \textbf{Mô tả} \\
-\hline
-name, email & String & Thông tin cơ bản (email unique) \\
-\hline
-password & String & Mã hóa bcrypt \\
-\hline
-addresses[] & Array & Danh sách địa chỉ (fullName, phone, province, district, ward, streetAddress, isDefault) \\
-\hline
-role & String & "user" hoặc "admin" \\
-\hline
-isLocked & Boolean & Trạng thái khóa tài khoản \\
-\hline
-\end{tabular}
-\end{table}
-
-\textbf{2. Products} - Lưu thông tin sản phẩm điện thoại:
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{|l|l|p{7cm}|}
-\hline
-\textbf{Trường} & \textbf{Kiểu} & \textbf{Mô tả} \\
-\hline
-name, brand, description & String & Thông tin cơ bản \\
-\hline
-price, originalPrice & Number & Giá bán và giá gốc (VNĐ) \\
-\hline
-images[] & Array & URLs hình ảnh (Cloudinary) \\
-\hline
-specs & Object & \{ram, rom, chip, battery, screen, camera\} \\
-\hline
-colors[] & Array & \{name, code, image\} \\
-\hline
-condition & String & "new", "likenew", "used" \\
-\hline
-stock, rating, reviewCount & Number & Tồn kho và đánh giá \\
-\hline
-isFeatured, isActive & Boolean & Trạng thái hiển thị \\
-\hline
-\end{tabular}
-\end{table}
-
-\textbf{3. Orders} - Lưu thông tin đơn hàng:
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{|l|l|p{7cm}|}
-\hline
-\textbf{Trường} & \textbf{Kiểu} & \textbf{Mô tả} \\
-\hline
-user, orderNumber & ObjectId, String & Tham chiếu user và mã đơn \\
-\hline
-items[] & Array & \{product, name, brand, image, color, quantity, price\} \\
-\hline
-shippingAddress & Object & Địa chỉ giao hàng \\
-\hline
-paymentMethod & String & "COD" hoặc "MoMo" \\
-\hline
-subtotal, shippingFee, discount, total & Number & Các khoản tiền \\
-\hline
-status & String & pending/confirmed/processing/shipping/delivered/cancelled \\
-\hline
-\end{tabular}
-\end{table}
-
-\textbf{4. Reviews} - Lưu đánh giá với kết quả ABSA:
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{|l|l|p{7cm}|}
-\hline
-\textbf{Trường} & \textbf{Kiểu} & \textbf{Mô tả} \\
-\hline
-user, product & ObjectId & Tham chiếu \\
-\hline
-rating, title, text & Number, String & Nội dung đánh giá \\
-\hline
-images[] & Array & URLs ảnh (tối đa 5) \\
-\hline
-sentimentAnalysis[] & Array & \{aspect, sentiment, confidence, scores\} \\
-\hline
-overallSentiment & String & "positive"/"negative"/"neutral"/"mixed" \\
-\hline
-isFlagged, moderationStatus & Boolean, String & Trạng thái kiểm duyệt \\
-\hline
-\end{tabular}
-\end{table}
-
-\textbf{5. Các Collection khác:}
+\textbf{Collections chính:}
 \begin{itemize}
-    \item \textbf{Carts}: user, product, quantity, color - Giỏ hàng tạm
-    \item \textbf{Payments}: order, method, amount, transId, status - Giao dịch MoMo
-    \item \textbf{Coupons}: code, discountType, discountValue, validUntil - Mã giảm giá
+    \item \textbf{Users}: name, email, password (bcrypt), addresses[], role (user/admin), isLocked
+    \item \textbf{Products}: name, brand, price, images[], specs \{ram, rom, chip, battery, screen, camera\}, colors[], condition, stock, rating
+    \item \textbf{Orders}: user, orderNumber, items[], shippingAddress, paymentMethod, status (pending→confirmed→processing→shipping→delivered), total
+    \item \textbf{Reviews}: user, product, rating, text, images[], \textbf{sentimentAnalysis[]} (ABSA), overallSentiment, isFlagged, moderationStatus
+    \item \textbf{Payments}: order, method (COD/MoMo), amount, transId, status
+    \item \textbf{Coupons}: code, discountType, discountValue, validUntil
+    \item \textbf{Carts}: user, product, quantity, color
 \end{itemize}
 
