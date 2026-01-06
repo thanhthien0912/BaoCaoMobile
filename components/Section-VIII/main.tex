@@ -1,30 +1,32 @@
 \newpage
 \section{\textbf{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}
 
-\subsection{Kết luận}
+\subsection{Kết quả đạt được}
 
-Đồ án "VeritaShop" đã hoàn thành mục tiêu xây dựng ứng dụng thương mại điện tử chuyên biệt cho điện thoại:
+\begin{enumerate}
+    \item \textbf{Xây dựng bộ dữ liệu}: Thu thập và đánh nhãn 14,912 bình luận từ các sàn thương mại điện tử Shopee, Lazada, Tiki với 11 khía cạnh và 3 mức cảm xúc. Độ đồng thuận Fleiss' Kappa đạt 0.8208 (mức rất tốt).
+    
+    \item \textbf{Thực nghiệm đa mô hình}: So sánh 6 mô hình thuộc 3 nhóm kiến trúc (BiLSTM, PhoBERT, VisoBERT) với 2 chiến lược huấn luyện (MTL và STL).
+    
+    \item \textbf{Kết quả tốt nhất}: Mô hình VisoBERT-STL đạt F1 = 89.39\% cho Phát hiện khía cạnh và F1 = 96.37\% cho Phân loại cảm xúc.
+    
+    \item \textbf{Tích hợp hệ thống}: Triển khai mô hình vào hệ thống thương mại điện tử thực tế với API phân tích cảm xúc theo thời gian thực.
+\end{enumerate}
 
-\textbf{Kết quả đạt được:}
+\subsection{Hạn chế cần khắc phục}
+
 \begin{itemize}
-    \item Ứng dụng Flutter đa nền tảng (Android, iOS, Web), Backend Node.js/Express.js ổn định
-    \item Tích hợp MoMo payment (Deep Link + IPN), Cloudinary CDN
-    \item \textbf{ABSA với VisoBERT-STL}: AD F1=89.39\%, SC F1=96.37\% (dataset 14,912 bình luận)
-    \item Content Moderation tự động phát hiện nội dung vi phạm
-    \item Admin Dashboard quản lý toàn diện sản phẩm, đơn hàng, người dùng
+    \item Bộ dữ liệu tập trung vào lĩnh vực điện thoại di động, cần mở rộng sang các lĩnh vực khác.
+    \item Chưa xử lý được các bình luận có nhiều khía cạnh với cảm xúc trái ngược phức tạp.
+    \item Thời gian suy luận của mô hình Transformer còn chậm so với yêu cầu thời gian thực.
 \end{itemize}
-
-\textbf{Hạn chế:} Chưa có Push Notifications, đa ngôn ngữ, VNPay/ZaloPay, chat support, MoMo chưa production.
 
 \subsection{Hướng phát triển}
 
 \begin{itemize}
-    \item \textbf{Tính năng}: Push notification (FCM), social login, so sánh sản phẩm, đa ngôn ngữ
-    \item \textbf{Thanh toán}: VNPay, ZaloPay, Visa/Mastercard, trả góp 0\%
-    \item \textbf{Trải nghiệm}: Real-time chat, order tracking, AR preview
-    \item \textbf{AI/ML}: Product recommendation, chatbot AI (Gemini), image search
-    \item \textbf{Scale}: Redis caching, microservices, CI/CD pipeline
+    \item Mở rộng bộ dữ liệu sang các lĩnh vực khác như thời trang, mỹ phẩm, thực phẩm.
+    \item Nghiên cứu kỹ thuật nén mô hình (Knowledge Distillation) để giảm thời gian suy luận.
+    \item Tích hợp thêm phân tích hình ảnh sản phẩm để có đánh giá toàn diện hơn.
+    \item Phát triển dashboard trực quan hóa xu hướng cảm xúc theo thời gian.
 \end{itemize}
-
-Đồ án minh chứng khả năng ứng dụng công nghệ hiện đại (Flutter, Node.js, MongoDB, BERT) vào thương mại điện tử, đặc biệt tích hợp ABSA đạt hiệu quả cao mở hướng nghiên cứu NLP tại Việt Nam.
 

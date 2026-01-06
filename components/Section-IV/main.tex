@@ -32,6 +32,15 @@ Thư viện chính: \textbf{provider} (state management), \textbf{dio} (HTTP cli
 \newpage
 \subsection{ABSA - Aspect-Based Sentiment Analysis}
 
+\subsubsection*{Các nghiên cứu liên quan}
+Các phương pháp truyền thống dựa trên TF-IDF + SVM/Naive Bayes gặp hạn chế trong nắm bắt ngữ nghĩa sâu. Sự phát triển của học sâu mở ra hướng tiếp cận mới:
+\begin{itemize}
+    \item \textbf{CNN}: Khai thác cụm từ quan trọng qua bộ lọc trượt, phù hợp văn bản ngắn
+    \item \textbf{LSTM}: Giải quyết phụ thuộc dài hạn, phù hợp dữ liệu hội thoại
+    \item \textbf{Transformer}: Cơ chế attention cho phép mô hình hóa quan hệ toàn cục giữa các token
+    \item \textbf{BERT tiếng Việt}: PhoBERT, VisoBERT vượt trội so với mBERT đa ngôn ngữ
+\end{itemize}
+
 \subsubsection*{Định nghĩa bài toán}
 ABSA là kỹ thuật phân tích cảm xúc nâng cao, chia thành 2 nhiệm vụ riêng biệt:
 
@@ -158,7 +167,7 @@ Dịch tiếng Anh & "good", "ship fast" & "tốt", "giao nhanh" \\
 \hline
 Chuẩn hóa teencode & "k", "đc", "ko" & "không", "được", "không" \\
 \hline
-Giữ lại Emoji & 👍, ❤️, 😡 & (giữ nguyên - mang sắc thái) \\
+Giữ lại Emoji & (like), (love), (angry) & (giữ nguyên - mang sắc thái) \\
 \hline
 \end{tabular}
 \end{table}
@@ -172,35 +181,49 @@ Giữ lại Emoji & 👍, ❤️, 😡 & (giữ nguyên - mang sắc thái) \\
     \item Chia tỷ lệ: 80\% train, 10\% validation, 10\% test
 \end{itemize}
 
-\textbf{So sánh hiệu năng mô hình:}
+\textbf{So sánh F1-Score các mô hình (STL vs MTL):}
 
 \begin{table}[H]
 \centering
-\caption{Kết quả thực nghiệm ABSA}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{|l|c|c|}
+\caption{So sánh F1-Score của các mô hình ABSA}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Mô hình} & \textbf{AD F1-Score} & \textbf{SC F1-Score} \\
+\multirow{2}{*}{\textbf{Mô hình}} & \multicolumn{2}{c|}{\textbf{STL}} & \multicolumn{2}{c|}{\textbf{MTL}} \\
+\cline{2-5}
+ & \textbf{AD F1} & \textbf{SC F1} & \textbf{AD F1} & \textbf{SC F1} \\
 \hline
-BiLSTM (baseline) & 45.21\% & 39.15\% \\
+BiLSTM & 85.69\% & 39.83\% & 82.85\% & 34.28\% \\
 \hline
-PhoBERT-MTL & 82.14\% & 93.63\% \\
+BiLSTM + Conv1D & 86.23\% & 36.87\% & 84.09\% & 33.48\% \\
 \hline
-PhoBERT-STL & 85.67\% & 94.82\% \\
+PhoBERT & 88.84\% & 92.06\% & 66.28\% & 92.93\% \\
 \hline
-VisoBERT-MTL & 86.23\% & 95.11\% \\
-\hline
-\textbf{VisoBERT-STL} & \textbf{89.39\%} & \textbf{96.37\%} \\
+\textbf{VisoBERT} & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & 93.63\% \\
 \hline
 \end{tabular}
 \end{table}
 
-\textbf{Nhận xét:}
+\subsubsection*{Phân tích kết quả}
+
+\textbf{1. STL tốt hơn MTL:}
 \begin{itemize}
-    \item Transformer (BERT) vượt trội hoàn toàn so với Deep Learning truyền thống (BiLSTM)
-    \item VisoBERT tốt hơn PhoBERT do phù hợp với văn phong mạng xã hội
-    \item Single-Task Learning (STL) tốt hơn Multi-Task Learning (MTL) khoảng 2-3\%
-    \item SC dễ hơn AD do ít lớp hơn (3 vs 11) và ngữ cảnh rõ ràng hơn
+    \item PhoBERT-STL: AD tăng +22.56\% so với MTL
+    \item VisoBERT-STL: AD tăng +6.71\%, SC tăng +2.74\% so với MTL
+    \item Huấn luyện riêng biệt giúp tránh xung đột giữa các nhiệm vụ
+\end{itemize}
+
+\textbf{2. Transformer vượt trội BiLSTM:}
+\begin{itemize}
+    \item SC: 96.37\% (VisoBERT) vs 39.83\% (BiLSTM) = cải thiện +56.54\%
+    \item Transformer có khả năng biểu diễn ngữ cảnh mạnh hơn
+\end{itemize}
+
+\textbf{3. VisoBERT tốt hơn PhoBERT:}
+\begin{itemize}
+    \item VisoBERT-STL: AD 89.39\%, SC 96.37\%
+    \item PhoBERT-STL: AD 88.84\%, SC 92.06\%
+    \item VisoBERT huấn luyện trên 14GB dữ liệu mạng xã hội, hiểu được emoji/icon
 \end{itemize}
 
 \subsection{Content Moderation}

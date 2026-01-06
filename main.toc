@@ -16,7 +16,7 @@
 \contentsline {subsection}{\numberline {3.1}Phân tích Use Case}{10}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Đặc tả Use Case chính}{11}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Luồng màn hình Customer App}{11}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Quy trình đánh giá với ABSA}{12}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}Quy trình đánh giá với ABSA}{11}{subsection.3.4}%
 \contentsline {section}{\numberline {4}\textbf {THIẾT KẾ CƠ SỞ DỮ LIỆU}}{13}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Collection Users}{13}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Collection Products}{13}{subsection.4.2}%
@@ -24,6 +24,8 @@
 \contentsline {subsection}{\numberline {4.4}Collection Reviews}{14}{subsection.4.4}%
 \contentsline {subsection}{\numberline {4.5}Collection Carts và Coupons}{14}{subsection.4.5}%
 \contentsline {section}{\numberline {5}\textbf {KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Kết luận}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Hướng phát triển}{15}{subsection.5.2}%
-\contentsline {section}{TÀI LIỆU THAM KHẢO}{16}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.1}Kết quả đạt được}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Hạn chế cần khắc phục}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Hướng phát triển}{15}{subsection.5.3}%
+\contentsline {section}{TÀI LIỆU THAM KHẢO}{16}{subsection.5.3}%
+\contentsline {section}{ĐÁNH GIÁ THÀNH VIÊN}{17}{subsection.5.3}%

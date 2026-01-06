@@ -26,17 +26,17 @@
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|p{2.8cm}|p{2.5cm}|p{8cm}|}
 \hline
-\textbf{Use Case} & \textbf{Tác nhân} & \textbf{Mô tả chi tiết} \\
+\textbf{Use Case} & \textbf{Tác nhân} & \textbf{Mô tả} \\
 \hline
-Tìm kiếm sản phẩm & Khách hàng & Lọc theo brand (iPhone, Samsung...), khoảng giá, tình trạng (mới, like new, used). Sắp xếp theo giá/rating/mới nhất. Server-side search với phân trang. \\
+Tìm kiếm sản phẩm & Khách hàng & Lọc theo brand, giá, tình trạng. Sắp xếp theo giá/rating/mới nhất. \\
 \hline
-Thanh toán đơn hàng & Khách hàng, MoMo & Checkout 5 bước: Review giỏ → Chọn địa chỉ → Áp dụng coupon → Chọn phương thức (COD/MoMo) → Xác nhận. MoMo: Deep Link mở app → Xác nhận → IPN callback. \\
+Thanh toán đơn hàng & Khách hàng, MoMo & Checkout 5 bước → COD hoặc MoMo (Deep Link + IPN). \\
 \hline
-Đánh giá sản phẩm & Khách hàng, AI & Viết review (1-5 sao, tiêu đề, nội dung, upload ảnh) → Content Moderation kiểm tra → ABSA phân tích cảm xúc theo aspects → Lưu kết quả. \\
+Đánh giá sản phẩm & Khách hàng, AI & Viết review → Content Moderation → ABSA phân tích → Lưu kết quả. \\
 \hline
-Quản lý đơn hàng & Admin & Xem danh sách với bộ lọc. Cập nhật trạng thái: pending → confirmed → processing → shipping → delivered (hoặc cancelled). \\
+Quản lý đơn hàng & Admin & Xem danh sách, cập nhật trạng thái (pending→delivered/cancelled). \\
 \hline
-Kiểm duyệt đánh giá & Admin & Xem review bị flag. Xem kết quả ABSA và Content Moderation. Approve (hiển thị) / Reject (ẩn) / Delete. \\
+Kiểm duyệt đánh giá & Admin & Xem review bị flag, kết quả ABSA. Approve/Reject/Delete. \\
 \hline
 \end{tabular}
 \end{table}

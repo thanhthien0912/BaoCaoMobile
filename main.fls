@@ -724,9 +724,9 @@ INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
+INPUT .\components\Section-IV\main.tex
+INPUT .\components\Section-IV\main.tex
 INPUT .\image\sequence\1.png
-INPUT .\components\Section-IV\main.tex
-INPUT .\components\Section-IV\main.tex
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\components\Section-V\main.tex
@@ -743,6 +743,8 @@ INPUT .\components\Section-VIII\main.tex
 INPUT .\components\reference.tex
 INPUT .\components\reference.tex
 INPUT C:\Users\thanh\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmmono12-regular.luc
+INPUT .\components\member_evaluation.tex
+INPUT .\components\member_evaluation.tex
 OUTPUT main.thm
 OUTPUT main.thm
 INPUT .\main.aux
