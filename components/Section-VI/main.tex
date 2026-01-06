@@ -3,13 +3,6 @@
 
 Hệ thống sử dụng MongoDB với 7 collections: \textbf{Users}, \textbf{Products}, \textbf{Carts}, \textbf{Orders}, \textbf{Payments}, \textbf{Reviews}, \textbf{Coupons}. Các collection liên kết qua ObjectId.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{image/sequence/6.png}
-    \caption{Sơ đồ quan hệ cơ sở dữ liệu VeritaShop}
-    \label{fig:db_schema}
-\end{figure}
-
 \textbf{Collections chính:}
 \begin{itemize}
     \item \textbf{Users}: name, email, password (bcrypt), addresses[], role (user/admin), isLocked
