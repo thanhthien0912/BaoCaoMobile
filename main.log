@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  6 JAN 2026 17:28
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  7 JAN 2026 02:45
  restricted system commands enabled.
  file:line:error style messages enabled.
 **d:/HUTECH/HK11/Moblie/BaoCao/main.tex
@@ -2349,6 +2349,21 @@ Underfull \hbox (badness 1062) in paragraph at lines 51--52
 [16
 
 ]
+Underfull \hbox (badness 3514) in paragraph at lines 14--14
+[]|\TU/Arial(0)/m/n/13 Thiết kế Database Mon-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+[]|\TU/Arial(0)/m/n/13 State Man-age-ment
+ []
+
+
+Underfull \hbox (badness 6708) in paragraph at lines 18--18
+[]|\TU/Arial(0)/m/n/13 Xây dựng Back-end API
+ []
+
+
 Overfull \hbox (30.79982pt too wide) in paragraph at lines 10--27
  [][] 
  []
@@ -2377,13 +2392,13 @@ c, 8 attribute_list, 2 write nodes
    avail lists: 1:1,2:1381,3:320,4:130,5:191,6:92,7:4190,8:40,9:754,10:12,11:191
 
  72470 multiletter control sequences out of 65536+600000
- 101 fonts using 38743839 bytes
+ 101 fonts using 38743951 bytes
  108i,11n,101p,794b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/thanh/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono12-
 regular.otf><C:/WINDOWS/Fonts/arialni.ttf><C:/Users/thanh/AppData/Local/Programs
 /MiKTeX/fonts/opentype/public/tex-gyre-math/texgyretermes-math.otf><C:/WINDOWS/F
 onts/arialbd.ttf><C:/WINDOWS/Fonts/arial.ttf>
-Output written on main.pdf (23 pages, 831746 bytes).
+Output written on main.pdf (23 pages, 832129 bytes).
 
 PDF statistics: 358 PDF objects out of 1000 (max. 8388607)
  87 named destinations out of 1000 (max. 131072)
