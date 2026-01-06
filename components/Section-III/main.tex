@@ -1,6 +1,6 @@
 
 \newpage
-
+\setcounter{page}{1}
 \section{\textbf{TỔNG QUAN HỆ THỐNG}}
 
 \subsection{Giới thiệu}
@@ -58,4 +58,26 @@ Hệ thống VeritaShop được thiết kế theo mô hình Client-Server với
     \caption{Sơ đồ Kiến trúc Hệ thống VeritaShop}
     \label{fig:sys_arch}
 \end{figure}
+
+\subsection{Quy trình thanh toán MoMo}
+
+Hệ thống tích hợp MoMo Payment Gateway với cơ chế Deep Link và IPN callback:
+
+\begin{enumerate}
+    \item \textbf{Tạo đơn hàng}: Người dùng checkout → Backend tạo Order với status "pending"
+    \item \textbf{Khởi tạo thanh toán}: Backend gọi MoMo API với HMAC-SHA256 signature
+    \item \textbf{Nhận response}: MoMo trả về payUrl, deeplink, qrCodeUrl
+    \item \textbf{Mở MoMo app}: Flutter sử dụng url\_launcher mở Deep Link
+    \item \textbf{Xác nhận thanh toán}: Người dùng xác nhận trong app MoMo
+    \item \textbf{IPN Callback}: MoMo gửi kết quả về Backend qua webhook
+    \item \textbf{Cập nhật đơn hàng}: Backend verify signature → Cập nhật paymentStatus
+    \item \textbf{Thông báo kết quả}: App polling hoặc nhận push notification
+\end{enumerate}
+
+\textbf{Xử lý edge cases:}
+\begin{itemize}
+    \item Timeout 15 phút: Tự động hủy payment request cũ
+    \item Duplicate IPN: Kiểm tra transId trùng lặp
+    \item Mất kết nối: Cho phép retry với requestId mới
+\end{itemize}
 

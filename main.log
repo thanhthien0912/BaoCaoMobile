@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  6 JAN 2026 10:37
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  6 JAN 2026 13:09
  restricted system commands enabled.
  file:line:error style messages enabled.
 **d:/HUTECH/HK11/Moblie/BaoCao/main.tex
@@ -2182,7 +2182,7 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 \c@lstlisting=\count444
 (./components/title.tex
-<image/logoHutech1.png, id=89, 845.0772pt x 271.0125pt>
+<image/logoHutech1.png, id=117, 845.0772pt x 271.0125pt>
 File: image/logoHutech1.png Graphic file (type png)
 <use image/logoHutech1.png>
 Package luatex.def Info: image/logoHutech1.png  used on input line 15.
@@ -2226,15 +2226,21 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 [2]
 
-[3]
-<image/sequence/1.png, id=158, 5837.81pt x 2441.12pt>
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
+[1]
+<image/sequence/1.png, id=198, 5837.81pt x 2441.12pt>
 File: image/sequence/1.png Graphic file (type png)
 <use image/sequence/1.png>
 Package luatex.def Info: image/sequence/1.png  used on input line 57.
 (luatex.def)             Requested size: 432.48051pt x 180.84119pt.
-) (./components/Section-IV/main.tex
 
-[4<./image/sequence/1.png>]
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
+[2<./image/sequence/1.png>]) (./components/Section-IV/main.tex
+
+[3]
 Overfull \hbox (4.59181pt too wide) in paragraph at lines 22--23
 []\TU/Arial(0)/m/n/13 Thư viện chính: \TU/Arial(0)/b/n/13 provider \TU/Aria
 l(0)/m/n/13 (state man-age-ment), \TU/Arial(0)/b/n/13 dio \TU/Arial(0)/m/n/13 (H
@@ -2243,11 +2249,11 @@ TTP client), \TU/Arial(0)/b/n/13 cached_net-
 
 
 
+[4]
+
 [5]
 
 [6]
-
-[7]
 Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
@@ -2266,7 +2272,7 @@ Package luatex.def Info: image/sequence/1.png  used on input line 117.
 (luatex.def)             Requested size: 409.71692pt x 171.30559pt.
 
 
-[8
+[7
 Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
@@ -2274,8 +2280,6 @@ latn;language=dflt;+tlig;!
 Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 ]
-
-[9]
 Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
@@ -2290,7 +2294,7 @@ Missing character: There is no 😡 (U+1F621) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 
 
-[10
+[8
 Missing character: There is no 👍 (U+1F44D) in font name:Arial:mode=node;scrip
 t=latn;language=dflt;+tlig;!
 Missing character: There is no ❤ (U+2764) in font name:Arial:mode=node;script=
@@ -2305,8 +2309,8 @@ min duyệt thủ công (Ap-prove/Re-
 
 ) (./components/Section-V/main.tex
 
-[11]
-<image/sequence/3.png, id=194, 2462.19875pt x 2829.57124pt>
+[9]
+<image/sequence/3.png, id=241, 2462.19875pt x 2829.57124pt>
 File: image/sequence/3.png Graphic file (type png)
 <use image/sequence/3.png>
 Package luatex.def Info: image/sequence/3.png  used on input line 16.
@@ -2353,16 +2357,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--39
 
 
 
-[12<./image/sequence/3.png>]) (./components/Section-VI/main.tex
+[10<./image/sequence/3.png>]
 
-[13]
-Overfull \hbox (1.34482pt too wide) in paragraph at lines 11--12
-[]\TU/Arial(0)/b/n/13 Re-views\TU/Arial(0)/m/n/13 : user, prod-uct, rat-ing, tex
-t, im-ages[], \TU/Arial(0)/b/n/13 sen-ti-men-t-Anal-y-sis[] \TU/Arial(0)/m/n/13
- (ABSA),
+[11]
+Overfull \hbox (0.93799pt too wide) in paragraph at lines 64--65
+[]\TU/Arial(0)/b/n/13 Sen-ti-ment Clas-si-fi-ca-tion\TU/Arial(0)/m/n/13 : Với m
+ỗi as-pect, phân loại cảm xúc (Pos-i-tive/Neg-
  []
 
-) (./components/Section-VIII/main.tex
+) (./components/Section-VI/main.tex
+
+[12]
+Underfull \hbox (badness 1062) in paragraph at lines 51--52
+[]|\TU/Arial(0)/m/n/13 {ram, rom, chip, bat-tery, screen,
+ []
+
+
+
+[13]) (./components/Section-VIII/main.tex
 
 [14]) (./components/reference.tex
 
@@ -2386,26 +2398,26 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B56BB5A5CF263F372EB444C1291D4EE6;3472.
+(rerunfilecheck)             Checksum: CCBE37F25C3B8D2D0618F72DF72B3059;4764.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51553 strings out of 476291
+ 51594 strings out of 476291
  125146,1977958 words of node,token memory allocated
  1035 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 13 attribute, 158 glue_spe
 c, 8 attribute_list, 2 write nodes
-   avail lists: 1:1,2:1000,3:285,4:94,5:146,6:65,7:4190,8:36,9:542,10:9,11:165
- 72404 multiletter control sequences out of 65536+600000
+   avail lists: 1:1,2:1294,3:300,4:122,5:179,6:86,7:4190,8:36,9:754,10:9,11:191
+ 72419 multiletter control sequences out of 65536+600000
  80 fonts using 29833975 bytes
  108i,11n,101p,794b,733s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/thanh/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono12-
 regular.otf><C:/WINDOWS/Fonts/arialni.ttf><C:/Users/thanh/AppData/Local/Programs
 /MiKTeX/fonts/opentype/public/tex-gyre-math/texgyretermes-math.otf><C:/WINDOWS/F
 onts/arialbd.ttf><C:/WINDOWS/Fonts/arial.ttf>
-Output written on main.pdf (20 pages, 672873 bytes).
+Output written on main.pdf (22 pages, 686764 bytes).
 
-PDF statistics: 280 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 131072)
- 184 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 345 PDF objects out of 1000 (max. 8388607)
+ 86 named destinations out of 1000 (max. 131072)
+ 240 words of extra memory for PDF output out of 10000 (max. 100000000)
 

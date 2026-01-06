@@ -1,16 +1,101 @@
 \newpage
 \section{\textbf{THIẾT KẾ CƠ SỞ DỮ LIỆU}}
 
-Hệ thống sử dụng MongoDB với 7 collections: \textbf{Users}, \textbf{Products}, \textbf{Carts}, \textbf{Orders}, \textbf{Payments}, \textbf{Reviews}, \textbf{Coupons}. Các collection liên kết qua ObjectId.
+Hệ thống VeritaShop sử dụng MongoDB Atlas - hệ quản trị CSDL NoSQL với 7 collections chính liên kết qua ObjectId.
 
-\textbf{Collections chính:}
-\begin{itemize}
-    \item \textbf{Users}: name, email, password (bcrypt), addresses[], role (user/admin), isLocked
-    \item \textbf{Products}: name, brand, price, images[], specs \{ram, rom, chip, battery, screen, camera\}, colors[], condition, stock, rating
-    \item \textbf{Orders}: user, orderNumber, items[], shippingAddress, paymentMethod, status (pending→confirmed→processing→shipping→delivered), total
-    \item \textbf{Reviews}: user, product, rating, text, images[], \textbf{sentimentAnalysis[]} (ABSA), overallSentiment, isFlagged, moderationStatus
-    \item \textbf{Payments}: order, method (COD/MoMo), amount, transId, status
-    \item \textbf{Coupons}: code, discountType, discountValue, validUntil
-    \item \textbf{Carts}: user, product, quantity, color
-\end{itemize}
+\subsection{Collection Users}
+Lưu thông tin tài khoản người dùng và địa chỉ giao hàng.
+
+\begin{table}[H]
+\centering
+\caption{Cấu trúc Collection Users}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Trường} & \textbf{Kiểu dữ liệu} & \textbf{Mô tả} \\
+\hline
+name & String & Tên người dùng (bắt buộc) \\
+\hline
+email & String (unique) & Email đăng nhập \\
+\hline
+password & String & Mật khẩu mã hóa bcrypt \\
+\hline
+addresses[] & Array & Danh sách địa chỉ giao hàng \\
+\hline
+role & String & "customer" hoặc "admin" \\
+\hline
+pinHash & String & Mã PIN bảo mật (tùy chọn) \\
+\hline
+isActive & Boolean & Trạng thái tài khoản \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Collection Products}
+Lưu thông tin sản phẩm điện thoại với thông số kỹ thuật chi tiết.
+
+\begin{table}[H]
+\centering
+\caption{Cấu trúc Collection Products}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Trường} & \textbf{Kiểu dữ liệu} & \textbf{Mô tả} \\
+\hline
+name, brand & String & Tên và hãng sản phẩm \\
+\hline
+price, originalPrice & Number & Giá bán và giá gốc (VNĐ) \\
+\hline
+images[] & Array & URLs hình ảnh (Cloudinary) \\
+\hline
+specs & Object & \{ram, rom, chip, battery, screen, camera\} \\
+\hline
+colors[] & Array & \{name, code, image\} cho mỗi màu \\
+\hline
+condition & String & "new", "likenew", "used" \\
+\hline
+stock, rating & Number & Tồn kho và điểm đánh giá \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Collection Orders và Payments}
+
+\textbf{Orders} lưu thông tin đơn hàng với workflow trạng thái: pending → confirmed → processing → shipping → delivered (hoặc cancelled).
+
+\textbf{Payments} lưu giao dịch MoMo với các trường: order (tham chiếu), method, amount, requestId, momoOrderId, transId, status (pending/success/failed), resultCode.
+
+\subsection{Collection Reviews}
+Tích hợp kết quả ABSA và Content Moderation.
+
+\begin{table}[H]
+\centering
+\caption{Cấu trúc Collection Reviews}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|p{6.5cm}|}
+\hline
+\textbf{Trường} & \textbf{Kiểu dữ liệu} & \textbf{Mô tả} \\
+\hline
+user, product & ObjectId & Tham chiếu người dùng và sản phẩm \\
+\hline
+rating & Number (1-5) & Điểm đánh giá \\
+\hline
+text, images[] & String, Array & Nội dung và hình ảnh \\
+\hline
+sentimentAnalysis[] & Array & Kết quả ABSA: \{aspect, sentiment, confidence\} \\
+\hline
+overallSentiment & String & positive/negative/neutral/mixed \\
+\hline
+isFlagged & Boolean & Bị flag bởi Content Moderation \\
+\hline
+moderationStatus & String & pending/approved/rejected \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Collection Carts và Coupons}
+
+\textbf{Carts}: Lưu giỏ hàng tạm với user, product, quantity, color.
+
+\textbf{Coupons}: Mã giảm giá với code, discountType (percentage/fixed), discountValue, minOrderValue, usageLimit, validUntil, isActive.
 

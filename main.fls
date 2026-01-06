@@ -724,9 +724,9 @@ INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
-INPUT .\components\Section-IV\main.tex
-INPUT .\components\Section-IV\main.tex
 INPUT .\image\sequence\1.png
+INPUT .\components\Section-IV\main.tex
+INPUT .\components\Section-IV\main.tex
 INPUT .\image\sequence\1.png
 INPUT .\image\sequence\1.png
 INPUT .\components\Section-V\main.tex

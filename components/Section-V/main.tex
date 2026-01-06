@@ -51,3 +51,25 @@ Kiểm duyệt đánh giá & Admin & Xem review bị flag. Xem kết quả ABSA 
     \item \textbf{Đánh giá}: Product Detail → Reviews → Write Review → ABSA Result
 \end{enumerate}
 
+\subsection{Quy trình đánh giá với ABSA}
+
+Khi người dùng viết đánh giá sản phẩm, hệ thống tự động phân tích cảm xúc theo quy trình:
+
+\begin{enumerate}
+    \item \textbf{Input}: Người dùng nhập rating (1-5 sao), tiêu đề, nội dung, upload ảnh (tối đa 5)
+    \item \textbf{Content Moderation}: API kiểm tra nội dung vi phạm (harassment, hate, violence...)
+    \item \textbf{Xử lý flag}: Nếu bị flag → isFlagged=true, moderationStatus='pending', chờ Admin duyệt
+    \item \textbf{ABSA Processing}: Nếu pass → Gửi text đến ABSA Service
+    \item \textbf{Aspect Detection}: Xác định review đề cập những khía cạnh nào (Battery, Camera, Shipping...)
+    \item \textbf{Sentiment Classification}: Với mỗi aspect, phân loại cảm xúc (Positive/Negative/Neutral)
+    \item \textbf{Lưu kết quả}: Lưu sentimentAnalysis[], overallSentiment vào Review document
+    \item \textbf{Cập nhật rating}: Tính lại điểm trung bình cho Product
+\end{enumerate}
+
+\textbf{Hiển thị kết quả ABSA cho người dùng:}
+\begin{itemize}
+    \item Biểu đồ thanh ngang cho từng aspect với màu sắc (xanh/đỏ/xám)
+    \item Confidence score (độ tin cậy) của mỗi phân tích
+    \item Overall sentiment badge (Positive/Negative/Neutral/Mixed)
+\end{itemize}
+
