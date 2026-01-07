@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  7 JAN 2026 02:45
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2025.9.26)  7 JAN 2026 17:01
  restricted system commands enabled.
  file:line:error style messages enabled.
 **d:/HUTECH/HK11/Moblie/BaoCao/main.tex
@@ -2254,22 +2254,22 @@ TTP client), \TU/Arial(0)/b/n/13 cached_net-
 
 
 [3]
-LaTeX Font Info:    Calculating math sizes for size <10.83347> on input line 71
+
+[4]
+LaTeX Font Info:    Calculating math sizes for size <10.83347> on input line 78
 .
 
 
-[4]
-
 [5]
-<image/sequence/ad_model.png, id=234, 433.62pt x 973.6375pt>
+<image/sequence/ad_model.png, id=235, 433.62pt x 973.6375pt>
 File: image/sequence/ad_model.png Graphic file (type png)
 <use image/sequence/ad_model.png>
-Package luatex.def Info: image/sequence/ad_model.png  used on input line 129.
+Package luatex.def Info: image/sequence/ad_model.png  used on input line 136.
 (luatex.def)             Requested size: 218.51521pt x 490.65053pt.
-<image/sequence/sc_model.png, id=235, 605.26125pt x 993.7125pt>
+<image/sequence/sc_model.png, id=236, 605.26125pt x 993.7125pt>
 File: image/sequence/sc_model.png Graphic file (type png)
 <use image/sequence/sc_model.png>
-Package luatex.def Info: image/sequence/sc_model.png  used on input line 135.
+Package luatex.def Info: image/sequence/sc_model.png  used on input line 142.
 (luatex.def)             Requested size: 218.51521pt x 358.75214pt.
 
 
@@ -2278,7 +2278,7 @@ Package luatex.def Info: image/sequence/sc_model.png  used on input line 135.
 [7<./image/sequence/ad_model.png><./image/sequence/sc_model.png>]
 
 [8]
-Overfull \hbox (17.13278pt too wide) in paragraph at lines 245--246
+Overfull \hbox (17.13278pt too wide) in paragraph at lines 252--253
 \TU/Arial(0)/m/n/13 is-Flagged=true, mod-er-a-tionSta-tus=’pend-ing’ → Ad-
 min duyệt thủ công (Ap-prove/Re-
  []
@@ -2286,7 +2286,7 @@ min duyệt thủ công (Ap-prove/Re-
 ) (./components/Section-V/main.tex
 
 [9]
-<image/sequence/3.png, id=254, 2462.19875pt x 2829.57124pt>
+<image/sequence/3.png, id=255, 2462.19875pt x 2829.57124pt>
 File: image/sequence/3.png Graphic file (type png)
 <use image/sequence/3.png>
 Package luatex.def Info: image/sequence/3.png  used on input line 16.
@@ -2354,13 +2354,38 @@ Underfull \hbox (badness 3514) in paragraph at lines 14--14
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+\TU/Arial(0)/m/n/13 goDB, Cloud-i-nary CDN,
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16--16
 []|\TU/Arial(0)/m/n/13 State Man-age-ment
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+\TU/Arial(0)/m/n/13 (Provider/View-Mod-els),
+ []
+
+
 Underfull \hbox (badness 6708) in paragraph at lines 18--18
 []|\TU/Arial(0)/m/n/13 Xây dựng Back-end API
+ []
+
+
+Underfull \hbox (badness 2384) in paragraph at lines 18--18
+\TU/Arial(0)/m/n/13 (Auth, Prod-uct, Cart, Or-
+ []
+
+
+Underfull \hbox (badness 3849) in paragraph at lines 22--22
+[]|\TU/Arial(0)/m/n/13 Tích hợp AI ABSA, API
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 22--22
+\TU/Arial(0)/m/n/13 Ope-nAI, Speech to Text,
  []
 
 
@@ -2389,16 +2414,16 @@ Here is how much of LuaTeX's memory you used:
  1035 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 13 attribute, 158 glue_spe
 c, 8 attribute_list, 2 write nodes
-   avail lists: 1:1,2:1381,3:320,4:130,5:191,6:92,7:4190,8:40,9:754,10:12,11:191
+   avail lists: 1:1,2:1381,3:320,4:130,5:192,6:92,7:4291,8:40,9:754,10:12,11:191
 
  72470 multiletter control sequences out of 65536+600000
- 101 fonts using 38743951 bytes
+ 101 fonts using 38743839 bytes
  108i,11n,101p,794b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/users/thanh/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono12-
-regular.otf><C:/WINDOWS/Fonts/arialni.ttf><C:/Users/thanh/AppData/Local/Programs
+<C:/WINDOWS/Fonts/arialni.ttf><c:/users/thanh/appdata/local/programs/miktex/font
+s/opentype/public/lm/lmmono12-regular.otf><C:/Users/thanh/AppData/Local/Programs
 /MiKTeX/fonts/opentype/public/tex-gyre-math/texgyretermes-math.otf><C:/WINDOWS/F
 onts/arialbd.ttf><C:/WINDOWS/Fonts/arial.ttf>
-Output written on main.pdf (23 pages, 832129 bytes).
+Output written on main.pdf (23 pages, 832861 bytes).
 
 PDF statistics: 358 PDF objects out of 1000 (max. 8388607)
  87 named destinations out of 1000 (max. 131072)

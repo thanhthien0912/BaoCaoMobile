@@ -29,7 +29,14 @@ Thư viện chính: \textbf{provider} (state management), \textbf{dio} (HTTP cli
 
 \textbf{Bảo mật:} JWT authentication (Access Token 7 ngày + Refresh Token 30 ngày), bcrypt mã hóa mật khẩu, PIN Lock tùy chọn, HTTPS, input validation với express-validator.
 
-\newpage
+\textbf{Voice Search (Speech-to-Text):} Tìm kiếm bằng giọng nói sử dụng mô hình GPT-4o-mini-transcribe:
+\begin{itemize}
+    \item \textbf{Ghi âm}: Package \texttt{record} với format WAV 16kHz mono
+    \item \textbf{Transcribe API}: Gửi file audio đến server → Nhận text tiếng Việt
+    \item \textbf{Prompt hints}: Tối ưu nhận dạng tên sản phẩm (iPhone, Samsung, Xiaomi...)
+    \item \textbf{Quy trình}: User nhấn mic → Ghi âm → Stop → Upload → Transcribe → Tìm kiếm
+\end{itemize}
+
 \subsection{ABSA - Aspect-Based Sentiment Analysis}
 
 \subsubsection*{Các nghiên cứu liên quan}
