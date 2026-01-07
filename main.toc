@@ -11,7 +11,6 @@
 \contentsline {subsection}{\numberline {2.2}Công nghệ Mobile}{3}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Công nghệ Tích hợp}{3}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}ABSA - Aspect-Based Sentiment Analysis}{4}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Content Moderation}{9}{subsection.2.5}%
 \contentsline {section}{\numberline {3}\textbf {PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Phân tích Use Case}{10}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Đặc tả Use Case chính}{11}{subsection.3.2}%

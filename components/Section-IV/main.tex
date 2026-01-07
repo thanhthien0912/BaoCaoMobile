@@ -37,6 +37,8 @@ Thư viện chính: \textbf{provider} (state management), \textbf{dio} (HTTP cli
     \item \textbf{Quy trình}: User nhấn mic → Ghi âm → Stop → Upload → Transcribe → Tìm kiếm
 \end{itemize}
 
+\textbf{Content Moderation:} Hệ thống tự động phát hiện và flag nội dung vi phạm trong đánh giá. Categories kiểm duyệt: Harassment (quấy rối), Hate (thù ghét), Violence (bạo lực), Sexual (khiêu dâm), Self-harm (tự gây thương tích), Illicit (bất hợp pháp). Quy trình: Review mới → Content Moderation API → Nếu phát hiện vi phạm: isFlagged=true, moderationStatus='pending' → Admin duyệt thủ công (Approve/Reject).
+
 \subsection{ABSA - Aspect-Based Sentiment Analysis}
 
 \subsubsection*{Các nghiên cứu liên quan}
@@ -106,7 +108,6 @@ Hệ thống được huấn luyện nhận diện 11 khía cạnh đặc thù c
 
 \text{Lưu ý:} Packaging và Shipping là 2 khía cạnh quan trọng thường bị thiếu trong các bộ dữ liệu ABSA truyền thống, nhưng rất phổ biến trong bình luận mua hàng online.
 
-\newpage
 \subsubsection*{Kiến trúc mô hình (Model Architecture)}
 
 \textbf{1. Core Model - VisoBERT}
@@ -242,12 +243,4 @@ PhoBERT & 88.84\% & \textbf{92.06\%} & 66.28\% & \textbf{92.93\%} \\
     \item PhoBERT-STL: AD 88.84\%, SC 92.06\%
     \item VisoBERT huấn luyện trên 14GB dữ liệu mạng xã hội, hiểu được emoji/icon
 \end{itemize}
-
-\subsection{Content Moderation}
-
-Hệ thống tự động phát hiện và flag nội dung vi phạm trong đánh giá:
-
-\textbf{Categories kiểm duyệt:} Harassment (quấy rối), Hate (thù ghét), Violence (bạo lực), Sexual (khiêu dâm), Self-harm (tự gây thương tích), Illicit (bất hợp pháp).
-
-\textbf{Quy trình:} Review mới → Content Moderation API → Nếu phát hiện vi phạm: isFlagged=true, moderationStatus='pending' → Admin duyệt thủ công (Approve/Reject).
 
