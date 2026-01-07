@@ -9,22 +9,35 @@
 \contentsline {section}{\numberline {2}\textbf {CƠ SỞ LÝ THUYẾT}}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Công nghệ Backend}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Công nghệ Mobile}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Công nghệ Tích hợp}{3}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}ABSA - Aspect-Based Sentiment Analysis}{4}{subsection.2.4}%
-\contentsline {section}{\numberline {3}\textbf {PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}}{10}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Phân tích Use Case}{10}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Đặc tả Use Case chính}{11}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Luồng màn hình Customer App}{11}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Quy trình đánh giá với ABSA}{11}{subsection.3.4}%
-\contentsline {section}{\numberline {4}\textbf {THIẾT KẾ CƠ SỞ DỮ LIỆU}}{13}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Collection Users}{13}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Collection Products}{13}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Collection Orders và Payments}{14}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Collection Reviews}{14}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Collection Carts và Coupons}{14}{subsection.4.5}%
-\contentsline {section}{\numberline {5}\textbf {KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Kết quả đạt được}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Hạn chế cần khắc phục}{15}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Hướng phát triển}{15}{subsection.5.3}%
-\contentsline {section}{TÀI LIỆU THAM KHẢO}{16}{subsection.5.3}%
-\contentsline {section}{ĐÁNH GIÁ THÀNH VIÊN}{17}{section*.13}%
+\contentsline {subsection}{\numberline {2.3}Công nghệ tích hợp}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}ABSA - Aspect-Based Sentiment Analysis}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}\textbf {PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Phân tích Use Case}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Đặc tả Use Case chính}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Luồng màn hình Customer App}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Quy trình đánh giá với ABSA}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {4}\textbf {THIẾT KẾ CƠ SỞ DỮ LIỆU}}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Collection Users}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Collection Products}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Collection Orders và Payments}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Collection Reviews}{8}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Collection Carts và Coupons}{8}{subsection.4.5}%
+\contentsline {section}{\numberline {5}\textbf {MÔ HÌNH, THỰC NGHIỆM VÀ ĐÁNH GIÁ}}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Mô hình}{9}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Single-Task Learning (STL)}{9}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Multi-Task Learning (MTL):}{9}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Tập dữ liệu}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Đánh nhãn dữ liệu}{10}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Tiền xử lý dữ liệu}{11}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Kết quả và đánh giá}{12}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Metrics}{12}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Cài đặt thí nghiệm}{12}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Baseline Models}{13}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Kết Quả}{13}{subsubsection.5.5.4}%
+\contentsline {subsubsection}{\numberline {5.5.5}Phân tích kết quả}{14}{subsubsection.5.5.5}%
+\contentsline {subsection}{\numberline {5.6}Kết luận}{15}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Kết quả đạt được}{15}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Hạn chế cần khắc phục}{15}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Hướng phát triển}{15}{subsubsection.5.6.3}%
+\contentsline {section}{TÀI LIỆU THAM KHẢO}{16}{subsubsection.5.6.3}%
+\contentsline {section}{ĐÁNH GIÁ THÀNH VIÊN}{17}{section*.16}%

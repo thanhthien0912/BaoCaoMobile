@@ -24,19 +24,19 @@
 \centering
 \caption{Đặc tả các Use Case chính}
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|p{2.8cm}|p{2.5cm}|p{8cm}|}
+\begin{tabular}{|p{2.5cm}|p{2.2cm}|p{8cm}|}
 \hline
 \textbf{Use Case} & \textbf{Tác nhân} & \textbf{Mô tả} \\
 \hline
-Tìm kiếm sản phẩm & Khách hàng & Lọc theo brand, giá, tình trạng. Sắp xếp theo giá/rating/mới nhất. \\
+Tìm kiếm sản phẩm & Khách hàng & Lọc brand/giá/tình trạng, sắp xếp giá/rating/mới \\
 \hline
-Thanh toán đơn hàng & Khách hàng, MoMo & Checkout 5 bước → COD hoặc MoMo (Deep Link + IPN). \\
+Thanh toán đơn hàng & Khách hàng & Checkout 5 bước → COD hoặc MoMo (Deep Link + IPN) \\
 \hline
-Đánh giá sản phẩm & Khách hàng, AI & Viết review → Content Moderation → ABSA phân tích → Lưu kết quả. \\
+Đánh giá sản phẩm & Khách hàng & Viết review → Content Moderation → ABSA → Lưu \\
 \hline
-Quản lý đơn hàng & Admin & Xem danh sách, cập nhật trạng thái (pending→delivered/cancelled). \\
+Quản lý đơn hàng & Admin & Xem/cập nhật trạng thái (pending→delivered/cancelled) \\
 \hline
-Kiểm duyệt đánh giá & Admin & Xem review bị flag, kết quả ABSA. Approve/Reject/Delete. \\
+Kiểm duyệt đánh giá & Admin & Xem review flag + ABSA, Approve/Reject/Delete \\
 \hline
 \end{tabular}
 \end{table}
@@ -53,23 +53,16 @@ Kiểm duyệt đánh giá & Admin & Xem review bị flag, kết quả ABSA. App
 
 \subsection{Quy trình đánh giá với ABSA}
 
-Khi người dùng viết đánh giá sản phẩm, hệ thống tự động phân tích cảm xúc theo quy trình:
+\textbf{Luồng xử lý chính:}
 
-\begin{enumerate}
-    \item \textbf{Input}: Người dùng nhập rating (1-5 sao), tiêu đề, nội dung, upload ảnh (tối đa 5)
-    \item \textbf{Content Moderation}: API kiểm tra nội dung vi phạm (harassment, hate, violence...)
-    \item \textbf{Xử lý flag}: Nếu bị flag → isFlagged=true, moderationStatus='pending', chờ Admin duyệt
-    \item \textbf{ABSA Processing}: Nếu pass → Gửi text đến ABSA Service
-    \item \textbf{Aspect Detection}: Xác định review đề cập những khía cạnh nào (Battery, Camera, Shipping...)
-    \item \textbf{Sentiment Classification}: Với mỗi aspect, phân loại cảm xúc (Positive/Negative/Neutral)
-    \item \textbf{Lưu kết quả}: Lưu sentimentAnalysis[], overallSentiment vào Review document
-    \item \textbf{Cập nhật rating}: Tính lại điểm trung bình cho Product
-\end{enumerate}
+\text{Input} (1-5 sao, tiêu đề, nội dung, ảnh) $\rightarrow$ \text{Content Moderation} $\rightarrow$ \text{Flagged} $\rightarrow$ isFlagged=true $\rightarrow$ \text{Admin duyệt}
 
-\textbf{Hiển thị kết quả ABSA cho người dùng:}
+\text{hoặc} \text{Pass} $\rightarrow$ \text{ABSA Service} (\text{Aspect Detection} $\rightarrow$ \text{Sentiment Classification} $\rightarrow$ \text{Lưu Review} $\rightarrow$ \text{Cập nhật Rating})
+
+\textbf{Hiển thị kết quả ABSA:}
 \begin{itemize}
-    \item Biểu đồ thanh ngang cho từng aspect với màu sắc (xanh/đỏ/xám)
-    \item Confidence score (độ tin cậy) của mỗi phân tích
+    \item Biểu đồ thanh ngang với màu sắc (xanh/đỏ/xám)
+    % \item Confidence score cho mỗi phân tích
     \item Overall sentiment badge (Positive/Negative/Neutral/Mixed)
 \end{itemize}
 

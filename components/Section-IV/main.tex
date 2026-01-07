@@ -3,244 +3,508 @@
 \section{\textbf{CƠ SỞ LÝ THUYẾT}}
 
 \subsection{Công nghệ Backend}
+\textbf{Node.js} là nền tảng JavaScript phía máy chủ với kiến trúc non-blocking, event-driven, phù hợp cho hệ thống TMĐT có lưu lượng truy cập lớn.
 
-\textbf{Node.js} là môi trường runtime JavaScript phía server được xây dựng trên V8 Engine của Chrome. Với kiến trúc non-blocking I/O và event-driven, Node.js xử lý hiệu quả hàng nghìn kết nối đồng thời mà không cần tạo thread mới cho mỗi request - đặc biệt phù hợp cho ứng dụng E-commerce với lượng truy cập cao.
+\textbf{Express.js} là framework cho Node.js, cung cấp routing, middleware và cơ chế xử lý lỗi tập trung.
 
-\textbf{Express.js} là framework web tối giản cho Node.js, cung cấp:
-\begin{itemize}
-    \item Routing: Quản lý endpoints (/api/products, /api/orders, /api/auth)
-    \item Middleware: Xác thực JWT, kiểm tra quyền admin, kiểm duyệt nội dung
-    \item Error Handling: Xử lý lỗi tập trung, trả response phù hợp
-\end{itemize}
-
-\textbf{MongoDB} là hệ quản trị CSDL NoSQL lưu trữ dữ liệu dạng JSON/BSON linh hoạt. Ưu điểm cho E-commerce: schema linh hoạt cho sản phẩm đa dạng, embedded documents (specs, colors), text search, aggregation pipeline cho báo cáo. \textbf{Mongoose ODM} cung cấp schema-based modeling với validation, middleware hooks và population.
+\textbf{MongoDB} là CSDL NoSQL dạng document với schema linh hoạt, hỗ trợ tìm kiếm văn bản và aggregation. \textbf{Mongoose ODM} cung cấp cơ chế định nghĩa schema và validation.
 
 \subsection{Công nghệ Mobile}
 
-\textbf{Flutter} là UI toolkit của Google cho phép xây dựng ứng dụng đa nền tảng (Android, iOS, Web, Desktop) từ một codebase duy nhất. Sử dụng ngôn ngữ Dart với Hot Reload, widget-based architecture và biên dịch native cho hiệu suất cao.
+\textbf{Flutter} là bộ công cụ UI của Google, phát triển ứng dụng đa nền tảng (Android, iOS, Web, Desktop) từ cùng một mã nguồn. Sử dụng ngôn ngữ Dart với Hot Reload, kiến trúc widget-based, biên dịch sang mã native.
 
-Thư viện chính: \textbf{provider} (state management), \textbf{dio} (HTTP client), \textbf{cached\_network\_image} (caching ảnh), \textbf{flutter\_secure\_storage} (lưu JWT), \textbf{url\_launcher} và \textbf{app\_links} (Deep Link MoMo).
+Thư viện chính: \textbf{provider} (state management), \textbf{dio} (API calls), \textbf{cached\_network\_image} (image cache), \textbf{flutter\_secure\_storage} (secure token storage), \textbf{url\_launcher} và \textbf{app\_links} (MoMo Deep Link).
 
-\subsection{Công nghệ Tích hợp}
+\subsection{Công nghệ tích hợp}
 
-\textbf{MoMo Payment Gateway:} Cổng thanh toán hàng đầu Việt Nam với 30+ triệu người dùng. Quy trình: App tạo request → Backend gọi MoMo API (HMAC-SHA256 signature) → Trả Deep Link → Mở MoMo app → User xác nhận → IPN callback → Cập nhật đơn hàng.
+Hệ thống tích hợp các dịch vụ bên thứ ba nhằm đảm bảo khả năng thanh toán, lưu trữ, bảo mật và tương tác thông minh.
 
-\textbf{Cloudinary:} CDN quản lý hình ảnh với upload API, tối ưu hóa tự động và phân phối toàn cầu.
+MoMo Payment Gateway được sử dụng cho thanh toán trực tuyến.
 
-\textbf{Bảo mật:} JWT authentication (Access Token 7 ngày + Refresh Token 30 ngày), bcrypt mã hóa mật khẩu, PIN Lock tùy chọn, HTTPS, input validation với express-validator.
+Cloudinary được tích hợp như một CDN để lưu trữ, tối ưu và phân phối hình ảnh toàn cầu.
 
-\textbf{Voice Search (Speech-to-Text):} Tìm kiếm bằng giọng nói sử dụng mô hình GPT-4o-mini-transcribe:
-\begin{itemize}
-    \item \textbf{Ghi âm}: Package \texttt{record} với format WAV 16kHz mono
-    \item \textbf{Transcribe API}: Gửi file audio đến server → Nhận text tiếng Việt
-    \item \textbf{Prompt hints}: Tối ưu nhận dạng tên sản phẩm (iPhone, Samsung, Xiaomi...)
-    \item \textbf{Quy trình}: User nhấn mic → Ghi âm → Stop → Upload → Transcribe → Tìm kiếm
-\end{itemize}
+Hệ thống bảo mật sử dụng JWT, bcrypt, HTTPS và \textit{express-validator}, hỗ trợ mã PIN tùy chọn.
 
-\textbf{Content Moderation:} Hệ thống tự động phát hiện và flag nội dung vi phạm trong đánh giá. Categories kiểm duyệt: Harassment (quấy rối), Hate (thù ghét), Violence (bạo lực), Sexual (khiêu dâm), Self-harm (tự gây thương tích), Illicit (bất hợp pháp). Quy trình: Review mới → Content Moderation API → Nếu phát hiện vi phạm: isFlagged=true, moderationStatus='pending' → Admin duyệt thủ công (Approve/Reject).
+Chức năng tìm kiếm bằng giọng nói sử dụng mô hình \textit{GPT-4o-mini-transcribe} để chuyển đổi âm thanh thành văn bản phục vụ tìm kiếm.
+
+Cơ chế kiểm duyệt nội dung tự động phát hiện các đánh giá vi phạm và gắn cờ \textit{isFlagged=true} để quản trị viên duyệt thủ công.
 
 \subsection{ABSA - Aspect-Based Sentiment Analysis}
+\subsubsection*{Giới thiệu bài toán}
+
+Sự phát triển của thương mại điện tử Việt Nam làm gia tăng nhu cầu phân tích cảm xúc từ bình luận khách hàng. Tuy nhiên, đặc thù tiếng Việt phi chuẩn (tiếng lóng, viết tắt, emoji) gây khó khăn cho các phương pháp truyền thống. Do đó, VeritaShop được xây dựng nhằm tích hợp mô hình ngôn ngữ tiên tiến để tự động phân loại cảm xúc và hỗ trợ ra quyết định.
 
 \subsubsection*{Các nghiên cứu liên quan}
-Các phương pháp truyền thống dựa trên TF-IDF + SVM/Naive Bayes gặp hạn chế trong nắm bắt ngữ nghĩa sâu. Sự phát triển của học sâu mở ra hướng tiếp cận mới:
-\begin{itemize}
-    \item \textbf{CNN}: Khai thác cụm từ quan trọng qua bộ lọc trượt, phù hợp văn bản ngắn
-    \item \textbf{LSTM}: Giải quyết phụ thuộc dài hạn, phù hợp dữ liệu hội thoại
-    \item \textbf{Transformer}: Cơ chế attention cho phép mô hình hóa quan hệ toàn cục giữa các token
-    \item \textbf{BERT tiếng Việt}: PhoBERT, VisoBERT vượt trội so với mBERT đa ngôn ngữ
-\end{itemize}
 
-\subsubsection*{Định nghĩa bài toán}
-ABSA là kỹ thuật phân tích cảm xúc nâng cao, chia thành 2 nhiệm vụ riêng biệt:
+\textbf{Phương pháp truyền thống} như Bag-of-Words, TF-IDF kết hợp SVM hoặc Naive Bayes còn hạn chế trong việc nắm bắt ngữ nghĩa sâu và phụ thuộc nhiều vào tiền xử lý thủ công, đặc biệt đối với tiếng Việt.
 
-\begin{itemize}
-    \item \textbf{Aspect Detection (AD)}: Xác định bình luận đang nói về khía cạnh nào của sản phẩm (Pin, Màn hình, Giao hàng...). Đây là bài toán phân loại đa nhãn (multi-label classification).
-    \item \textbf{Sentiment Classification (SC)}: Với mỗi khía cạnh tìm được, xác định cảm xúc là Positive, Negative hay Neutral. Đây là bài toán phân loại đa lớp (multi-class classification).
-\end{itemize}
+\textbf{Học sâu} với CNN, LSTM và Transformer đã trở thành nền tảng cho các mô hình ngôn ngữ tiền huấn luyện. Các mô hình chuyên biệt cho tiếng Việt như PhoBERT và VisoBERT cho hiệu quả vượt trội so với mBERT đa ngôn ngữ.
 
-\textbf{Ví dụ minh họa:}
+\textbf{Hạn chế hiện tại} gồm khả năng xử lý bình luận ngắn và tiếng lóng còn hạn chế, mất cân bằng dữ liệu và thiếu nhãn chuyên biệt cho ngữ cảnh TMĐT, đồng thời việc tích hợp thời gian thực còn gặp nhiều thách thức.
 
-\textit{Input:} "Pin dùng cả ngày không hết, nhưng camera hơi tệ trong điều kiện thiếu sáng."
+\textbf{Nghiên cứu này} bổ sung bộ dữ liệu mới, lựa chọn mô hình VisoBERT-STL, áp dụng Focal Loss và thiết kế kiến trúc tối ưu nhằm khắc phục các hạn chế trên.
 
-\textit{Output:}
-\begin{itemize}
-    \item Battery → Positive (confidence: 0.95)
-    \item Camera → Negative (confidence: 0.87)
-\end{itemize}
+\subsubsection*{Focal Loss - Xử lý mất cân bằng dữ liệu}
 
-\subsubsection*{Các khía cạnh (Aspects) được phân tích}
+\textbf{Vấn đề}: Trong dữ liệu bình luận, số lượng đánh giá tích cực thường áp đảo tiêu cực/trung lập (70--80\%). Cross-Entropy truyền thống chỉ học tốt mẫu ``dễ'' (lớp đa số), bỏ qua mẫu ``khó'' (lớp thiểu số).
 
-Hệ thống được huấn luyện nhận diện 11 khía cạnh đặc thù cho thương mại điện tử ngành điện thoại:
-
-\begin{table}[H]
-\centering
-\caption{11 Aspects trong mô hình ABSA}
-\footnotesize
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{|c|l|p{7cm}|}
-\hline
-\textbf{STT} & \textbf{Aspect} & \textbf{Mô tả} \\
-\hline
-1 & Battery & Thời lượng pin, tốc độ sạc, công nghệ sạc nhanh \\
-\hline
-2 & Camera & Chất lượng ảnh, video, chụp đêm, selfie \\
-\hline
-3 & Performance & Tốc độ xử lý, đa nhiệm, gaming, chip \\
-\hline
-4 & Display & Độ sáng, màu sắc, tần số quét, độ phân giải \\
-\hline
-5 & Design & Ngoại hình, chất liệu, trọng lượng, màu sắc máy \\
-\hline
-6 & Packaging & Hộp đựng, phụ kiện đi kèm, seal nguyên vẹn \\
-\hline
-7 & Price & Giá cả, khuyến mãi, so với đối thủ \\
-\hline
-8 & Shop\_Service & Tư vấn, hỗ trợ, thái độ nhân viên \\
-\hline
-9 & Shipping & Tốc độ giao hàng, đóng gói vận chuyển \\
-\hline
-10 & General & Nhận xét tổng quan về sản phẩm \\
-\hline
-11 & Others & Các vấn đề khác không thuộc 10 aspects trên \\
-\hline
-\end{tabular}
-\end{table}
-
-\text{Lưu ý:} Packaging và Shipping là 2 khía cạnh quan trọng thường bị thiếu trong các bộ dữ liệu ABSA truyền thống, nhưng rất phổ biến trong bình luận mua hàng online.
-
-\subsubsection*{Kiến trúc mô hình (Model Architecture)}
-
-\textbf{1. Core Model - VisoBERT}
-
-Đồ án sử dụng VisoBERT làm backbone thay vì PhoBERT vì các lý do:
-\begin{itemize}
-    \item Huấn luyện trên 14GB dữ liệu mạng xã hội Việt Nam
-    \item Hiểu tốt emoji/icon thường gặp trong bình luận
-    \item Xử lý được teencode và ngôn ngữ không chuẩn ("k" = "không", "đc" = "được")
-    \item Phù hợp với văn phong bình luận mua hàng hơn PhoBERT (huấn luyện trên báo chí)
-\end{itemize}
-
-\textbf{2. Chiến lược huấn luyện - Single-Task Learning (STL)}
-
-Thay vì dùng 1 mô hình làm 2 việc cùng lúc (Multi-Task Learning), nhóm tách thành 2 mô hình riêng biệt:
-\begin{itemize}
-    \item \textbf{Mô hình AD}: Chuyên phát hiện khía cạnh (Aspect Detection)
-    \item \textbf{Mô hình SC}: Chuyên phân loại cảm xúc (Sentiment Classification)
-\end{itemize}
-
-\textbf{Lý do:} STL giúp tránh task interference (xung đột nhiệm vụ), mỗi mô hình tập trung tối ưu cho một mục tiêu cụ thể.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{image/sequence/ad_model.png}
-        \caption{Mô hình AD (Aspect Detection)}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{image/sequence/sc_model.png}
-        \caption{Mô hình SC (Sentiment Classification)}
-    \end{subfigure}
-    \caption{Kiến trúc Single-Task Learning cho ABSA}
-    \label{fig:stl_arch}
-\end{figure}
-
-\subsubsection*{Kỹ thuật Focal Loss - Xử lý mất cân bằng dữ liệu}
-
-\textbf{Vấn đề:} Trong dữ liệu bình luận thực tế, số lượng đánh giá tích cực (Positive) thường áp đảo tiêu cực (Negative) và trung tính (Neutral). Tỷ lệ có thể lên đến 70-80\% Positive.
-
-Hàm mất mát truyền thống Cross-Entropy khiến mô hình chỉ học tốt các mẫu "dễ" (lớp đa số) và bỏ qua các mẫu "khó" (lớp thiểu số).
-
-\textbf{Giải pháp:} Áp dụng Focal Loss với tham số $\gamma=2$:
+\textbf{Giải pháp}: Focal Loss (Lin et al.) điều chỉnh trọng số dựa trên độ khó mẫu, giảm ảnh hưởng mẫu dễ, tăng cường học từ mẫu khó.
 
 $$FL(p_{t})=-\alpha_{t}(1-p_{t})^{\gamma}\log(p_{t})$$
-
 Trong đó:
 \begin{itemize}
-    \item $p_t$: Xác suất dự đoán đúng
-    \item $\alpha_t$: Trọng số cân bằng lớp
-    \item $\gamma$: Focusing parameter (thường = 2)
-    \item $(1-p_t)^\gamma$: Modulating factor - giảm loss cho mẫu dễ, tăng cho mẫu khó
+    \item $p_t = \begin{cases} p & \text{nếu } y = 1 \\ 1-p & \text{nếu } y = 0 \end{cases}$
+    \item $\alpha_t$: hệ số cân bằng trọng số lớp
+    \item $\gamma$: focusing parameter, khi $\gamma = 0$ trở về Cross-Entropy
 \end{itemize}
 
-\textbf{Tác dụng:} Mô hình tập trung học các mẫu "khó" (Negative, Neutral), cải thiện đáng kể F1-Score cho các lớp thiểu số.
+\textbf{Áp dụng}: $\gamma = 2$, $\alpha$ điều chỉnh theo tỷ lệ phân bố lớp. Cải thiện F1-score cho lớp thiểu số (Negative).
+% \subsection{ABSA - Aspect-Based Sentiment Analysis}
 
+% \subsubsection*{Các nghiên cứu liên quan}
 
-\subsubsection*{Tiền xử lý dữ liệu}
+% \textbf{Phương pháp truyền thống}: Bag-of-words, TF-IDF kết hợp SVM/Naive Bayes gặp hạn chế nắm bắt ngữ nghĩa sâu, phụ thuộc tiền xử lý thủ công, đặc biệt với tiếng Việt.
 
-Trước khi đưa vào mô hình ABSA, dữ liệu được xử lý qua các bước:
+% \textbf{Học sâu}: CNN, LSTM và Transformer với cơ chế attention trở thành nền tảng cho mô hình ngôn ngữ tiền huấn luyện. Với tiếng Việt, PhoBERT và VisoBERT vượt trội mBERT đa ngôn ngữ.
 
-\begin{table}[H]
-\centering
-\caption{Pipeline tiền xử lý dữ liệu}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Bước} & \textbf{Input} & \textbf{Output} \\
-\hline
-Chuẩn hóa chính tả & "tooott", "đẹpppp" & "tốt", "đẹp" \\
-\hline
-Dịch tiếng Anh & "good", "ship fast" & "tốt", "giao nhanh" \\
-\hline
-Chuẩn hóa teencode & "k", "đc", "ko" & "không", "được", "không" \\
-\hline
-Giữ lại Emoji & (like), (love), (angry) & (giữ nguyên - mang sắc thái) \\
-\hline
-\end{tabular}
-\end{table}
+% \textbf{Hạn chế hiện tại}: Áp dụng TMĐT với bình luận ngắn/tiếng lóng còn hạn chế; mất cân bằng dữ liệu chưa giải quyết triệt để; UIT-ViSFD thiếu Packaging/Shipping; tích hợp thời gian thực vẫn thách thức.
 
-\subsubsection*{Kết quả thực nghiệm}
+% \textbf{Nghiên cứu này giải quyết qua:} bổ sung bộ dữ liệu mới, so sánh và chọn mô hình (VisoBERT-STL), áp dụng Focal Loss, thiết kế kiến trúc tối ưu.
 
-\textbf{Bộ dữ liệu:}
-\begin{itemize}
-    \item Số lượng: 14,912 bình luận từ các sàn TMĐT Việt Nam
-    \item Độ đồng thuận gán nhãn: Kappa = 0.8208 (Rất tốt)
-    \item Chia tỷ lệ: 80\% train, 10\% validation, 10\% test
-\end{itemize}
+% \subsubsection*{Focal Loss - Xử lý mất cân bằng dữ liệu}
 
-\textbf{So sánh F1-Score các mô hình (STL vs MTL):}
+% \textbf{Vấn đề}: Trong dữ liệu bình luận, số lượng đánh giá tích cực thường áp đảo tiêu cực/trung lập (70--80\%). Cross-Entropy truyền thống chỉ học tốt mẫu ``dễ'' (lớp đa số), bỏ qua mẫu ``khó'' (lớp thiểu số).
 
-\begin{table}[H]
-\centering
-\caption{So sánh F1-Score của các mô hình ABSA}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\multirow{2}{*}{\textbf{Mô hình}} & \multicolumn{2}{c|}{\textbf{STL}} & \multicolumn{2}{c|}{\textbf{MTL}} \\
-\cline{2-5}
- & \textbf{AD F1} & \textbf{SC F1} & \textbf{AD F1} & \textbf{SC F1} \\
-\hline
-BiLSTM & 85.69\% & 39.83\% & 82.85\% & 34.28\% \\
-\hline
-BiLSTM + Conv1D & 86.23\% & 36.87\% & \textbf{84.09\%} & 33.48\% \\
-\hline
-PhoBERT & 88.84\% & \textbf{92.06\%} & 66.28\% & \textbf{92.93\%} \\
-\hline
-\textbf{VisoBERT} & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & \textbf{93.63\%} \\
-\hline
-\end{tabular}
-\end{table}
+% \textbf{Giải pháp}: Focal Loss (Lin et al.) điều chỉnh trọng số dựa trên độ khó mẫu, giảm ảnh hưởng mẫu dễ, tăng cường học từ mẫu khó.
 
-\subsubsection*{Phân tích kết quả}
+% $$FL(p_{t})=-\alpha_{t}(1-p_{t})^{\gamma}\log(p_{t})$$
 
-\textbf{1. STL tốt hơn MTL:}
-\begin{itemize}
-    \item PhoBERT-STL: AD tăng +22.56\% so với MTL
-    \item VisoBERT-STL: AD tăng +6.71\%, SC tăng +2.74\% so với MTL
-\end{itemize}
+% Trong đó:
+% \begin{itemize}
+%     \item $p_t = \begin{cases} p & \text{nếu } y = 1 \\ 1-p & \text{nếu } y = 0 \end{cases}$: xác suất dự đoán đúng
+%     \item $\alpha_t$: hệ số cân bằng trọng số lớp
+%     \item $\gamma$: focusing parameter, khi $\gamma = 0$ trở về Cross-Entropy
+% \end{itemize}
 
-\textbf{2. Transformer vượt trội BiLSTM:}
-\begin{itemize}
-    \item SC: 96.37\% (VisoBERT) vs 39.83\% (BiLSTM) = cải thiện +56.54\%
-    \item Transformer có khả năng biểu diễn ngữ cảnh mạnh hơn
-\end{itemize}
+% \textbf{Áp dụng}: $\gamma = 2$, $\alpha$ điều chỉnh theo tỷ lệ phân bố lớp. Cải thiện F1-score cho lớp thiểu số (Negative).
 
-\textbf{3. VisoBERT tốt hơn PhoBERT:}
-\begin{itemize}
-    \item VisoBERT-STL: AD 89.39\%, SC 96.37\%
-    \item PhoBERT-STL: AD 88.84\%, SC 92.06\%
-    \item VisoBERT huấn luyện trên 14GB dữ liệu mạng xã hội, hiểu được emoji/icon
-\end{itemize}
+% \subsubsection*{Định nghĩa bài toán}
+% ABSA gồm hai nhiệm vụ:
+% \begin{itemize}
+%     \item \textbf{Aspect Detection (AD)}: Xác định khía cạnh (Pin, Màn hình, Giao hàng...) - multi-label classification
+%     \item \textbf{Sentiment Classification (SC)}: Phân loại Tích cực/Tiêu cực/Trung lập - multi-class classification
+% \end{itemize}
+
+% \textbf{Ví dụ:} ``Pin dùng cả ngày không hết, nhưng camera hơi tệ.''
+
+% Đầu ra Battery → Positive (0.95), Camera → Negative (0.87)
+
+% \subsubsection*{Các khía cạnh được phân tích}
+
+% Mô hình nhận diện 11 khía cạnh ngành điện thoại:
+
+% \begin{table}[H]
+% \centering
+% \caption{11 Aspects trong mô hình ABSA}
+% \footnotesize
+% \renewcommand{\arraystretch}{1.1}
+% \begin{tabular}{|c|l|p{7cm}|}
+% \hline
+% \textbf{STT} & \textbf{Aspect} & \textbf{Mô tả} \\
+% \hline
+% 1 & Battery & Thời lượng pin, tốc độ sạc \\
+% \hline
+% 2 & Camera & Chất lượng ảnh, video, selfie \\
+% \hline
+% 3 & Performance & Tốc độ, đa nhiệm, gaming, chip \\
+% \hline
+% 4 & Display & Độ sáng, màu sắc, tần số quét \\
+% \hline
+% 5 & Design & Ngoại hình, chất liệu, trọng lượng \\
+% \hline
+% 6 & Packaging & Hộp, phụ kiện, seal \\
+% \hline
+% 7 & Price & Giá cả, khuyến mãi \\
+% \hline
+% 8 & Shop\_Service & Tư vấn, hỗ trợ \\
+% \hline
+% 9 & Shipping & Tốc độ giao hàng \\
+% \hline
+% 10 & General & Nhận xét tổng quan \\
+% \hline
+% 11 & Others & Các vấn đề khác \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \text{Lưu ý:} Packaging và Shipping là khía cạnh quan trọng trong TMĐT nhưng thường thiếu trong bộ dữ liệu ABSA truyền thống.
+
+% \subsubsection*{Kiến trúc mô hình}
+
+% \textbf{VisoBERT} được chọn thay PhoBERT vì: huấn luyện trên 14GB dữ liệu mạng xã hội VN, hiểu tốt emoji, xử lý teencode (``k'' = ``không''), phù hợp văn phong bình luận.
+
+% \textbf{Single-Task Learning (STL)}: Tách thành 2 mô hình riêng (AD và SC) thay vì Multi-Task Learning để tránh task interference, tối ưu hóa từng mục tiêu.
+
+% \textbf{Kiến trúc mô hình AD (Aspect Detection):}
+
+% $$\begin{aligned}
+% \text{Input} \rightarrow \text{Tokenizer} \rightarrow \text{VisoBERT} \rightarrow \text{[CLS] Tokens} \rightarrow \text{Dense + ReLU + Dropout(0.3)} \\
+% \rightarrow \text{Classifier Sigmoid} \rightarrow \text{Output (11 Aspects)}
+% \end{aligned}$$
+
+% \textbf{Kiến trúc mô hình SC (Sentiment Classification):}
+
+% $$\begin{aligned}
+% \text{Input} \rightarrow \text{Tokenizer} \rightarrow \text{VisoBERT} \rightarrow \text{[CLS] Tokens} \rightarrow \text{Dense + ReLU + Dropout(0.3)} \\
+% \rightarrow \text{Classifier Softmax} \rightarrow \text{Output (Positive/Negative/Neutral)}
+% \end{aligned}$$
+
+% % \subsubsection*{Focal Loss - Xử lý mất cân bằng dữ liệu}
+
+% % Dữ liệu thực tế có 70--80\% đánh giá tích cực. Cross-Entropy truyền thống chỉ học tốt mẫu ``dễ'' (lớp đa số).
+
+% % \textbf{Giải pháp:} Focal Loss với $\gamma=2$:
+
+% % $$FL(p_{t})=-\alpha_{t}(1-p_{t})^{\gamma}\log(p_{t})$$
+
+% % $p_t$: xác suất đúng, $\alpha_t$: trọng số lớp, $\gamma$: focusing parameter. $(1-p_t)^\gamma$ giảm mất mát mẫu dễ, tăng mất mát mẫu khó.
+
+% % \textbf{Tác dụng:} Tập trung học mẫu ``khó'' (Negative, Neutral), cải thiện F1-Score lớp thiểu số.
+
+% \subsubsection*{Tập dữ liệu}
+
+% \textbf{Nguồn dữ liệu}: 14.912 bình luận điện thoại di động từ Shopee, Lazada, Tiki. 11 khía cạnh bao gồm Packaging và Shipping - thường thiếu trong bộ dữ liệu hiện có.
+
+% \textbf{Phân chia}: 80\% train (11.930), 10\% validation (1.491), 10\% test (1.491). Kappa = 0.8208 (rất tốt).
+
+% \textbf{Tiền xử lý}: Chuẩn hóa chính tả, dịch tiếng Anh, chuẩn hóa teencode, giữ emoji.
+% \subsubsection*{Các khía cạnh được phân tích}
+
+% Mô hình nhận diện 11 khía cạnh ngành điện thoại:
+
+% \begin{table}[H]
+% \centering
+% \caption{11 Aspects trong mô hình ABSA}
+% \footnotesize
+% \renewcommand{\arraystretch}{1.1}
+% \begin{tabular}{|c|l|p{7cm}|}
+% \hline
+% \textbf{STT} & \textbf{Aspect} & \textbf{Mô tả} \\
+% \hline
+% 1 & Battery & Thời lượng pin, tốc độ sạc \\
+% \hline
+% 2 & Camera & Chất lượng ảnh, video, selfie \\
+% \hline
+% 3 & Performance & Tốc độ, đa nhiệm, gaming, chip \\
+% \hline
+% 4 & Display & Độ sáng, màu sắc, tần số quét \\
+% \hline
+% 5 & Design & Ngoại hình, chất liệu, trọng lượng \\
+% \hline
+% 6 & Packaging & Hộp, phụ kiện, seal \\
+% \hline
+% 7 & Price & Giá cả, khuyến mãi \\
+% \hline
+% 8 & Shop\_Service & Tư vấn, hỗ trợ \\
+% \hline
+% 9 & Shipping & Tốc độ giao hàng \\
+% \hline
+% 10 & General & Nhận xét tổng quan \\
+% \hline
+% 11 & Others & Các vấn đề khác \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \subsubsection{Nhãn cảm xúc}
+% Mỗi khía aspect (trừ Others) được gán nhãn: \textbf{Positive}, \textbf{Negative}, hoặc \textbf{Neutral}.
+
+% \subsection{Đánh nhãn dữ liệu}
+
+% \textbf{Quy trình:} 9 annotators sử dụng Label Studio.Phase 1 gồm có 1,000 mẫu xây dựng guideline.Phase 2 gồm 13,912 mẫu còn lại.
+
+% \textbf{Kích thước mẫu đánh giá:} Công thức Slovin với $N=13,912$, $e=2.5\%$:
+% $$n = \frac{N}{1 + N \cdot e^2} = \frac{13,912}{1 + 13,912 \times 0.025^2} \approx 1,435$$
+
+% Chọn \textbf{1,546 mẫu} để đánh giá độ đồng thuận.
+
+% \textbf{Fleiss' Kappa:}
+% $$\kappa = \frac{\bar{P} - \bar{P_e}}{1 - \bar{P_e}}$$
+% Trong đó:
+% \begin{itemize}
+%     \item $\bar{P}$ là tỷ lệ đồng thuận quan sát được (observed agreement)
+%     \item $\bar{P_e}$ là tỷ lệ đồng thuận kỳ vọng do ngẫu nhiên (expected agreement)
+% \end{itemize}
+% Với $n$ annotator và $N$ mẫu, $k$ categories:
+% \begin{equation}
+% \bar{P} = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{n(n-1)} \sum_{j=1}^{k} n_{ij}(n_{ij}-1)
+% \end{equation}
+
+% \begin{equation}
+% \bar{P_e} = \sum_{j=1}^{k} p_j^2, \quad \text{với } p_j = \frac{1}{Nn} \sum_{i=1}^{N} n_{ij}
+% \end{equation}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|c|c|c|c|c|}
+% \hline
+% \textbf{Phase} & \textbf{Mẫu} & \textbf{Annotators} & \textbf{Kappa TB} & \textbf{Kappa T. vị} & \textbf{Đánh giá} \\
+% \hline
+% Phase 1 & 1,000 & 8 & 0.7544 & 0.8469 & Tốt \\
+% \hline
+% Phase 2 & 1,546 & 9 & \textbf{0.8208} & 0.8382 & Rất tốt \\
+% \hline
+% \end{tabular}
+% \caption{Tổng hợp Fleiss' Kappa qua 2 giai đoạn}
+% \label{tab:fleiss-kappa-summary}
+% \end{table}
+
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \begin{tabular}{|l|c|c|}
+% \hline
+% \textbf{Aspect} & \textbf{Phase 1 Kappa} & \textbf{Phase 2 Kappa} \\
+% \hline
+% Battery & 0.8747 & 0.8834 \\
+% \hline
+% Camera & 0.8861 & \textbf{0.9166} \\
+% \hline
+% Performance & 0.7220 & 0.7842 \\
+% \hline
+% Display & 0.8469 & 0.7915 \\
+% \hline
+% Design & 0.5794 & 0.7105 \\
+% \hline
+% Packaging & 0.8528 & 0.8703 \\
+% \hline
+% Price & 0.6610 & 0.8770 \\
+% \hline
+% Shop\_Service & 0.8548 & 0.8301 \\
+% \hline
+% Shipping & 0.8646 & 0.8917 \\
+% \hline
+% General & 0.5277 & 0.6352 \\
+% \hline
+% Others & 0.6287 & 0.8382 \\
+% \hline
+% \end{tabular}
+% \caption{Fleiss' Kappa theo khía cạnh (cải thiện từ Phase 1 $\to$ Phase 2)}
+% \label{tab:fleiss-kappa-aspects-combined}
+% \end{table}
+
+% Theo thang Landis \& Koch: $<$0.20 (kém), 0.21-0.40 (yếu), 0.41-0.60 (trung bình), 0.61-0.80 (tốt), 0.81-1.00 (rất tốt). Kappa tăng 8.8\% (0.7544 $\to$ 0.8208).
+
+% \subsection{Tiền xử lý dữ liệu}
+% Trước khi huấn luyện mô hình, dữ liệu thô được tiền xử lý qua các bước sau:
+
+% \begin{enumerate}
+%     \item \textbf{Chuẩn hóa chính tả:} Loại bỏ và sửa các lỗi chính tả phổ biến trong bình luận tiếng Việt (ví dụ: "đẹpp" → "đẹp", "tooott" → "tốt").
+%     \item \textbf{Chuyển đổi từ tiếng Anh:} Chuyển các từ tiếng Anh thông dụng sang tiếng Việt tương đương (ví dụ: "good" → "tốt", "nice" → "đẹp", "bad" → "tệ", "shop" → "cửa hàng").
+%     \item \textbf{Chuẩn hóa viết tắt:} Chuyển các từ viết tắt, teencode sang dạng chuẩn (ví dụ: "k" → "không", "đc" → "được", "nc" → "nói chuyện").
+%     \item \textbf{Loại bỏ nhiễu:} Xóa các ký tự đặc biệt không cần thiết, URL, số điện thoại, nhưng giữ lại emoji quan trọng biểu thị cảm xúc.
+%     \item \textbf{Làm sạch nhãn sai:} Rà soát và loại bỏ các mẫu có nhãn không nhất quán hoặc gán nhãn sai so với nội dung bình luận.
+% \end{enumerate}
+
+% \subsection{Kết quả và đánh giá}
+
+% \subsubsection{Metrics}
+% Để đánh giá hiệu năng mô hình, nghiên cứu sử dụng các chỉ số sau:
+% \begin{itemize}
+%     \item \textbf{Precision}: Tỷ lệ dự đoán đúng trên tổng số dự đoán positive.
+%     \item \textbf{Recall}: Tỷ lệ dự đoán đúng trên tổng số positive thực tế.
+%     \item \textbf{F1-Score}: Trung bình điều hòa của Precision và Recall.
+% \end{itemize}
+
+% \begin{equation}
+% F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}
+% \end{equation}
+
+% \subsubsection{Cài đặt thí nghiệm}
+% \begin{itemize}
+%     \item \textbf{Hardware}: GPU NVIDIA RTX 3070 (8GB VRAM)
+%     \item \textbf{Framework}: PyTorch 2.0, Transformers 4.30
+%     \item \textbf{Optimizer}: AdamW với learning rate $2 \times 10^{-5}$, weight decay = 0.01, epsilon = $1.0 \times 10^{-8}$
+%     \item \textbf{Batch size}: 16 cho BERT models, 32 cho BiLSTM models
+%     \item \textbf{Epochs}: 12 với early stopping, patience = 5
+%     \item \textbf{Dropout}: 0.3
+%     \item \textbf{Max gradient norm}: 1.0
+%     \item \textbf{Focal Loss parameters}: $\gamma$ = 2.0, $\alpha$ = auto
+% \end{itemize}
+
+% \subsubsection{Baseline Models}
+% Nghiên cứu so sánh 8 mô hình chia thành 3 nhóm:
+
+% \textbf{1. BiLSTM-based Models (Traditional Deep Learning):}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|l|c|c|}
+% \hline
+% \textbf{Mô hình} & \textbf{Kiến trúc} & \textbf{AD F1} & \textbf{SC F1} \\
+% \hline
+% BILSTM-MTL & BiLSTM + Conv1D + MTL & 84.09\% & 33.48\% \\
+% \hline
+% BILSTM-MTL-NoCon & BiLSTM + MTL (không Conv1D) & 82.85\% & 34.28\% \\
+% \hline
+% BILSTM-STL & BiLSTM + Conv1D + STL & 86.23\% & 36.87\% \\
+% \hline
+% BILSTM-STL-NoCon & BiLSTM + STL & 85.69\% & 39.83\% \\
+% \hline
+% \end{tabular}
+% \caption{Kết quả các mô hình BiLSTM}
+% \label{tab:bilstm-results}
+% \end{table}
+
+% \textbf{2. PhoBERT-based Models:}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|l|c|c|}
+% \hline
+% \textbf{Mô hình} & \textbf{Kiến trúc} & \textbf{AD F1} & \textbf{SC F1} \\
+% \hline
+% PhoBERT-MTL & vinai/phobert-base + MTL & 66.28\% & 92.93\% \\
+% \hline
+% PhoBERT-STL & vinai/phobert-base + STL & 88.84\% & 92.06\% \\
+% \hline
+% \end{tabular}
+% \caption{Kết quả các mô hình PhoBERT}
+% \label{tab:phobert-results}
+% \end{table}
+
+% \textbf{3. VisoBERT-based Models (Best Performance):}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|l|c|c|}
+% \hline
+% \textbf{Mô hình} & \textbf{Kiến trúc} & \textbf{AD F1} & \textbf{SC F1} \\
+% \hline
+% VisoBERT-MTL & 5CD-AI/visobert + MTL & 82.68\% & 93.63\% \\
+% \hline
+% \textbf{VisoBERT-STL} & 5CD-AI/visobert + STL & \textbf{89.39\%} & \textbf{96.37\%} \\
+% \hline
+% \end{tabular}
+% \caption{Kết quả các mô hình VisoBERT}
+% \label{tab:visobert-results}
+% \end{table}
+
+% \subsubsection{Kết Quả}
+
+% Bảng dưới đây tổng hợp kết quả F1-Score của tất cả các mô hình đã thực nghiệm trên hai nhiệm vụ: Phát hiện khía cạnh (AD) và Phân loại cảm xúc (SC).
+
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|c|c|c|c|}
+% \hline
+% \textbf{Metric} & \multicolumn{2}{c|}{\textbf{STL}} & \multicolumn{2}{c|}{\textbf{MTL}} \\
+% \hline
+% \textbf{Model} & \textbf{F1\_ad} & \textbf{F1\_sc} & \textbf{F1\_ad} & \textbf{F1\_sc} \\
+% \hline
+% BILSTM & 85.69\% & 39.83\% & 82.85\% & 34.28\% \\
+% \hline
+% BILSTM + Conv1D & 86.23\% & 36.87\% & \textbf{84.09\%} & 33.48\% \\
+% \hline
+% PhoBERT & 88.84\% & 92.06\% & 66.28\% & 92.93\% \\
+% \hline
+% VisoBERT & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & \textbf{93.63\%} \\
+% \hline
+% \end{tabular}
+% \caption{Bảng so sánh F1-Score của các mô hình}
+% \label{tab:comparison-all}
+% \end{table}
+
+% Từ kết quả trên, có thể thấy:
+% \begin{itemize}
+%     \item Các mô hình BiLSTM đạt kết quả tốt ở nhiệm vụ Phát hiện khía cạnh (84-86\%) nhưng kém ở Phân loại cảm xúc (33-40\%).
+%     \item Các mô hình Transformer (PhoBERT, VisoBERT) đạt kết quả xuất sắc ở Phân loại cảm xúc (92-96\%).
+%     \item \textbf{VisoBERT-STL} đạt kết quả cao nhất ở cả hai nhiệm vụ với AD F1 = 89.39\% và SC F1 = 96.37\%.
+% \end{itemize}
+
+% \subsubsection{Phân tích kết quả}
+
+% \textbf{1. Học đơn nhiệm vụ tốt hơn học đa nhiệm vụ (STL > MTL):}
+% \begin{itemize}
+%     \item PhoBERT-STL: Phát hiện khía cạnh tăng +22.56\% so với PhoBERT-MTL
+%     \item VisoBERT-STL: Phát hiện khía cạnh tăng +6.71\%, Phân loại cảm xúc tăng +2.74\% so với VisoBERT-MTL
+%     \item Huấn luyện riêng biệt giúp mỗi nhiệm vụ được tối ưu độc lập, tránh xung đột giữa các nhiệm vụ
+% \end{itemize}
+
+% \textbf{2. Mô hình Transformer vượt trội hơn BiLSTM:}
+% \begin{itemize}
+%     \item Phân loại cảm xúc: 96.37\% (VisoBERT) so với 39.83\% (BiLSTM) = cải thiện +56.54\%
+%     \item Các mô hình Transformer được huấn luyện trước có khả năng biểu diễn ngữ cảnh mạnh hơn
+% \end{itemize}
+
+% \textbf{3. VisoBERT cho kết quả tốt hơn PhoBERT:}
+% \begin{itemize}
+%     \item VisoBERT-STL: Phát hiện khía cạnh 89.39\%, Phân loại cảm xúc 96.37\%
+%     \item PhoBERT-STL: Phát hiện khía cạnh 88.84\%, Phân loại cảm xúc 92.06\%
+%     \item VisoBERT được huấn luyện trên tập dữ liệu 14GB tiếng Việt và có khả năng hiểu được emoji/icon nên cho kết quả tốt hơn
+% \end{itemize}
+% \subsubsection*{Đánh nhãn dữ liệu}
+
+% \textbf{Quy trình}: 9 annotators với Label Studio. Phase 1: 1.000 mẫu xây dựng guideline. Phase 2: 13.912 mẫu còn lại.
+
+% \textbf{Kích thước mẫu đánh giá}: Công thức Slovin với $N=13.912$, $e=2.5\%$:
+
+% $$n = \frac{N}{1 + N \cdot e^2} = \frac{13.912}{1 + 13.912 \times (0.025)^2} \approx 1.435$$
+
+% Chọn \textbf{1.546 mẫu} để đảm bảo độ tin cậy.
+
+% \textbf{Fleiss' Kappa}:
+
+% $$\kappa = \frac{\bar{P} - \bar{P_e}}{1 - \bar{P_e}}$$
+
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|c|c|}
+% \hline
+% \textbf{Chỉ số} & \textbf{Phase 1} & \textbf{Phase 2} \\
+% \hline
+% Số mẫu & 1.000 & 1.546 \\
+% \hline
+% Annotators & 8 & 9 \\
+% \hline
+% Kappa & 0.7544 (Tốt) & 0.8208 (Rất tốt) \\
+% \hline
+% \end{tabular}
+% \caption{Độ đồng thuận Fleiss' Kappa}
+% \end{table}
+
+% Cải thiện 8.8\% từ Phase 1 sang Phase 2, chứng tỏ guideline hiệu quả.
+
+% \subsubsection*{Tiền xử lý}
+% (1) Chuẩn hóa chính tả, (2) Dịch tiếng Anh → tiếng Việt, (3) Chuẩn hóa teencode, (4) Loại bỏ nhiễu (giữ emoji), (5) Làm sạch nhãn sai.
+
+% \subsubsection*{Cài đặt thí nghiệm}
+% GPU RTX 3070, PyTorch 2.0, AdamW ($lr=2 \times 10^{-5}$), batch size 16/32, 12 epochs, dropout 0.3, Focal Loss $\gamma=2$.
+
+% \subsubsection*{Kết quả thực nghiệm}
+
+% \begin{table}[H]
+% \centering
+% \caption{So sánh F1-Score các mô hình ABSA}
+% \renewcommand{\arraystretch}{1.25}
+% \begin{tabular}{|l|c|c|c|c|}
+% \hline
+% \multirow{2}{*}{\textbf{Mô hình}} & \multicolumn{2}{c|}{\textbf{STL}} & \multicolumn{2}{c|}{\textbf{MTL}} \\
+% \cline{2-5}
+%  & \textbf{AD F1} & \textbf{SC F1} & \textbf{AD F1} & \textbf{SC F1} \\
+% \hline
+% BiLSTM & 85.69\% & 39.83\% & 82.85\% & 34.28\% \\
+% \hline
+% BiLSTM + Conv1D & 86.23\% & 36.87\% & \textbf{84.09\%} & 33.48\% \\
+% \hline
+% PhoBERT & 88.84\% & \textbf{92.06\%} & 66.28\% & \textbf{92.93\%} \\
+% \hline
+% \textbf{VisoBERT} & \textbf{89.39\%} & \textbf{96.37\%} & 82.68\% & \textbf{93.63\%} \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \subsubsection*{Phân tích kết quả}
+
+% \textbf{1. STL > MTL:} PhoBERT-STL tăng 22.56\% AD; VisoBERT-STL tăng 6.71\% AD, 2.74\% SC.
+
+% \textbf{2. Transformer > BiLSTM:} VisoBERT đạt 96.37\% SC vs 39.83\% BiLSTM (+56.54\%).
+
+% \textbf{3. VisoBERT > PhoBERT:} VisoBERT-STL: AD 89.39\%, SC 96.37\% (hiểu tốt emoji, icon).
 
